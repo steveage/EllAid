@@ -1,0 +1,120 @@
+[
+    {
+        "userId": "13f6227d-8ccd-4d77-b35d-b7f80c75f3d1",
+        "type": "student",
+        "classes": ["kati.brandon@school.com"],
+        "firstName": "Maximilian",
+        "lastName": "Bialobrzeski",
+        "gender": "m",
+        "number": 2531023,
+        "dateOfBirth": "2015-09-13T00:00:00.000Z",
+        "entryDate": "2019-08-01T00:00:00.000Z",
+        "homeLanguage": "English",
+        "homeCommunicationLanguage": "Polish",
+        "pictureUrl": "https://azureStorageLink.com",
+        "version": 1
+    },
+
+    {
+        "classId": "7a8798b4-72e5-4649-b6a4-3519f0c80881",
+        "userId": "kati.brandon@school.com",
+        "type": "class",
+        "name": "genEd",
+        "section": 1,
+        "teachers": ["kati.brandon@school.com"],
+        "assistants": ["ping.hao@school.com", "li.tao@school.com" ],
+        "ellCoaches": ["maggie.bialobrzeski@school.com"],
+        "students": ["13f6227d-8ccd-4d77-b35d-b7f80c75f3d1"],
+        "grade": "PK",
+        "year": "2019",
+        "department": "EC",
+        "version": 1
+    },
+
+    {
+        "studentClassId": "a3d1b52f-a933-43ec-8979-6edcd7c9dca4",
+        "userId": "13f6227d-8ccd-4d77-b35d-b7f80c75f3d1",
+        "type": "studentClass",
+        "class": "7a8798b4-72e5-n 4649-b6a4-3519f0c80881",
+        "teachers": ["kati.brandon@school.com"],
+        "isCurrent": true,
+        "score": "pass",
+        "version": 1
+    },
+
+    {
+        "userId": "kati.brandon@school.com",
+        "type": "teacher",
+        "firstName": "Kati",
+        "lastName": "Brandon",
+        "number": 2345678,
+        "version": 1
+    },
+
+    {
+        "userId":"maggie.bialobrzeski@school.com",
+        "type":"ellCoach",
+        "classes": ["kati.brandon@school.com"],
+        "firstName": "Maggie",
+        "lastName": "Bialobrzeski",
+        "number": 3456789,
+        "version": 1
+    },
+
+    {
+        "userId": "ping.hao@school.com",
+        "type": "assistant",
+        "classes": ["kati.brandon@school.com"],
+        "firstName": "Ping",
+        "lastName": "Hao",
+        "number": 4567890,
+        "version": 1
+    },
+
+    {
+        "userId": "li.tao@school.com",
+        "type": "assistant",
+        "classes": ["kati.brandon@school.com"],
+        "firstName": "Li",
+        "lastName": "Tao",
+        "number": 5678901,
+        "version": 1
+    },
+
+    {
+        "userId": "13f6227d-8ccd-4d77-b35d-b7f80c75f3d1",
+        "type": "testResult",
+        "testId": "a3d1b52f-a933-43ec-8979-6edcd7c9dca1",
+        "testResultId": "a3d1b52f-a933-43ec-8979-6edcd7c9dca3",
+        "subject": "english",
+        "name": "WIDA",
+        "term": "yearBeginning",
+        "sections": [
+            {
+                "areaName": "Listening",
+                "score": "4"
+            },
+            {
+                "areaName": "Speaking",
+                "score": "3"
+            },
+            {
+                "areaName": "Reading",
+                "score": "6"
+            },
+            {
+                "areaName": "Writing-RAW",
+                "score": "5"
+            },
+            {
+                "areaName": "Writing-GRADE ADJ",
+                "score": "5"
+            },
+            {
+                "areaName": "Overall",
+                "score": "4.4"
+            }
+        ],
+        "version": 1
+    }
+]

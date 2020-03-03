@@ -1,0 +1,41 @@
+PURPOSE
+    To keep track of the development activities set for the near future.
+
+R   Move data objects that are specific to the persistence layer from Core to Adapter layer:
+-   Item.Version - database specific, only used in CosmosDb
+-   Item.Type - database specific, only used in no SQL dbs
+Keep Type in user entities and change it into enum. Remove it from other entities since entity object type defines type.
+-   UserBase.UserId - database specific, only used in no SQL dbs as partition key. Change it to Email property and move it out from UserBase to User. There remove UserBase.
+In dtos set userId=Id for students and userId=Email for other users.
+-   Item.Id
+Change from guid to int and use it to replace User.Number.
+-   User.Number
+Remove. Use Item.Id instead.
+-   TestBase.TestId
+-   TestResult.TestSections (only change from array to list)
+-   SchoolClass.Department
+Change from string to enum.
+-   SchoolClass.Email
+Remove. Teacher assignment will be provided new Teacher property of type User.
+-   ShoolClass.Teachers
+Remove. Let's keep it simple and user one teacher per school class.
+-    SchoolClass.Assistants
+Change from a list of string to a list of User
+-   SchoolClass.EllCoaches
+Change from a list of string to a list of User
+-   SchoolClass.students
+Change from a list of string to a list of User
+
+R   Convert Adapters to full boundary.
+C   Refactor user creation logic.
+    Add unit tests.
+    Add DateTimeProvider.
+C   Remove adapter layer for database operations. This design approach is shown at slide 161 of Clean/Screaming architecture presentation.
+C   Remove adapter layer for the use case.
+C   Hide members that should be internal. Make them visible to tests and composition root only.
+C   Add user data dependency to ItemProvider.
+C   Replace EllCoachProvider with UserProvider.
+W   Write acceptance tests.
+W   Move framework specific classes in Infrastructure to dedicated folders.
+S   Redesign entity model to better represent real life objects and remove resemblance to no sql db objects.
+-   Change UserCreatorTests to return modified Students, Instructors, EllCoaches and Assistants.

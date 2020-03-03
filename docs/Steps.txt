@@ -1,0 +1,58 @@
+PURPOSE
+To provide a list of steps necessary to create EllAid web application.
+
+Initial setup
+	1.	Install Visual Studio Code
+	2.	Install .NET Core 3.0 SDK
+	3.	Install Azure Cosmos DB extension in VS Code
+	4.	Install Azure Cosmos Emulator
+	5.	Install Nuget Package Manager extension in VS Code
+
+Create empty project
+	1.	Create EllAid folder
+		mkdir EllAid
+	2.	Create source folder
+		mkdir source
+	3.	Create core project from the source folder
+		dotnet new classlib -n EllAid.Core -f netcoreapp3.0
+	4.	Create infrastructure project from the source folder
+		dotnet new classlib -n EllAid.Infrastructure -f netcoreapp3.0
+	5.	Create empty web project from the source folder
+		dotnet new web -n EllAid.Web
+	6.	Create Tests folder in the source folder
+		mkdir Tests
+	7.	Create xunit test projects
+		dotnet new xunit -n EllAid.Tests.Core
+		dotnet new xunit -n EllAid.Tests.Infrastructure
+		dotnet new xunit -n EllAid.Tests.Web
+		dotnet new xunit -n EllAid.Tests.TestData
+	8.	Add project references to the test projects from the test project folders
+		dotnet add reference ..\..\EllAid.Core
+		dotnet add reference ..\..\EllAid.Infrastructure
+		dotnet add reference ..\..\EllAid.Web
+		dotnet add reference ..\..\EllAid.TestDataGenerator.UI
+
+Set up database
+	1.	Install Azure Cosmos DB extension in VS Code
+	2.	Install Azure Cosmos Emulator
+	3.	Attach emulator in VS Code Cosmos DB extension
+	4.	Create EllAidDb database from the extension. When creating database in Azure, make sure to select 'provision by database' to reduce costs.
+	5.	Create collections:
+		-	Students, pk: userId
+		-	Tests, pk: testId
+	6.	Create one file with sample documents for each collection in data folder.
+	7.	Upload documents from data explorer in the emulator.
+	8.	Run queries to test performance.
+
+Build sample data
+	1.	Create empty console app project from the source folder
+		dotnet new console -n EllAid.TestDataGenerator.UI
+	2.	Add reference to the core library from the new project folder
+		dotnet add reference ..\EllAid.Core
+	3.	Add Microsoft.Azure.Cosmos nuget package to the new project.
+	4.	Setup debugging by clicking on the Debug icon and change dll path in lunch.json.
+	5.	Add Bogus Nuget package to help with test data generation.
+
+Add Test Explorer
+	1.	Install .Net Core Test Explorer VS Code extension.
+	2.	Add "dotnet-test-explorer.testProjectPath": "**/*.Tests.*.csproj" to Settings.json.

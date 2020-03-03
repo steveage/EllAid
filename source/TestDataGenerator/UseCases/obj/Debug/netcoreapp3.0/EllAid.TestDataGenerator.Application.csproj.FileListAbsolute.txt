@@ -1,0 +1,11 @@
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.csprojAssemblyReference.cache
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.AssemblyInfoInputs.cache
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.AssemblyInfo.cs
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\bin\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.deps.json
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\bin\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.dll
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\bin\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.pdb
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\bin\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\bin\Debug\netcoreapp3.0\EllAid.Core.pdb
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.csproj.CopyComplete
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.dll
+C:\Users\mariu\source\EllAid\source\testdatagenerator\application\obj\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.pdb

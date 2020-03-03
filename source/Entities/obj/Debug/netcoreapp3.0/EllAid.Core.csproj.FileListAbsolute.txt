@@ -1,0 +1,16 @@
+C:\Users\mariu\source\EllAid\source\EllAid.Core\bin\Debug\netcoreapp3.0\EllAid.Core.deps.json
+C:\Users\mariu\source\EllAid\source\EllAid.Core\bin\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\EllAid.Core\bin\Debug\netcoreapp3.0\EllAid.Core.pdb
+C:\Users\mariu\source\EllAid\source\EllAid.Core\obj\Debug\netcoreapp3.0\EllAid.Core.AssemblyInfoInputs.cache
+C:\Users\mariu\source\EllAid\source\EllAid.Core\obj\Debug\netcoreapp3.0\EllAid.Core.AssemblyInfo.cs
+C:\Users\mariu\source\EllAid\source\EllAid.Core\obj\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\EllAid.Core\obj\Debug\netcoreapp3.0\EllAid.Core.pdb
+C:\Users\mariu\source\EllAid\source\EllAid.Core\obj\Debug\netcoreapp3.0\EllAid.Core.csprojAssemblyReference.cache
+C:\Users\mariu\source\EllAid\source\core\bin\Debug\netcoreapp3.0\EllAid.Core.deps.json
+C:\Users\mariu\source\EllAid\source\core\bin\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\core\bin\Debug\netcoreapp3.0\EllAid.Core.pdb
+C:\Users\mariu\source\EllAid\source\core\obj\Debug\netcoreapp3.0\EllAid.Core.csprojAssemblyReference.cache
+C:\Users\mariu\source\EllAid\source\core\obj\Debug\netcoreapp3.0\EllAid.Core.AssemblyInfoInputs.cache
+C:\Users\mariu\source\EllAid\source\core\obj\Debug\netcoreapp3.0\EllAid.Core.AssemblyInfo.cs
+C:\Users\mariu\source\EllAid\source\core\obj\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\core\obj\Debug\netcoreapp3.0\EllAid.Core.pdb

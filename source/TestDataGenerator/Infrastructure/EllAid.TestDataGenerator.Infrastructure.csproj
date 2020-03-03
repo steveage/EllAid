@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\Entities\EllAid.Entities.csproj"/>
+    <ProjectReference Include="..\UseCases\EllAid.TestDataGenerator.UseCases.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="*"/>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="*"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="*"/>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="*"/>
+    <PackageReference Include="AutoMapper" Version="9.0.0"/>
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+</Project>

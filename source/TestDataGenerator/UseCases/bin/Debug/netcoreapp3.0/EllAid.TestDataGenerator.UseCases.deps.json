@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "EllAid.TestDataGenerator.UseCases/1.0.0": {
+        "dependencies": {
+          "EllAid.Entities": "1.0.0"
+        },
+        "runtime": {
+          "EllAid.TestDataGenerator.UseCases.dll": {}
+        }
+      },
+      "EllAid.Entities/1.0.0": {
+        "runtime": {
+          "EllAid.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EllAid.TestDataGenerator.UseCases/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EllAid.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,192 @@
+PURPOSE
+To keep track of daily work progress on the creation of MbEllAid web application.
+
+191118
+Decided to use Visual Studio Code for both front and backend.
+Decided to use 'minimal' approach to build the app as in the Plural-sight course Building a Web App with ASP.NET Core, MVC, Entity Framework Core, Bootstrap, and Angular.
+Created Core, Infrastructure and Web .Net Core 3.0 projects with test projects.
+Created solution file with the projects
+
+191119
+Renamed application folders to EllAid for simplicity
+Removed and recreated all projects with the new name
+Removed solution file. VS Code does not use it.
+Installed Cosmos DB VS Code extension
+Created EllAidDb database and Students collection
+Writing sample data
+
+191120
+Modeling relational data
+
+191121
+Searching for a way to reduce costs of provisioning by container. Solution - provision by database.
+Modeling relational data
+
+191122
+Modeling relational data
+Writing sample documents
+
+191125
+Writing sample documents
+Upload documents to db and check RUs.
+
+191126
+Creating EllAid.SampleData project to generate sample data in new project.
+
+191127
+Creating EllAid.SampleData project: creating db, containers and data objects, setting up debug, correcting configuration
+
+191128
+Building sample data with Bogus.
+
+191129
+Building sample data with Bogus.
+
+191202
+Building sample data with Bogus.
+
+191203
+Building sample data.
+Created EllAid.Tests.TestData unit test project.
+Adding unit tests for EllAid.TestDataGenerator.UI project.
+
+191204
+Building sample data.
+
+191205
+Adding unit tests for EllAid.TestDataGenerator.UI.
+
+191206
+Adding unit tests for EllAid.TestDataGenerator.UI.
+Adding test results.
+
+191209
+Adding test results.
+
+191210
+Finished unit tests for EllAid.TestDataGenerator.UI.
+Finished test data building logic.
+Started working on test data persistence into CosmosDb.
+
+191211
+Working on TestDataRepository.
+
+191212
+Working on TestDataRepository.
+Changed initialization logic.
+Testing test data insert.
+Added logging to TestData and Infrastructure projects.
+
+191213
+Testing database and item creation.
+
+191216 (short)
+Creating test data for remaining classes.
+Add todo file to list keep track of the technologies that might be worth implementing in the system such as Azure Monitor, service hosted in a container, Azure DevOps, ect...
+
+191217 (short)
+Added Microsoft.Extensions.Logging.ApplicationInsights to TestData project.
+
+191228 (short)
+Corrected ApplicationInsights logging config in IOC container.
+
+200106
+Added BusinessRules.txt fil.
+Decided to limit the test data to WIDA test results only.
+Adding test data for grades 1-12.
+
+200107
+Researching clean architecture to improve the design.
+
+200108
+Researching clean architecture.
+Researching Blazor and evaluating its suitability for the project.
+Moving Bogus dependency to Infrastructure.
+Correcting project references to comply with clean architecture.
+Researching how to avoid referencing infrastructure project with Autofac.
+
+200109
+Correcting project references and moving files.
+Moving Bogus dependency to Infrastructure.
+
+200110
+Setting up Autofac to use assembly scanning.
+* Changing architecture: now using uncle Bob's screaming architecture concept. Autofac and rewiring not necessary. New projects and renaming of existing projects is needed. Folder rearrangement necessary.
+
+200113
+Finished restructuring project to comply with screaming architecture.
+
+200114
+Adding Adapters layer to the design.
+Decided to move Infrastructure to TestDataGenerator.
+Evaluating changing Application project to use use cases vs DDD.
+
+200115
+Decided to stay with use case approach and to restructure the project to closely reflect screaming architecture. Need to rename projects to UseCases, Entities, Adapters and Frameworks.
+Still not decided if Adapters layer is necessary for TestDataGenerator.
+
+200116
+Decided to use partial boundary for Adapters layer.
+Added boundary.
+Renamed projects to comply with Clean Architecture.
+Added first use case.
+
+200117
+Changing EllCoachProvider to be generic.
+
+200120
+Creating generic user provider that will return any user from the preset list.
+
+200121
+Moving user creator logic out of ItemProvider.
+Consider keeping unit tests in the same project as classes under test. The benefit is to keep internal scope of the classes and have the tests right next to the logic. Major disadvantage is that the testing framework is referenced in the project. This violates clean architecture. Frameworks should reside inside the Infrastructure project.
+
+200122
+Write UserCreator tests.
+Change scopes to internal and:
+1.  Add Autofac to register the internal types by scanning.
+2.  Add AssemblyInfo.cs file and add [assembly: InternalsVisibleTo("TestProjectName")]
+Review package by component concept.
+Added Moq to test UserCreator.
+
+200123
+Adding unit tests to UserCreator.
+Add DateTimeProvider to Core.
+Move types that are specific to Cosmos DB from Core to Adapter layer.
+
+200204 short
+Finished UserCreator tests
+
+200207 short
+Removing adapter layer for database operations.
+Removing adapter layer for use case. Not needed. Move use case behind interface.
+
+200209 short
+Evaluating the use of NoVisibilityChecksAttribute in the composition root and test project. Decided to go with InternalsVisibleToAttribute instead for simplicity.
+
+200210 short
+Changing scope of most classes and interfaces to internal.
+Corrected paths in launch and task json files.
+
+200216 short
+Labeling domain objects to move the db specific parts out.
+
+200224 short
+Adding adapter layer to contain conversion from entities to objects suitable for  CosmosDB persistence.
+
+200225 short
+Adding mapping from entities to dtos.
+
+200226 short
+Adding mapping from entities to dtos.
+
+200227 short
+Planning further changes in entity model.
+
+200228 short
+Removing inheritance on entities from dtos.
+
+200302
+Redesigning entire entity model to better represent the actual real life objects and to further remove the resemblance to the no sql db.
+Started changing UserCreatorTests.ReturnPopulatedStudents().
+Started adding FakeDataProviderTests.

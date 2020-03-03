@@ -1,0 +1,39 @@
+PURPOSE
+To provide list of materials used in the process of designing the application.
+
+-   Modeling Relational Data with Cosmos DB
+    https://www.youtube.com/watch?v=28hLwxf3BWA
+    Explains how to properly design Cosmos DB with relational data.
+    -   Love partitions
+    -   id==pk for top level entities
+    -   keep everything in one container
+    -   split entities into two documents (one that holds details and the other that contains partition keys that allow queries to go a dedicated partition)
+-   Modeling and partitioning a real-world example on Azure Cosmos DB
+    https://thomasweiss.io/modeling-partitioning-azure-cosmos-db/
+    -   Example that shows how to design relational modeling
+
+-   Best practices for Azure Cosmos DB: Data modeling, Partitioning and RUs
+    https://azure.microsoft.com/en-us/resources/videos/build-2019-best-practices-for-azure-cosmos-db-data-modeling-partitioning-and-rus/
+    -   Example with more explanation about how to model relational data.
+
+-x  Json test data generator
+    https://next.json-generator.com/VyI1PBg2v
+    -   Promising option for generating EllAid data.
+    
+-   Configuration in .Net Core console app.
+    https://garywoodfine.com/configuration-api-net-core-console-application/
+
+-   Clean/Screaming architecture
+    Explained:
+    https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+    Example 1:
+    https://github.com/cleancoders/CleanCodeCaseStudy
+    Example 2:
+    http://www.plainionist.net/Implementing-Clean-Architecture-Scream/
+    Slides:
+    https://www.dropbox.com/s/e60688nq18cnfz7/Clean%20Architecture.pdf?dl=0
+
+-   Accessing internal members globally
+    https://www.strathweb.com/2018/10/no-internalvisibleto-no-problem-bypassing-c-visibility-rules-with-roslyn/
+    https://github.com/filipw/Strathweb.Samples.CSharp.NoVisibilityChecks/blob/master/Compiler/Program.cs
+    

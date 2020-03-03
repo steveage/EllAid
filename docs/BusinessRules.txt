@@ -1,0 +1,43 @@
+PURPOSE
+    To explain business rules which the application should follow and any business related information necessary for the application.
+
+-  Ell coaches, teachers and assistants need a way to keep track of ELL student's English language learning progress.
+*   PK grades have two assistants per class.
+*   K through 5 grades have one assistant per class.
+-  WIDA test measures the following areas of language learning: (listening, speaking, reading, writing, overall)
+-  The writing section has two separate sections called: writing-RAW and writing-GRADE ADJ.
+*  Overall section is the average of all sections.
+-  WIDA test is taken by each ELL student in grade K through 12.
+-  WIDA test is taken twice per year. Once in spring, once in fall semester.
+-   WIDA tests are graded in the following scale:
+    -   0-30 for Listening and speaking,
+    -   0-15 for Reading Raw,
+    -   0-18 for Writing Raw
+-   WIDA test result for K in first semester has "Proficiency Descriptor" that is based on the score: (low for 0-10, mid for 11-18, high for 19-28, exceptional for 29-30).
+-   WIDA test result has "Proficiency Level for Reporting Purposes" that is based on the score:
+    -   Listening and speaking:
+        -   Level 1 or 2 for score 0-10,
+        -   Level 2 or 3 for score 11-18,
+        -   Level 3 or 4 for score 19-28,
+        -   Level 5 (EFP) for score 29-30.
+    -   Reading Raw:
+        -   Level 1 or 2 for score 0-5,
+        -   Level 2 or 3 for score 6-12,
+        -   Level 3 or 4 for score 13,
+        -   Level 5 (EFP) for score 14-15.
+    -   Writing Raw:
+        -   Level 1 or 2 for score 0-7,
+        -   Level 2 or 3 for score 8-14,
+        -   Level 3 or 4 for score 15-16,
+        -   Level 5 (FEP) for score 17-18.
+*   K students take only listening and speaking section of the test in the first semester.
+-  WIDA test results should be accessible to ELL coaches, teachers and assistants.
+-   ELL coaches are assigned to classes and work with all the students in the class.
+-   Teachers, assistants, ELL coaches and other users should have accounts set up in the application.
+*   PK grades have two assistants per class.
+*   K through 5 grades have one assistant per class.
+-   Each user should be able to view test results of all the students.
+-   The application should display current and historic WIDA test results for all the ELL students.
+-   Once logged in to the application, teachers and assistants should see test results of their current students.
+-   Once logged in to the application, ELL coaches should see the list of their classes.
+-   Once logged in to the application, other users should see the list of all the grades.

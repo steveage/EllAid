@@ -1,0 +1,15 @@
+PURPOSE
+    To list design elements worth evaluating for inclusion in the project.
+
+-   Add AppInsights logging and access it from Azure Monitor.
+-   Check hosting web service in a container.
+-   Use Azure DevOps.
+-   Use Blazor instead of Angular.
+-   CQRS pattern for data access from the repository.
+-   Use MediatR framework to support CQRS pattern.
+-   Consider adding architecture diagram on git readme similar to:
+    https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
+-   Use normal object model by adding behavior to data objects.
+Advantage: That will make the objects resemble real world objects and behaviors.
+Disadvantage: Might not be possible to use dependency injection easily. Complex object graphs will require either factories or accessing IOC container outside of the composition root.
+-   Refactor by changing switch statements into polymorphic dispatchers.

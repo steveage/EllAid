@@ -1,0 +1,15 @@
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\Microsoft.Azure.Cosmos.ServiceInterop.dll
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\Cosmos.CRTCompat.dll
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\EllAid.Infrastructure.deps.json
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\EllAid.Infrastructure.dll
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\EllAid.Infrastructure.pdb
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\EllAid.Core.dll
+C:\Users\mariu\source\EllAid\source\infrastructure\bin\Debug\netcoreapp3.0\EllAid.Core.pdb
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.csprojAssemblyReference.cache
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.AssemblyInfo.cs
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.csproj.CopyComplete
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.dll
+C:\Users\mariu\source\EllAid\source\infrastructure\obj\Debug\netcoreapp3.0\EllAid.Infrastructure.pdb
+C:\Users\mariu\source\EllAid\source\Infrastructure\bin\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.dll
+C:\Users\mariu\source\EllAid\source\Infrastructure\bin\Debug\netcoreapp3.0\EllAid.TestDataGenerator.Application.pdb
