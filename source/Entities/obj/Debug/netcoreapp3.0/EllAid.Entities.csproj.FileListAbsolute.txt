@@ -1,8 +1,0 @@
-C:\Users\mariu\source\EllAid\source\Entities\bin\Debug\netcoreapp3.0\EllAid.Entities.deps.json
-C:\Users\mariu\source\EllAid\source\Entities\bin\Debug\netcoreapp3.0\EllAid.Entities.dll
-C:\Users\mariu\source\EllAid\source\Entities\bin\Debug\netcoreapp3.0\EllAid.Entities.pdb
-C:\Users\mariu\source\EllAid\source\Entities\obj\Debug\netcoreapp3.0\EllAid.Entities.csprojAssemblyReference.cache
-C:\Users\mariu\source\EllAid\source\Entities\obj\Debug\netcoreapp3.0\EllAid.Entities.AssemblyInfoInputs.cache
-C:\Users\mariu\source\EllAid\source\Entities\obj\Debug\netcoreapp3.0\EllAid.Entities.AssemblyInfo.cs
-C:\Users\mariu\source\EllAid\source\Entities\obj\Debug\netcoreapp3.0\EllAid.Entities.dll
-C:\Users\mariu\source\EllAid\source\Entities\obj\Debug\netcoreapp3.0\EllAid.Entities.pdb
