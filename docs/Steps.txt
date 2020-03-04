@@ -14,9 +14,9 @@ Create empty project
 	2.	Create source folder
 		mkdir source
 	3.	Create core project from the source folder
-		dotnet new classlib -n EllAid.Core -f netcoreapp3.0
+		dotnet new classlib -n EllAid.Core -f netcoreapp3.1
 	4.	Create infrastructure project from the source folder
-		dotnet new classlib -n EllAid.Infrastructure -f netcoreapp3.0
+		dotnet new classlib -n EllAid.Infrastructure -f netcoreapp3.1
 	5.	Create empty web project from the source folder
 		dotnet new web -n EllAid.Web
 	6.	Create Tests folder in the source folder

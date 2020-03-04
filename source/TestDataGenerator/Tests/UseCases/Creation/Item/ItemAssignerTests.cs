@@ -161,7 +161,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Act
             assigner.AssignStudentToTestResult(student, schoolClass, result, session);
             //Assert
-            Assert.NotNull(result.TestSessionId);
+            Assert.True(result.TestSessionId>0);
             Assert.Equal(session.Id, result.TestSessionId);
         }
 

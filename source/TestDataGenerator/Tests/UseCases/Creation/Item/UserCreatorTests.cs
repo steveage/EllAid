@@ -80,7 +80,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             Assert.All<Student>(students, user => Assert.Equal(expectedString, user.FirstName));
             Assert.All<Student>(students, user => Assert.Equal(expectedString, user.LastName));
             Assert.All<Student>(students, user => Assert.Equal(expectedDate, user.DateOfBirth));
-            Assert.All<Student>(students, user => Assert.NotNull(user.EntryDate));
+            Assert.All<Student>(students, user => Assert.True(user.EntryDate>DateTime.MinValue));
             Assert.All<Student>(students, user => Assert.Equal(expectedString, user.HomeLanguage));
             Assert.All<Student>(students, user => Assert.Equal(expectedString, user.HomeCommunicationLanguage));
             Assert.All<Student>(students, user => Assert.Equal(expectedString, user.PictureUrl));
