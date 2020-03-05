@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using EllAid.Entities.Data;
+using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.UseCases.Creation.Item;
 using Moq;
 using Xunit;
@@ -22,10 +23,9 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             Mock<IDataFabricator> fakeData = new Mock<IDataFabricator>() {
                 DefaultValueProvider = new FakeDataValueProvider(expectedData, expectedString, expectedInt)
             };
-            Mock<IUserDataAccess> userData = new Mock<IUserDataAccess>() {
-                DefaultValueProvider = new FakeDataValueProvider(expectedData, expectedString, expectedInt)
-            };
-            UserCreator creator = new UserCreator(fakeData.Object, userData.Object);
+            IDataFabricator fabricator = new BogusFabricator();
+            IUserDataAccess userData = new InMemoryUserDataProvider();
+            UserCreator creator = new UserCreator(fabricator, userData);
             
             //When
             List<User> users = creator.CreateUsers<User>(userType, userCount);

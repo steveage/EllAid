@@ -7,9 +7,9 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
     class UserCreator : IUserCreator
     {
         readonly IDataFabricator fakeDataProvider;
-        readonly string[] malePictureUrls;
-        readonly string[] femalePictureUrls;
-        readonly string[] languages;
+        readonly List<string> malePictureUrls;
+        readonly List<string> femalePictureUrls;
+        readonly List<string> languages;
 
         public UserCreator(IDataFabricator fakeDataProvider, IUserDataAccess userData)
         {
@@ -35,7 +35,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         {
             Student student = GetUser<Student>("student");
             string language = fakeDataProvider.PickRandom(languages);
-            string[] pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
+            List<string> pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
             string pictureUrl = fakeDataProvider.PickRandom(pictureUrls);
             const int yearsToGoBack = 1;
             DateTime birthYearDate = new DateTime(birthYear, 1, 1);

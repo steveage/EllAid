@@ -15,7 +15,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             //Arrange
             const int numberOfStudents = 10;
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator());
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider());
             ItemAssigner assigner = new ItemAssigner(provider);
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
@@ -39,7 +39,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             //Arrange
             const int numberOfStudents = 10;
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator());
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider());
             ItemAssigner assigner = new ItemAssigner(provider);
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
@@ -67,7 +67,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             //Arrange
             const int numberOfStudents = 10;
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator());
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider());
             ItemAssigner assigner = new ItemAssigner(provider);
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
@@ -87,7 +87,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void AssignUsersToClass_AddsTeacher()
         {
             //Arrange
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator()); 
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
             User teacher = provider.GetUser<User>("teacher");
             User ellCoach = provider.GetUser<User>("ellCoach");
@@ -107,7 +107,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void AssignUsersToClass_AddsAssistants()
         {
             //Arrange
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator()); 
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
             User teacher = provider.GetUser<User>("teacher");
             User ellCoach = provider.GetUser<User>("ellCoach");
@@ -130,7 +130,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void AssignUsersToClass_AddsEllCoaches()
         {
             //Arrange
-            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator()); 
+            ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
             User teacher = provider.GetUser<User>("teacher");
             User ellCoach = provider.GetUser<User>("ellCoach");
@@ -156,7 +156,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             TestResult result = new TestResult();
             Student student = new Student();
             SchoolClass schoolClass = new SchoolClass();
-            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator()));
+            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //Act
             assigner.AssignStudentToTestResult(student, schoolClass, result, session);
@@ -176,7 +176,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
                 Email = Guid.NewGuid().ToString()
             };
             SchoolClass schoolClass = new SchoolClass();
-            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator()));
+            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //Act
             assigner.AssignStudentToTestResult(student, schoolClass, result, session);
@@ -201,7 +201,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
                 Email = "test.teacher@school.com",
                 Year = DateTime.UtcNow.Year.ToString()
             };
-            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator()));
+            ItemAssigner assigner = new ItemAssigner(new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             assigner.AssignStudentToTestResult(student, schoolClass, result, session);

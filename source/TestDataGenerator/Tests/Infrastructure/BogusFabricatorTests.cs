@@ -59,7 +59,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             BogusFabricator fabricator = new BogusFabricator();
-            string[] strings = new [] { "abc", "def", "ghi", "jkl", "mno","prs", "tuv", "wxy"};
+            List<string> strings = new List<string> { "abc", "def", "ghi", "jkl", "mno","prs", "tuv", "wxy"};
 
             //When
             List<string> randomStrings = new List<string>() {

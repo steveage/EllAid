@@ -1,15 +1,16 @@
+using System.Collections.Generic;
 using EllAid.TestDataGenerator.UseCases.Creation.Item;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {
-    class UserDataProvider : IUserDataAccess
+    class InMemoryUserDataProvider : IUserDataAccess
     {
-        public string[] GetFemalePictures() => new[] {
+        public List<string> GetFemalePictures() => new List<string> {
                 "https://randomuser.me/api/portraits/lego/9.jpg"};
 
-        public string[] GetLanguages() => new[] {"English", "Polish", "Portuguese", "German", "Spanish", "Mandarin", "Thai", "Hindi", "Vietnamese"};
+        public List<string> GetLanguages() => new List<string> {"English", "Polish", "Portuguese", "German", "Spanish", "Mandarin", "Thai", "Hindi", "Vietnamese"};
 
-        public string[] GetMalePictures() => new[] {
+        public List<string> GetMalePictures() => new List<string> {
                 "https://randomuser.me/api/portraits/lego/0.jpg",
                 "https://randomuser.me/api/portraits/lego/1.jpg",
                 "https://randomuser.me/api/portraits/lego/2.jpg", 

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     public interface IUserDataAccess
     {
-        string[] GetMalePictures();
-        string[] GetFemalePictures();
-        string[] GetLanguages();
+        List<string> GetMalePictures();
+        List<string> GetFemalePictures();
+        List<string> GetLanguages();
     }
 }

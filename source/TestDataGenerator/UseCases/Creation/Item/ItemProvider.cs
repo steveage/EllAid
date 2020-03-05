@@ -9,29 +9,18 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         readonly ITestProvider testProvider;
         readonly IDataFabricator fakeDataProvider;
-        string[] malePictureUrls;
-        string[] femalePictureUrls;
-        string[] languages;
+        List<string> malePictureUrls;
+        List<string> femalePictureUrls;
+        List<string> languages;
         List<Test> tests;
 
-        public ItemProvider(ITestProvider testProvider, IDataFabricator fakeDataProvider)
+        public ItemProvider(ITestProvider testProvider, IDataFabricator fakeDataProvider, IUserDataAccess userData)
         {
             this.testProvider = testProvider;
             this.fakeDataProvider = fakeDataProvider;
-            malePictureUrls  = new[] {
-                "https://randomuser.me/api/portraits/lego/0.jpg",
-                "https://randomuser.me/api/portraits/lego/1.jpg",
-                "https://randomuser.me/api/portraits/lego/2.jpg", 
-                "https://randomuser.me/api/portraits/lego/3.jpg",
-                "https://randomuser.me/api/portraits/lego/4.jpg",
-                "https://randomuser.me/api/portraits/lego/5.jpg",
-                "https://randomuser.me/api/portraits/lego/6.jpg",
-                "https://randomuser.me/api/portraits/lego/7.jpg",
-                "https://randomuser.me/api/portraits/lego/8.jpg",
-                };
-            femalePictureUrls = new[] {
-                "https://randomuser.me/api/portraits/lego/9.jpg"};
-            languages = new[] {"English", "Polish", "Portuguese", "German", "Spanish", "Mandarin", "Thai", "Hindi", "Vietnamese"};
+            malePictureUrls  = userData.GetMalePictures();
+            femalePictureUrls = userData.GetFemalePictures();
+            languages = userData.GetLanguages();
         }
 
         List<Test> Tests
@@ -74,7 +63,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         {
             Student student = GetUser<Student>("student");
             string language = fakeDataProvider.PickRandom(languages);
-            string[] pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
+            List<string> pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
             string pictureUrl = fakeDataProvider.PickRandom(pictureUrls);
 
             student.Email = Guid.NewGuid().ToString();

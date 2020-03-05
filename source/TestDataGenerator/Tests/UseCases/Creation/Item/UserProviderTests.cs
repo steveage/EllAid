@@ -14,7 +14,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void GetUser_ReturnsTypeUser()
         {
             // Arrange
-            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const string userType = "teacher";
             provider.Initialize(userType, 4);
 
@@ -30,7 +30,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize("teacher", userCount);
 
@@ -53,7 +53,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize("teacher", userCount);
             const int requestSets = 3;
@@ -80,7 +80,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void Initialize_WhenInvalidParameters_ThrowsException(string type, int count)
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action initializeAction = () => provider.Initialize(type, count);
@@ -93,7 +93,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void GetUser_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action action = ()=> provider.GetUser();
@@ -106,7 +106,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void GetUsers_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action action = ()=> provider.GetUsers();
@@ -119,7 +119,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void GetUsers_WhenInitialized_ReturnsSameCountOfUsers()
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new UserDataProvider()));
+            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int count = 4;
             provider.Initialize("teacher", count);
 
