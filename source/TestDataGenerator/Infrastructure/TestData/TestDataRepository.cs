@@ -52,12 +52,12 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             await Task.WhenAll(tasks);
         }
 
-        async Task CreateItemAsync(Item item, Container container, int partitionKeyValue)
+        async Task CreateItemAsync(Entity item, Container container, int partitionKeyValue)
         {
             PartitionKey partitionKey = new PartitionKey(partitionKeyValue);
             try
             {
-                ItemResponse<Item> response = await container.CreateItemAsync<Item>(item, partitionKey);
+                ItemResponse<Entity> response = await container.CreateItemAsync<Entity>(item, partitionKey);
                 // logger.LogDebug($"Saved item with id {item.Id} and type {item.Type} in container {container.Id}. Operation consumed {response.RequestCharge} RUs.");
                 logger.LogDebug($"Saved item with id {item.Id} and type {item/*.Type*/} in container {container.Id}. Operation consumed {response.RequestCharge} RUs.");
             }

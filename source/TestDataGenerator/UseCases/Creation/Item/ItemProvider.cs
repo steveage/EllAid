@@ -8,13 +8,13 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
     {
 
         readonly ITestProvider testProvider;
-        readonly IFakeData fakeDataProvider;
+        readonly IDataFabricator fakeDataProvider;
         string[] malePictureUrls;
         string[] femalePictureUrls;
         string[] languages;
         List<Test> tests;
 
-        public ItemProvider(ITestProvider testProvider, IFakeData fakeDataProvider)
+        public ItemProvider(ITestProvider testProvider, IDataFabricator fakeDataProvider)
         {
             this.testProvider = testProvider;
             this.fakeDataProvider = fakeDataProvider;

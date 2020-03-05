@@ -3,7 +3,7 @@ using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
-    public interface IFakeData
+    public interface IDataFabricator
     {
         string PickRandom(string[] items);
         DateTime GetRandomPastDate(int yearsToGoBack, DateTime refDate);

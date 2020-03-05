@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace EllAid.Entities.Data
 {
-    public class Course : Item
+    public class Course : Entity
     {
         // TODO: solve missing UserId
         public string Email { get; set; }

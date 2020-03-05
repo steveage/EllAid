@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace EllAid.Entities.Data
 {
-    public class SchoolClass : Item
+    public class SchoolClass : Entity
     {
         public string Email { get; set; }
         public string Name { get; set; }

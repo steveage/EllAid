@@ -5,15 +5,12 @@ using EllAid.TestDataGenerator.UseCases.Creation.Item;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {
-    class FakeDataProvider : IFakeData
+    class BogusFabricator : IDataFabricator
     {
         readonly Faker faker;
-        public FakeDataProvider()
-        {
-            faker = new Faker();
-        }
+        public BogusFabricator() => faker = new Faker();
 
-        public DateTime GetRandomPastDate(int yearsToGoBack, DateTime refDate) => faker.Date.Past(4, refDate);
+        public DateTime GetRandomPastDate(int yearsToGoBack, DateTime refDate) => faker.Date.Past(yearsToGoBack, refDate);
 
         public string PickRandom(string[] items) => faker.PickRandom(items);
 
@@ -21,7 +18,11 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
 
         Bogus.DataSets.Name.Gender GetBogusGender(Gender gender) => (Bogus.DataSets.Name.Gender)gender;
 
-        public Gender PickRandomGender() => faker.PickRandom<Gender>();
+        public Gender PickRandomGender()
+        {
+            Gender gender = faker.PickRandom<Gender>();
+            return gender==Gender.Invalid?PickRandomGender():gender;
+        }
 
         public string PickRandomLastName(Gender gender) => faker.Name.LastName(GetBogusGender(gender));
 

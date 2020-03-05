@@ -19,7 +19,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             const int expectedInt = 1000;
             const string userType = "teacher";
             const int userCount = 4;
-            Mock<IFakeData> fakeData = new Mock<IFakeData>() {
+            Mock<IDataFabricator> fakeData = new Mock<IDataFabricator>() {
                 DefaultValueProvider = new FakeDataValueProvider(expectedData, expectedString, expectedInt)
             };
             Mock<IUserDataAccess> userData = new Mock<IUserDataAccess>() {
@@ -62,7 +62,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             const int expectedInt = 1000;
             const int userCount = 4;
             const int birthYear = 2012;
-            Mock<IFakeData> fakeData = new Mock<IFakeData>() {
+            Mock<IDataFabricator> fakeData = new Mock<IDataFabricator>() {
                 DefaultValueProvider = new FakeDataValueProvider(expectedDate, expectedString, expectedInt)
             };
             Mock<IUserDataAccess> userData = new Mock<IUserDataAccess>() {

@@ -1,6 +1,6 @@
 namespace EllAid.Entities.Data
 {
-    public class Item
+    public class Entity
     {
         public int Id { get; set; }
         // public string Type { get; set; }

@@ -6,12 +6,12 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     class UserCreator : IUserCreator
     {
-        readonly IFakeData fakeDataProvider;
+        readonly IDataFabricator fakeDataProvider;
         readonly string[] malePictureUrls;
         readonly string[] femalePictureUrls;
         readonly string[] languages;
 
-        public UserCreator(IFakeData fakeDataProvider, IUserDataAccess userData)
+        public UserCreator(IDataFabricator fakeDataProvider, IUserDataAccess userData)
         {
             this.fakeDataProvider = fakeDataProvider;
             malePictureUrls = userData.GetMalePictures();

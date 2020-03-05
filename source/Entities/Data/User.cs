@@ -19,7 +19,7 @@ namespace EllAid.Entities.Data
         EllCoach
     }
 
-    public class User : Item
+    public class User : Entity
     {
         public User() => Classes = new List<SchoolClass>();
         public string FirstName { get; set; }

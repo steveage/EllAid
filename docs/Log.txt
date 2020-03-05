@@ -190,3 +190,6 @@ Removing inheritance on entities from dtos.
 Redesigning entire entity model to better represent the actual real life objects and to further remove the resemblance to the no sql db.
 Started changing UserCreatorTests.ReturnPopulatedStudents().
 Started adding FakeDataProviderTests.
+
+200304
+Stopping the use of the text log. Since the code is now in source control, commit logs will be used.

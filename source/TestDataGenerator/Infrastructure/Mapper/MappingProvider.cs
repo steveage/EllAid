@@ -12,6 +12,6 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper
 
         public T Map<T, S>(S source)
             where T : class
-            where S : Item => mapper.Map<T>(source);
+            where S : Entity => mapper.Map<T>(source);
     }   
 }

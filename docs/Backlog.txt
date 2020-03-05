@@ -39,3 +39,8 @@ W   Write acceptance tests.
 W   Move framework specific classes in Infrastructure to dedicated folders.
 S   Redesign entity model to better represent real life objects and remove resemblance to no sql db objects.
 -   Change UserCreatorTests to return modified Students, Instructors, EllCoaches and Assistants.
+    -   Remove User.Classes - school classes will be queried separately to simplify the model.
+    -   Remove User.Type - user type such as teacher, ell coach, etc. will be only used in the dtos. The value of Type for the dto will set manually in the adapter layer.
+    -   Rename Item class to Entity.
+    -   Change tests to use the actual fake data provider instead of a mock.
+    -   Rename FakeDataProvider class to BogusFabricator and IFakeData to IDataFabricator.

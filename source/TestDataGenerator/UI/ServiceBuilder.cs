@@ -42,7 +42,7 @@ namespace EllAid.TestDataGenerator.UI
                 .AddTransient<ITestDataRepository, TestDataRepository>()
                 .AddTransient<IDataCreationInputBoundary, DataCreationUseCase>()
                 .AddTransient<IUserDataAccess, UserDataProvider>()
-                .AddTransient<IFakeData, FakeDataProvider>()
+                .AddTransient<IDataFabricator, BogusFabricator>()
                 .AddLogging(cfg => cfg.AddApplicationInsights(config["ApplicationInsightsKey"]))
                 .AddLogging(cfg => cfg.AddConsole().AddConfiguration(config.GetSection("Logging")))
                 .BuildServiceProvider();
