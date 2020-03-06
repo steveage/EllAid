@@ -17,7 +17,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         {
             this.itemProvider = fakeGenerator;
             this.ellCoachProvider = ellCoachProvider;
-            this.ellCoachProvider.Initialize("ellCoach", 4);
+            this.ellCoachProvider.Initialize(4);
             this.itemAssigner = itemAssigner;
             this.testProvider = testProvider;
             this.repository = repository;

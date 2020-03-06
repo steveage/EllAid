@@ -42,5 +42,5 @@ S   Redesign entity model to better represent real life objects and remove resem
     -   Remove User.Classes - school classes will be queried separately to simplify the model.
     -   Remove User.Type - user type such as teacher, ell coach, etc. will be only used in the dtos. The value of Type for the dto will set manually in the adapter layer.
     -   Rename Item class to Entity.
-    -   Change tests to use the actual fake data provider instead of a mock.
+    -   Change tests to use the actual fake data provider instead and user data provider instead of using mocks.
     -   Rename FakeDataProvider class to BogusFabricator and IFakeData to IDataFabricator.

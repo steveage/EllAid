@@ -5,8 +5,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     interface IUserProvider<T> where T : User
     {
-        void Initialize(string type, int count);
-        string Type { get; }
+        void Initialize(int count);
         int Count { get; }
         T GetUser();
         List<T> GetUsers();

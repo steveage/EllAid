@@ -17,21 +17,17 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             this.creator = creator;
         }
         
-        public void Initialize(string type, int count)
+        public void Initialize(int count)
         {
-            bool typeIsCorrect = !string.IsNullOrEmpty(type);
-            bool countIsCorrect = count > 0;
-
-            if (typeIsCorrect && countIsCorrect)
+            if (count > 0)
             {
-                Type = type;
                 Count = count;
-                users = creator.CreateUsers<T>(type, count);
+                users = creator.CreateUsers<T>(count);
                 isInitialized = true;
             }
             else
             {
-                throw new UserProviderNotInitializedException($"The value for {nameof(type)} or {nameof(count)} parameters is invalid.");
+                throw new UserProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
             }
         }
 
