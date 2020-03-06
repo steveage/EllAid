@@ -48,10 +48,10 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         async Task CreateClassSetAsync(string className, string grade, int year, string department, int section)
         {
             SchoolClass schoolClass = itemProvider.GetClass(className, grade, year, department, section);
-            User teacher = itemProvider.GetUser<User>("teacher");
+            User teacher = itemProvider.GetUser<User>();
             User ellCoach = ellCoachProvider.GetUser();
             const int assistantsPerClass = 2;
-            List<User> assistants = itemProvider.GetUsers<User>("assistant", assistantsPerClass);
+            List<User> assistants = itemProvider.GetUsers<User>(assistantsPerClass);
             const int studentsPerClass = 20;
             List<Student> students = itemProvider.GetStudents(studentsPerClass);
             List<Course> studentClasses = new List<Course>();

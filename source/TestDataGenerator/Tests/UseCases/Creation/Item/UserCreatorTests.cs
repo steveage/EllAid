@@ -4,7 +4,6 @@ using System.Net.Mail;
 using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.UseCases.Creation.Item;
-using Moq;
 using Xunit;
 
 namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item

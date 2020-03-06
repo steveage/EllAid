@@ -61,7 +61,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         public Student GetStudent()
         {
-            Student student = GetUser<Student>("student");
+            Student student = GetUser<Student>();
             string language = fakeDataProvider.PickRandom(languages);
             List<string> pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
             string pictureUrl = fakeDataProvider.PickRandom(pictureUrls);
@@ -72,7 +72,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             student.HomeLanguage = language;
             student.HomeCommunicationLanguage = language;
             student.PictureUrl = pictureUrl;
-            student.Classes = new List<SchoolClass>();
             
             return student;
         }
@@ -108,7 +107,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             return students;
         }
 
-        public T GetUser<T>(string userType) where T : User, new()
+        public T GetUser<T>() where T : User, new()
         {
             Gender gender = fakeDataProvider.PickRandomGender();
             // TODO: Setup Id provider that will generate unique number.
@@ -123,10 +122,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             {
                 Id = id,
                 Email = email,
-                //Type = userType,
                 FirstName = firstName,
                 LastName = lastName,
-                // Version = 1
             };
 
             return user;
@@ -134,13 +131,13 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         private static string GetEmail(string firstName, string lastName) => $"{firstName}.{lastName}@school.com";
 
-        public List<T> GetUsers<T>(string userType, int count) where T : User, new()
+        public List<T> GetUsers<T>(int count) where T : User, new()
         {
             List<T> users = new List<T>();
 
             for (int i = 0; i < count; i++)
             {
-                users.Add(GetUser<T>(userType));
+                users.Add(GetUser<T>());
             }
 
             return users;

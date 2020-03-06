@@ -66,9 +66,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             MappingProvider provider = GetProvider();
-            User user = new User{
-                Type = UserType.Assistant
-            };
+            User user = new User();
 
             //When
             UserDto dto = provider.Map<UserDto, User>(user);
@@ -316,12 +314,9 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             MappingProvider provider = GetProvider();
             Student student = new Student(){
                 Id = 1,
-                Type = UserType.Student,
                 FirstName = "firstName1",
                 LastName = "lastName1",
                 Gender = Gender.Female,
-                // Classes = new List<string>(){ "class1" },
-                Classes = new List<SchoolClass>() { new SchoolClass() },
                 DateOfBirth = new DateTime(),
                 EntryDate = new DateTime(),
                 HomeLanguage = "homeLanguage1",

@@ -49,7 +49,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             student.HomeLanguage = language;
             student.HomeCommunicationLanguage = language;
             student.PictureUrl = pictureUrl;
-            student.Classes = new List<SchoolClass>();
             
             return student;
         }

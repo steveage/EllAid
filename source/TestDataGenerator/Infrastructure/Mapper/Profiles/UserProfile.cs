@@ -8,7 +8,6 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
     {
         public UserProfile() => 
             CreateMap<User, UserDto>()
-                .ForMember(dto => dto.Version, u => u.MapFrom(src => Globals.noSqlUserVersion))
-                .ForMember(dto => dto.Type, u => u.MapFrom(src=> src.Type.ToString().ToLower()));
+                .ForMember(dto => dto.Version, u => u.MapFrom(src => Globals.noSqlUserVersion));
     }
 }

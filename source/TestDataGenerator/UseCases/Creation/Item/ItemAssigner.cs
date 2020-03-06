@@ -17,7 +17,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         {
             foreach (Student student in students)
             {
-                student.Classes.Add(schoolClass);
+                // student.Classes.Add(schoolClass);
                 Course studentClass = itemProvider.GetStudentCourse(student.Email, schoolClass.Id, teacher.Email, string.Empty, true);
                 studentClasses.Add(studentClass);
                 schoolClass.Students.Add(student.Email);
@@ -30,9 +30,9 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             schoolClass.Teachers.Add(teacher.Email);
             schoolClass.Assistants = assistants.Select(a => a.Email).ToList();
             schoolClass.EllCoaches.Add(ellCoach.Email);
-            assistants.ForEach(a => a.Classes.Add(schoolClass));
+            // assistants.ForEach(a => a.Classes.Add(schoolClass));
             // assistants.ForEach(a => a.Classes.Add(teacher.Email));
-            ellCoach.Classes.Add(schoolClass);
+            // ellCoach.Classes.Add(schoolClass);
         }
 
         public void AssignStudentToTestResult(Student student, SchoolClass schoolClass, TestResult result, TestSession session)
