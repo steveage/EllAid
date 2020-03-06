@@ -5,7 +5,7 @@ using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.UseCases.Creation.Item;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
-using User = EllAid.Entities.Data.User;
+using Person = EllAid.Entities.Data.Person;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {
@@ -20,18 +20,18 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             this.logger = logger;
         }
 
-        public async Task CreateUserItemsAsync(List<User> users)
+        public async Task CreateUserItemsAsync(List<Person> users)
         {
             List<Task> tasks = new List<Task>();
             
-            foreach (User user in users)
+            foreach (Person user in users)
             {
                 tasks.Add(CreateItemAsync(user, dbAccess.UsersContainer, user.Id));
             }
             await Task.WhenAll(tasks);
         }
 
-        public async Task CreateUserItemAsync(User user)
+        public async Task CreateUserItemAsync(Person user)
         {
             await CreateItemAsync(user, dbAccess.UsersContainer, user.Id);
         }

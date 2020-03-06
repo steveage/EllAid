@@ -6,8 +6,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     interface IItemProvider
     {
-        List<T> GetUsers<T>(int count) where T : User, new();
-        T GetUser<T>() where T: User, new();
+        List<T> GetUsers<T>(int count) where T : Person, new();
+        T GetUser<T>() where T: Person, new();
         Student GetStudent();
         List<Student> GetStudents(int count);
         SchoolClass GetClass(string className, string grade, int year, string department, int section);

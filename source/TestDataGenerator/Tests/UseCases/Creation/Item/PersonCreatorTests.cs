@@ -21,15 +21,15 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             UserCreator creator = new UserCreator(fabricator, userData);
             
             //When
-            List<User> users = creator.CreateUsers<User>(userCount);
+            List<Person> users = creator.CreatePeople(userCount);
 
             //Then
-            Assert.All<User>(users, user => Assert.True(user.Id>0));
-            Assert.All<User>(users, user => Assert.NotEmpty(user.FirstName));
-            Assert.All<User>(users, user => Assert.True(IsEmailAddress(user.Email)));
-            Assert.All<User>(users, user => Assert.NotEmpty(user.FirstName));
-            Assert.All<User>(users, user => Assert.NotEmpty(user.LastName));
-            Assert.All<User>(users, user => Assert.NotEqual(Gender.Invalid, user.Gender));
+            Assert.All<Person>(users, user => Assert.True(user.Id>0));
+            Assert.All<Person>(users, user => Assert.NotEmpty(user.FirstName));
+            Assert.All<Person>(users, user => Assert.True(IsEmailAddress(user.Email)));
+            Assert.All<Person>(users, user => Assert.NotEmpty(user.FirstName));
+            Assert.All<Person>(users, user => Assert.NotEmpty(user.LastName));
+            Assert.All<Person>(users, user => Assert.NotEqual(Gender.Invalid, user.Gender));
         }
 
         bool IsEmailAddress(string text)

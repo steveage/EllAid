@@ -14,11 +14,11 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void GetUser_ReturnsTypeUser()
         {
             // Arrange
-            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider = new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             provider.Initialize(4);
 
             // Act
-            User user = provider.GetUser();
+            Person user = provider.GetPerson();
 
             // Assert
             //Assert.Equal(userType, user.Type);
@@ -29,14 +29,14 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize(userCount);
 
             // Act
             for (int i = 0; i < userCount; i++)
             {
-                userIds.Add(provider.GetUser().Email);
+                userIds.Add(provider.GetPerson().Email);
             }
 
             // Assert
@@ -52,7 +52,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize(userCount);
             const int requestSets = 3;
@@ -61,7 +61,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             // Act
             for (int i = 0; i < requestCount; i++)
             {
-                userIds.Add(provider.GetUser().Email);
+                userIds.Add(provider.GetPerson().Email);
             }
 
             // Assert
@@ -78,51 +78,51 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void Initialize_WhenInvalidParameters_ThrowsException(int count)
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action initializeAction = () => provider.Initialize(count);
 
             //Then
-            Assert.Throws<UserProviderNotInitializedException>(initializeAction);
+            Assert.Throws<PersonProviderNotInitializedException>(initializeAction);
         }
 
         [Fact]
         public void GetUser_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IUserProvider<User> provider = new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider = new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
-            Action action = ()=> provider.GetUser();
+            Action action = ()=> provider.GetPerson();
 
             //Then
-            Assert.Throws<UserProviderNotInitializedException>(action);
+            Assert.Throws<PersonProviderNotInitializedException>(action);
         }
 
         [Fact]
         public void GetUsers_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
-            Action action = ()=> provider.GetUsers();
+            Action action = ()=> provider.GetPeople();
 
             //Then
-            Assert.Throws<UserProviderNotInitializedException>(action);
+            Assert.Throws<PersonProviderNotInitializedException>(action);
         }
 
         [Fact]
         public void GetUsers_WhenInitialized_ReturnsSameCountOfUsers()
         {
             //Given
-            IUserProvider<User> provider =  new UserProvider<User>(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int count = 4;
             provider.Initialize(count);
 
             //When
-            List<User> users = provider.GetUsers();
+            List<Person> users = provider.GetPeople();
 
             //Then
             Assert.Equal(count, users.Count);

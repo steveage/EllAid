@@ -17,10 +17,10 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             // Given
             MappingProvider provider = GetProvider();
-            User user = new User();
+            Person user = new Person();
 
             // When
-            UserDto dto = provider.Map<UserDto, User>(user);
+            UserDto dto = provider.Map<UserDto, Person>(user);
 
             // Then
             Assert.Equal(Globals.noSqlUserVersion, dto.Version);
@@ -44,7 +44,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             MappingProvider provider = GetProvider();
-            User user = new User(){
+            Person user = new Person(){
                 Id = 1,
                 FirstName = "firstName",
                 LastName = "lastName",
@@ -52,7 +52,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             };
 
             //When
-            UserDto dto = provider.Map<UserDto, User>(user);
+            UserDto dto = provider.Map<UserDto, Person>(user);
 
             //Then
             Assert.Equal(user.Id, dto.Id);
@@ -66,10 +66,10 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             MappingProvider provider = GetProvider();
-            User user = new User();
+            Person user = new Person();
 
             //When
-            UserDto dto = provider.Map<UserDto, User>(user);
+            UserDto dto = provider.Map<UserDto, Person>(user);
 
             //Then
             Assert.Equal("assistant", dto.Type);

@@ -20,7 +20,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
+            Person teacher = provider.GetUser<Person>();
 
             //Act
             assigner.AssignStudentsToClass(students, studentClasses, schoolClass, teacher);
@@ -44,7 +44,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
+            Person teacher = provider.GetUser<Person>();
 
             //Act
             assigner.AssignStudentsToClass(students, studentClasses, schoolClass, teacher);
@@ -72,7 +72,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             List<Student> students = provider.GetStudents(numberOfStudents);
             List<Course> studentClasses = new List<Course>();
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
+            Person teacher = provider.GetUser<Person>();
 
             //Act
             assigner.AssignStudentsToClass(students, studentClasses, schoolClass, teacher);
@@ -89,9 +89,9 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Arrange
             ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
-            User ellCoach = provider.GetUser<User>();
-            List<User> assistants = provider.GetUsers<User>(2);
+            Person teacher = provider.GetUser<Person>();
+            Person ellCoach = provider.GetUser<Person>();
+            List<Person> assistants = provider.GetUsers<Person>(2);
             ItemAssigner assigner = new ItemAssigner(provider);
 
             //Act
@@ -109,10 +109,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Arrange
             ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
-            User ellCoach = provider.GetUser<User>();
+            Person teacher = provider.GetUser<Person>();
+            Person ellCoach = provider.GetUser<Person>();
             const int numberOfAssistants = 2;
-            List<User> assistants = provider.GetUsers<User>(numberOfAssistants);
+            List<Person> assistants = provider.GetUsers<Person>(numberOfAssistants);
             ItemAssigner assigner = new ItemAssigner(provider);
 
             //Act
@@ -132,9 +132,9 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Arrange
             ItemProvider provider = new ItemProvider(new TestProvider(), new BogusFabricator(), new InMemoryUserDataProvider()); 
             SchoolClass schoolClass = provider.GetClass(string.Empty, string.Empty, 0, string.Empty, 0);
-            User teacher = provider.GetUser<User>();
-            User ellCoach = provider.GetUser<User>();
-            List<User> assistants = provider.GetUsers<User>(2);
+            Person teacher = provider.GetUser<Person>();
+            Person ellCoach = provider.GetUser<Person>();
+            List<Person> assistants = provider.GetUsers<Person>(2);
             ItemAssigner assigner = new ItemAssigner(provider);
 
             //Act

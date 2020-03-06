@@ -7,7 +7,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
     public class UserProfile : Profile
     {
         public UserProfile() => 
-            CreateMap<User, UserDto>()
+            CreateMap<Person, UserDto>()
                 .ForMember(dto => dto.Version, u => u.MapFrom(src => Globals.noSqlUserVersion));
     }
 }

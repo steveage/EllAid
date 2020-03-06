@@ -33,7 +33,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         Student GetStudent(int birthYear)
         {
-            Student student = GetUser<Student>();
+            Student student = (Student)GetPerson();
             string language = fakeDataProvider.PickRandom(languages);
             List<string> pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
             string pictureUrl = fakeDataProvider.PickRandom(pictureUrls);
@@ -53,19 +53,19 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             return student;
         }
 
-        public List<T> CreateUsers<T>(int count) where T : User, new()
+        public List<Person> CreatePeople(int count)
         {
-            List<T> users = new List<T>();
+            List<Person> users = new List<Person>();
 
             for (int i = 0; i < count; i++)
             {
-                users.Add(GetUser<T>());
+                users.Add(GetPerson());
             }
 
             return users;
         }
         
-        T GetUser<T>() where T : User, new()
+        Person GetPerson()
         {
             Gender gender = fakeDataProvider.PickRandomGender();
             // TODO: Setup Id provider that will generate unique number.
@@ -76,18 +76,16 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             string userId = GetEmail(firstName, lastName);
             int userNumber = fakeDataProvider.PickRandomNumber(10000000, 99999999);
 
-            T user = new T()
+            Person person = new Person()
             {
                 Id = id,
                 Email = userId,
                 Gender = gender,
-                //Type = userType,
                 FirstName = firstName,
                 LastName = lastName,
-                // Version = 1
             };
 
-            return user;
+            return person;
         }
 
         string GetEmail(string firstName, string lastName) => $"{firstName}.{lastName}@school.com";

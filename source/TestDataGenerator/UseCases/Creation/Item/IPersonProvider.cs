@@ -3,11 +3,11 @@ using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
-    interface IUserProvider<T> where T : User
+    interface IPersonProvider
     {
         void Initialize(int count);
         int Count { get; }
-        T GetUser();
-        List<T> GetUsers();
+        Person GetPerson();
+        List<Person> GetPeople();
     }
 }

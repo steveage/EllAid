@@ -8,12 +8,12 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
     class ItemCreator : IItemCreator
     {
         readonly IItemProvider itemProvider;
-        readonly IUserProvider<User> ellCoachProvider;
+        readonly IPersonProvider ellCoachProvider;
         readonly IItemAssigner itemAssigner;
         readonly ITestProvider testProvider;
         readonly ITestDataRepository repository;
 
-        public ItemCreator(IItemProvider fakeGenerator, IUserProvider<User> ellCoachProvider, IItemAssigner itemAssigner, ITestProvider testProvider, ITestDataRepository repository)
+        public ItemCreator(IItemProvider fakeGenerator, IPersonProvider ellCoachProvider, IItemAssigner itemAssigner, ITestProvider testProvider, ITestDataRepository repository)
         {
             this.itemProvider = fakeGenerator;
             this.ellCoachProvider = ellCoachProvider;
@@ -48,10 +48,10 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         async Task CreateClassSetAsync(string className, string grade, int year, string department, int section)
         {
             SchoolClass schoolClass = itemProvider.GetClass(className, grade, year, department, section);
-            User teacher = itemProvider.GetUser<User>();
-            User ellCoach = ellCoachProvider.GetUser();
+            Person teacher = itemProvider.GetUser<Person>();
+            Person ellCoach = ellCoachProvider.GetPerson();
             const int assistantsPerClass = 2;
-            List<User> assistants = itemProvider.GetUsers<User>(assistantsPerClass);
+            List<Person> assistants = itemProvider.GetUsers<Person>(assistantsPerClass);
             const int studentsPerClass = 20;
             List<Student> students = itemProvider.GetStudents(studentsPerClass);
             List<Course> studentClasses = new List<Course>();
@@ -66,8 +66,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             // await SaveUserItemAsync(schoolClass);
             await SaveUserItemAsync(teacher);
             await SaveUserItemAsync(ellCoach);
-            await SaveUserItemsAsync(assistants.ConvertAll(a => (User)a));
-            await SaveUserItemsAsync(students.ConvertAll(s => (User)s));
+            await SaveUserItemsAsync(assistants.ConvertAll(a => (Person)a));
+            await SaveUserItemsAsync(students.ConvertAll(s => (Person)s));
             // await SaveUserItemsAsync(studentClasses.ConvertAll(s => (User)s));
             await SaveTestItemsAsync(testProvider.GetTests().ConvertAll(t => (TestBase)t));
             await SaveTestItemsAsync(widaFallTestResults.ConvertAll(t => (TestBase)t));
@@ -84,7 +84,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             }
         }
 
-        async Task SaveUserItemAsync(User user)
+        async Task SaveUserItemAsync(Person user)
         {
             await repository.CreateUserItemAsync(user);
         }
@@ -94,7 +94,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             await repository.CreateTestItemsAsync(tests);
         }
 
-        async Task SaveUserItemsAsync(List<User> users)
+        async Task SaveUserItemsAsync(List<Person> users)
         {
             await repository.CreateUserItemsAsync(users);
         }

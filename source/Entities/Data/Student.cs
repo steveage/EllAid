@@ -2,7 +2,7 @@ using System;
 
 namespace EllAid.Entities.Data
 {
-    public class Student : User
+    public class Student : Person
     {
         public DateTime DateOfBirth { get; set; }
         public DateTime EntryDate { get; set; }

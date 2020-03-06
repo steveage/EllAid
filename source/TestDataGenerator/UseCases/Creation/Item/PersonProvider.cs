@@ -3,16 +3,16 @@ using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
-    class UserProvider<T> : IUserProvider<T> where T : User, new()
+    class PersonProvider : IPersonProvider
     {
         readonly IUserCreator creator;
         bool isInitialized;
         int numberOfRequests = 0;
-        List<T> users;
+        List<Person> users;
         public string Type { get; private set; }
         public int Count { get; private set; }
 
-        public UserProvider(IUserCreator creator)
+        public PersonProvider(IUserCreator creator)
         {
             this.creator = creator;
         }
@@ -22,16 +22,16 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             if (count > 0)
             {
                 Count = count;
-                users = creator.CreateUsers<T>(count);
+                users = creator.CreatePeople(count);
                 isInitialized = true;
             }
             else
             {
-                throw new UserProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
+                throw new PersonProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
             }
         }
 
-        public T GetUser()
+        public Person GetPerson()
         {
             if (isInitialized)
             {
@@ -41,11 +41,11 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             }
             else
             {
-                throw new UserProviderNotInitializedException("Provider must be initialized first.");
+                throw new PersonProviderNotInitializedException("Provider must be initialized first.");
             }
         }
 
-        public List<T> GetUsers()
+        public List<Person> GetPeople()
         {
             if (isInitialized)
             {
@@ -53,7 +53,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             }
             else
             {
-                throw new UserProviderNotInitializedException("Provider must be initialized first.");
+                throw new PersonProviderNotInitializedException("Provider must be initialized first.");
             }
         }
     }

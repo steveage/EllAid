@@ -8,7 +8,7 @@ namespace EllAid.Entities.Data
         Female
     }
 
-    public class User : Entity
+    public class Person : Entity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

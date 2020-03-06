@@ -107,7 +107,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             return students;
         }
 
-        public T GetUser<T>() where T : User, new()
+        public T GetUser<T>() where T : Person, new()
         {
             Gender gender = fakeDataProvider.PickRandomGender();
             // TODO: Setup Id provider that will generate unique number.
@@ -131,7 +131,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         private static string GetEmail(string firstName, string lastName) => $"{firstName}.{lastName}@school.com";
 
-        public List<T> GetUsers<T>(int count) where T : User, new()
+        public List<T> GetUsers<T>(int count) where T : Person, new()
         {
             List<T> users = new List<T>();
 

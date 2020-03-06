@@ -13,7 +13,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             this.itemProvider = itemProvider;
         }
 
-        public void AssignStudentsToClass(List<Student> students, List<Course> studentClasses, SchoolClass schoolClass, User teacher)
+        public void AssignStudentsToClass(List<Student> students, List<Course> studentClasses, SchoolClass schoolClass, Person teacher)
         {
             foreach (Student student in students)
             {
@@ -24,7 +24,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             }
         }
 
-        public void AssignUsersToClass(SchoolClass schoolClass, User teacher, User ellCoach, List<User> assistants)
+        public void AssignUsersToClass(SchoolClass schoolClass, Person teacher, Person ellCoach, List<Person> assistants)
         {
             schoolClass.Email = teacher.Email;
             schoolClass.Teachers.Add(teacher.Email);
