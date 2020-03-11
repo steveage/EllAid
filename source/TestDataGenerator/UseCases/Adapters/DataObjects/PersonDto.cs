@@ -1,8 +1,8 @@
 using EllAid.Entities.Data;
 
-namespace EllAid.TestDataGenerator.Infrastructure.Mapper.DataObjects
+namespace EllAid.TestDataGenerator.UseCases.Adapters.DataObjects
 {
-    class UserDto : ItemDto
+    public class PersonDto : EntityDto
     {
         public string UserId { get; set; }
         public string FirstName { get; set; }

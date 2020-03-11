@@ -57,11 +57,11 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             List<Course> studentClasses = new List<Course>();
             const int sessionAndResultDaysGap = 15;
             DateTime testSessionDate = DateTime.UtcNow.AddDays(-sessionAndResultDaysGap);
-            List<TestResult> widaFallTestResults = itemProvider.GetWidaTestResults(testSessionDate.AddDays(sessionAndResultDaysGap), "fall", studentsPerClass);
-            List<TestSession> testSessions = itemProvider.GetTestSessions(widaFallTestResults[0].TestId, testSessionDate, studentsPerClass);
+            List<TestResult<int>> widaFallTestResults = itemProvider.GetWidaTestResults<int>(testSessionDate.AddDays(sessionAndResultDaysGap), "fall", studentsPerClass);
+            // List<TestSession> testSessions = itemProvider.GetTestSessions(widaFallTestResults[0].TestId, testSessionDate, studentsPerClass);
             itemAssigner.AssignUsersToClass(schoolClass, teacher, ellCoach, assistants);
             itemAssigner.AssignStudentsToClass(students, studentClasses, schoolClass, teacher);
-            AssignStudentsToTestResults(students, schoolClass, widaFallTestResults, testSessions);
+            // AssignStudentsToTestResults(students, schoolClass, widaFallTestResults, testSessions);
 
             // await SaveUserItemAsync(schoolClass);
             await SaveUserItemAsync(teacher);
@@ -69,12 +69,12 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             await SaveUserItemsAsync(assistants.ConvertAll(a => (Person)a));
             await SaveUserItemsAsync(students.ConvertAll(s => (Person)s));
             // await SaveUserItemsAsync(studentClasses.ConvertAll(s => (User)s));
-            await SaveTestItemsAsync(testProvider.GetTests().ConvertAll(t => (TestBase)t));
-            await SaveTestItemsAsync(widaFallTestResults.ConvertAll(t => (TestBase)t));
-            await SaveTestItemsAsync(testSessions.ConvertAll(t => (TestBase)t));
+            // await SaveTestItemsAsync(testProvider.GetTests().ConvertAll(t => (TestBase)t));
+            // await SaveTestItemsAsync(widaFallTestResults.ConvertAll(t => (TestBase)t));
+            // await SaveTestItemsAsync(testSessions.ConvertAll(t => (TestBase)t));
         }
 
-        void AssignStudentsToTestResults(List<Student> students, SchoolClass schoolClass, List<TestResult> widaFallTestResults, List<TestSession> testSessions)
+        void AssignStudentsToTestResults(List<Student> students, SchoolClass schoolClass, List<TestResult<int>> widaFallTestResults, List<TestSession> testSessions)
         {
             int studentCount = students.Count;
 

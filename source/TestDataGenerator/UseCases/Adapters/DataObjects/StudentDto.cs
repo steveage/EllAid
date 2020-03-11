@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 
-namespace EllAid.Entities.Data
+namespace EllAid.TestDataGenerator.UseCases.Adapters.DataObjects
 {
-    public class Student : Person
+    public class StudentDto : PersonDto
     {
+        // internal List<string> Classes { get; set; }
+        public List<SchoolClassDto> Classes { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime EntryDate { get; set; }
         public string HomeLanguage { get; set; }

@@ -20,29 +20,29 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
                 // student.Classes.Add(schoolClass);
                 Course studentClass = itemProvider.GetStudentCourse(student.Email, schoolClass.Id, teacher.Email, string.Empty, true);
                 studentClasses.Add(studentClass);
-                schoolClass.Students.Add(student.Email);
+                // schoolClass.Students.Add(student.Email);
             }
         }
 
         public void AssignUsersToClass(SchoolClass schoolClass, Person teacher, Person ellCoach, List<Person> assistants)
         {
             schoolClass.Email = teacher.Email;
-            schoolClass.Teachers.Add(teacher.Email);
-            schoolClass.Assistants = assistants.Select(a => a.Email).ToList();
-            schoolClass.EllCoaches.Add(ellCoach.Email);
+            // schoolClass.Teachers.Add(teacher.Email);
+            // schoolClass.Assistants = assistants.Select(a => a.Email).ToList();
+            // schoolClass.EllCoaches.Add(ellCoach.Email);
             // assistants.ForEach(a => a.Classes.Add(schoolClass));
             // assistants.ForEach(a => a.Classes.Add(teacher.Email));
             // ellCoach.Classes.Add(schoolClass);
         }
 
-        public void AssignStudentToTestResult(Student student, SchoolClass schoolClass, TestResult result, TestSession session)
+        public void AssignStudentToTestResult<T>(Student student, SchoolClass schoolClass, TestResult<T> result, TestSession session)
         {
             result.TestSessionId = session.Id;
-            result.UserId = student.Email;
-            session.Term = result.Term;
-            session.Grade = schoolClass.Grade;
-            session.Teacher = schoolClass.Email;
-            session.Year = schoolClass.Year;
+            result.StudentId = student.Email;
+            // session.Term = result.Term;
+            // session.Grade = schoolClass.Grade;
+            // session.Teacher = schoolClass.Email;
+            // session.Year = schoolClass.Year;
         }
     }
 }

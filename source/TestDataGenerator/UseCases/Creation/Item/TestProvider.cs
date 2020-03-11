@@ -18,13 +18,13 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = "1",
                 Id = 1,
-                TestId = 2,
+                // TestId = 2,
                 //Type = "test",
-                Subject = "English",
+                // Subject = "English",
                 Name = "WIDA",
-                ScoreMetric = "0-30",
+                // ScoreMetric = "0-30",
                 // Version = 1,
-                Sections = new [] {"Listening", "Speaking", "Reading", "WrittingRAW", "Writting-Grade ADJ"}
+                // Sections = new List<string> {"Listening", "Speaking", "Reading", "WrittingRAW", "Writting-Grade ADJ"}
             };
     }
 }

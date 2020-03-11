@@ -1,26 +1,22 @@
 using AutoMapper;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.Infrastructure.Mapper.DataObjects;
 using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
 using EllAid.TestDataGenerator.Infrastructure.Mapper;
 using Xunit;
-using System.Collections.Generic;
 using System;
 using EllAid.TestDataGenerator.Infrastructure;
+using EllAid.TestDataGenerator.UseCases.Adapters.DataObjects;
 
 namespace EllAid.TestDataGenerator.Tests.Infrastructure
 {
-    public class MapperTests
+    public class MappingProviderTests
     {
+        const string testType = "testType";
         [Fact]
         public void Map_WhenMappingUser_SetsVersionNumber()
         {
-            // Given
-            MappingProvider provider = GetProvider();
-            Person user = new Person();
-
-            // When
-            UserDto dto = provider.Map<UserDto, Person>(user);
+            // Given, When
+            PersonDto dto = GetMapped<PersonDto, Person>(new Person());
 
             // Then
             Assert.Equal(Globals.noSqlUserVersion, dto.Version);
@@ -31,7 +27,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             MapperConfiguration config = new MapperConfiguration(cfg=>
                 {
                     // Add all profiles from the assembly
-                    cfg.AddMaps(typeof(UserProfile).Assembly);
+                    cfg.AddMaps(typeof(PersonProfile).Assembly);
                     // to allow mapping internal properties
                     cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
                 });
@@ -39,11 +35,12 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             return new MappingProvider(mapper);
         }
 
+        T GetMapped<T, S>(S source) where T : EntityDto where S : Entity => GetProvider().Map<T, S>(source, testType);
+
         [Fact]
         public void Map_WhenMappingUser_SetsSameValues()
         {
             //Given
-            MappingProvider provider = GetProvider();
             Person user = new Person(){
                 Id = 1,
                 FirstName = "firstName",
@@ -52,7 +49,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             };
 
             //When
-            UserDto dto = provider.Map<UserDto, Person>(user);
+            PersonDto dto = GetMapped<PersonDto, Person>(user);
 
             //Then
             Assert.Equal(user.Id, dto.Id);
@@ -62,17 +59,13 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         }
 
         [Fact]
-        public void Map_WhenMappingUser_SetsType()
+        public void Map_SetsType()
         {
-            //Given
-            MappingProvider provider = GetProvider();
-            Person user = new Person();
-
-            //When
-            UserDto dto = provider.Map<UserDto, Person>(user);
+            //Given, When
+            PersonDto dto = GetMapped<PersonDto, Person>(new Person());
 
             //Then
-            Assert.Equal("assistant", dto.Type);
+            Assert.Equal(testType, dto.Type);
         }
         
         [Fact]
@@ -83,25 +76,17 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             SchoolClass schoolClass = new SchoolClass(){
                 Name = "className",
                 Section = 1,
-                Teachers = new List<string>() {"teacher1"},
-                Assistants = new List<string>(){"assistant1"},
-                EllCoaches = new List<string>(){"ellCoach1"},
-                Students = new List<string>(){"student1"},
                 Grade = "grade1",
                 Year = "2000",
                 Department = "department1"
             };
 
             //When
-            SchoolClassDto dto = provider.Map<SchoolClassDto, SchoolClass>(schoolClass);
+            SchoolClassDto dto = GetMapped<SchoolClassDto, SchoolClass>(schoolClass);
 
             //Then
             Assert.Equal(schoolClass.Name, dto.Name);
             Assert.Equal(schoolClass.Section, dto.Section);
-            Assert.Equal(schoolClass.Teachers, dto.Teachers);
-            Assert.Equal(schoolClass.Assistants, dto.Assistants);
-            Assert.Equal(schoolClass.EllCoaches, dto.EllCoaches);
-            Assert.Equal(schoolClass.Students, dto.Students);
             Assert.Equal(schoolClass.Grade, dto.Grade);
             Assert.Equal(schoolClass.Year, dto.Year);
             Assert.Equal(schoolClass.Department, dto.Department);
@@ -115,46 +100,29 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             SchoolClass schoolClass = new SchoolClass();
 
             //When
-            SchoolClassDto dto = provider.Map<SchoolClassDto, SchoolClass>(schoolClass);
+            SchoolClassDto dto = GetMapped<SchoolClassDto, SchoolClass>(schoolClass);
 
             //Then
             Assert.Equal(Globals.noSqlSchoolClassVersion, dto.Version);
-        }
-
-        [Fact]
-        public void Map_WhenMappingSchoolClass_SetsType()
-        {
-            //Given
-            MappingProvider provider = GetProvider();
-            SchoolClass schoolClass = new SchoolClass();
-
-            //When
-            SchoolClassDto dto = provider.Map<SchoolClassDto, SchoolClass>(schoolClass);
-
-            //Then
-            Assert.Equal(Globals.noSqlSchoolClassType, dto.Type);
         }
             
         [Fact]
         public void Map_WhenMappingCourse_SetsSameValues()
         {
             //Given
-            MappingProvider provider = GetProvider();
             Course course = new Course(){
                 Id = 1,
                 Class = 2,
-                Teachers = new List<string>() {"teacher1"},
                 IsCurrent = true,
                 Score = "score1"
             };
 
             //When
-            CourseDto dto = provider.Map<CourseDto, Course>(course);
+            CourseDto dto = GetMapped<CourseDto, Course>(course);
 
             //Then
             Assert.Equal(course.Id, dto.Id);
             Assert.Equal(course.Class, dto.Class);
-            Assert.Equal(course.Teachers, dto.Teachers);
             Assert.Equal(course.IsCurrent, dto.IsCurrent);
             Assert.Equal(course.Score, dto.Score);
         }
@@ -163,119 +131,84 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         public void Map_WhenMappingCourse_SetsVersion()
         {
             //Given
-            MappingProvider provider = GetProvider();
             Course course = new Course();
 
             //When
-            CourseDto dto = provider.Map<CourseDto, Course>(course);
+            CourseDto dto = GetMapped<CourseDto, Course>(course);
             
             //Then
             Assert.Equal(Globals.noSqlCourseVersion, dto.Version);
         }
 
         [Fact]
-        public void Map_WhenMappingCourse_SetsType()
-        {
-            //Given
-            MappingProvider provider = GetProvider();
-            Course course = new Course();
-
-            //When
-            CourseDto dto = provider.Map<CourseDto, Course>(course);
-            
-            //Then
-            Assert.Equal(Globals.noSqlCourseType, dto.Type);
-        }
-
-        [Fact]
         public void Map_WhenMappingTestResult_SetsSameValues()
         {
             //Given
-            MappingProvider provider = GetProvider();
-            TestResult result = new TestResult(){
+            TestResult<int> result = new TestResult<int>(){
                 Id = 1,
-                TestId = 2,
+                // TestId = 2,
                 TestSessionId = 3,
-                UserId = "userId1",
-                Subject = "subject1",
-                Name = "name1",
-                Term = "term1",
+                StudentId = "userId1",
+                // Subject = "subject1",
+                // Name = "name1",
+                // Term = "term1",
                 Date = new DateTime(),
-                Sections = new TestSection[]{
-                    new TestSection(){
-                        AreaName = "area1",
-                        Score = "score1"
-                    }
-                }
+                // Sections = new List<TestSection>{
+                    // new TestSection(){
+                        // AreaName = "area1",
+                        // Score = "score1"
+                    // }
+                // }
             };
 
             //When
-            TestResultDto dto = provider.Map<TestResultDto, TestResult>(result);
+            TestResultDto<int> dto = GetMapped<TestResultDto<int>, TestResult<int>>(result);
 
             //Then
             Assert.Equal(result.Id, dto.Id);
-            Assert.Equal(result.TestId, dto.TestId);
+            // Assert.Equal(result.TestId, dto.TestId);
             Assert.Equal(result.TestSessionId, dto.TestSessionId);
-            Assert.Equal(result.Subject, dto.Subject);
-            Assert.Equal(result.Name, dto.Name);
-            Assert.Equal(result.Term, dto.Term);
+            // Assert.Equal(result.Subject, dto.Subject);
+            // Assert.Equal(result.Name, dto.Name);
+            // Assert.Equal(result.Term, dto.Term);
             Assert.Equal(result.Date, dto.Date);
-            Assert.Equal(result.Sections, dto.Sections);
+            // Assert.Equal(result.Sections, dto.Sections);
         }
 
         [Fact]
         public void Map_WhenMappingTestResult_SetsVersion()
         {
-            //Given
-            MappingProvider provider = GetProvider();
-            TestResult result = new TestResult();
-
-            //When
-            TestResultDto dto = provider.Map<TestResultDto, TestResult>(result);
+            //Given, When
+            TestResultDto<int> dto = GetMapped<TestResultDto<int>, TestResult<int>>(new TestResult<int>());
 
             //Then
             Assert.Equal(Globals.noSqlTestResultVersion, dto.Version);
         }
 
         [Fact]
-        public void Map_WhenMappingTestResult_SetsType()
-        {
-            //Given
-            MappingProvider provider = GetProvider();
-            TestResult result = new TestResult();
-
-            //When
-            TestResultDto dto = provider.Map<TestResultDto, TestResult>(result);
-
-            //Then
-            Assert.Equal(Globals.noSqlTestResultType, dto.Type);
-        }
-
-        [Fact]
         public void Map_WhenMappingTestSession_SetsSameValues()
         {
             //Given
-            MappingProvider provider = GetProvider();
             TestSession session = new TestSession(){
                 Id = 1,
-                TestId = 2,
-                Teacher = "teacher1",
-                Grade = "grade1",
-                Year = 2000.ToString(),
-                Term = "term1",
+                // TestId = 2,
+                // Teacher = "teacher1",
+                // Grade = "grade1",
+                // Year = 2000.ToString(),
+                // Term = "term1",
                 Date = new DateTime()
             };
 
             //When
-            TestSessionDto dto = provider.Map<TestSessionDto, TestSession>(session);
+            TestSessionDto dto = GetMapped<TestSessionDto, TestSession>(session);
 
             //Then
             Assert.Equal(session.Id, dto.Id);
-            Assert.Equal(session.TestId, dto.TestId);
-            Assert.Equal(session.Teacher, dto.Teacher);
-            Assert.Equal(session.Grade, dto.Grade);
-            Assert.Equal(session.Year, dto.Year);
-            Assert.Equal(session.Term, dto.Term);
+            // Assert.Equal(session.TestId, dto.TestId);
+            // Assert.Equal(session.Teacher, dto.Teacher);
+            // Assert.Equal(session.Grade, dto.Grade);
+            // Assert.Equal(session.Year, dto.Year);
+            // Assert.Equal(session.Term, dto.Term);
             Assert.Equal(session.Date, dto.Date);
         }
 
@@ -287,31 +220,16 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             TestSession session = new TestSession();
 
             //When
-            TestSessionDto dto = provider.Map<TestSessionDto, TestSession>(session);
+            TestSessionDto dto = GetMapped<TestSessionDto, TestSession>(new TestSession());
 
             //Then
             Assert.Equal(Globals.noSqlTestSessionVersion, dto.Version);
         }
 
         [Fact]
-        public void Map_WhenMappingTestSession_SetsType()
-        {
-            //Given
-            MappingProvider provider = GetProvider();
-            TestSession session = new TestSession();
-
-            //When
-            TestSessionDto dto = provider.Map<TestSessionDto, TestSession>(session);
-
-            //Then
-            Assert.Equal(Globals.noSqlTestSessionType, dto.Type);
-        }
-
-        [Fact]
         public void Map_WhenMappingStudent_SetsSameValues()
         {
             //Given
-            MappingProvider provider = GetProvider();
             Student student = new Student(){
                 Id = 1,
                 FirstName = "firstName1",
@@ -325,7 +243,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             };
 
             //When
-            StudentDto dto = provider.Map<StudentDto, Student>(student);
+            StudentDto dto = GetMapped<StudentDto, Student>(student);
 
             //Then
             Assert.Equal(student.Id, dto.Id);

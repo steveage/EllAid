@@ -7,6 +7,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
     {
         void AssignUsersToClass(SchoolClass schoolClass, Person teacher, Person ellCoach, List<Person> assistants);
         void AssignStudentsToClass(List<Student> students, List<Course> studentClasses, SchoolClass schoolClass, Person teacher);
-        void AssignStudentToTestResult(Student student, SchoolClass schoolClass, TestResult result, TestSession session);
+        void AssignStudentToTestResult<T>(Student student, SchoolClass schoolClass, TestResult<T> result, TestSession session);
     }
 }

@@ -50,10 +50,10 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
                 Year = year.ToString(),
                 Department = department,
                 // Version = 1,
-                Teachers = new List<string>(),
-                Assistants = new List<string>(),
-                EllCoaches = new List<string>(),
-                Students = new List<string>()
+                // Teachers = new List<string>(),
+                // Assistants = new List<string>(),
+                // EllCoaches = new List<string>(),
+                // Students = new List<string>()
             };
 
             return schoolClass;
@@ -86,7 +86,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
                 Email =userId,
                 //Type = "studentCourse",
                 Class = classId,
-                Teachers = new List<string>() { teacherId },
+                // Teachers = new List<string>() { teacherId },
                 IsCurrent = isCurrent,
                 Score = score,
                 // Version = 1
@@ -143,41 +143,41 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             return users;
         }
 
-        public List<TestResult> GetWidaTestResults(DateTime resultDate, string term, int count)
+        public List<TestResult<T>> GetWidaTestResults<T>(DateTime resultDate, string term, int count)
         {
-            List<TestResult> results = new List<TestResult>();
+            List<TestResult<T>> results = new List<TestResult<T>>();
 
             for (int i = 0; i < count; i++)
             {
-                results.Add(GetWidaTestResult(resultDate, term));
+                results.Add(GetWidaTestResult<T>(resultDate, term));
             }
 
             return results;
         }
 
-        public TestResult GetWidaTestResult(DateTime resultDate, string term)
+        public TestResult<T> GetWidaTestResult<T>(DateTime resultDate, string term)
         {
             Test test = Tests.Find(t=>t.Name=="WIDA");
-            TestResult result = new TestResult()
+            TestResult<T> result = new TestResult<T>()
             {
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = Guid.NewGuid().ToString(),
                 Id = 1,
-                TestId = test.Id,
+                // TestId = test.Id,
                 //Type = "testResult",
-                Subject = test.Subject,
-                Name = test.Name,
-                Term = term,
+                // Subject = test.Subject,
+                // Name = test.Name,
+                // Term = term,
                 Date = resultDate,
-                Sections = new TestSection[]
-                {
-                    GetWidaTestSection("Listening"),
-                    GetWidaTestSection("Speaking"),
-                    GetWidaTestSection("Reading"),
-                    GetWidaTestSection("Writing-RAW"),
-                    GetWidaTestSection("Writing-GRADE ADJ"),
-                    GetWidaTestSection("Overall"),
-                },
+                // Sections = new List<TestSection>
+                // {
+                //     GetWidaTestSection("Listening"),
+                //     GetWidaTestSection("Speaking"),
+                //     GetWidaTestSection("Reading"),
+                //     GetWidaTestSection("Writing-RAW"),
+                //     GetWidaTestSection("Writing-GRADE ADJ"),
+                //     GetWidaTestSection("Overall"),
+                // },
                 // Version = 1
             };
 
@@ -186,8 +186,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         TestSection GetWidaTestSection(string area) => new TestSection
             {
-                AreaName = area,
-                Score = fakeDataProvider.PickRandomNumber(0, 30).ToString()
+                // AreaName = area,
+                // Score = fakeDataProvider.PickRandomNumber(0, 30).ToString()
             };
 
         public List<TestSession> GetTestSessions(int testId, DateTime sessionDate, int count)
@@ -208,7 +208,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = Guid.NewGuid().ToString(),
                 Id = 1,
-                TestId = testId,
+                // TestId = testId,
                 //Type = "testSession",
                 Date = sessionDate,
                 // Version = 1

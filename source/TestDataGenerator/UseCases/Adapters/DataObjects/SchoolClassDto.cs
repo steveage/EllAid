@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace EllAid.TestDataGenerator.Infrastructure.Mapper.DataObjects
+namespace EllAid.TestDataGenerator.UseCases.Adapters.DataObjects
 {
-    class SchoolClassDto
+    public class SchoolClassDto : EntityDto
     {
         public string Name { get; set; }
         public int Section { get; set; }
@@ -13,7 +13,5 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.DataObjects
         public string Grade { get; set; }
         public string Year { get; set; }
         public string Department { get; set; }
-        internal int Version { get; set; }
-        internal string Type { get; set; }
     }
 }

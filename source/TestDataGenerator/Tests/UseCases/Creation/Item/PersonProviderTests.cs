@@ -11,20 +11,6 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
     public class UserProviderTests
     {
         [Fact]
-        public void GetUser_ReturnsTypeUser()
-        {
-            // Arrange
-            IPersonProvider provider = new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
-            provider.Initialize(4);
-
-            // Act
-            Person user = provider.GetPerson();
-
-            // Assert
-            //Assert.Equal(userType, user.Type);
-        }
-
-        [Fact]
         public void GetUser_WhenCalledUpToCountTimes_ReturnsDifferentUser()
         {
             // Arrange
@@ -74,7 +60,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
 
         [Theory]
         [InlineData(0)]
-        [InlineData(4)]
+        [InlineData(-1)]
         public void Initialize_WhenInvalidParameters_ThrowsException(int count)
         {
             //Given

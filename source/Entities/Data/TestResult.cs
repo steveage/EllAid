@@ -2,14 +2,12 @@ using System;
 
 namespace EllAid.Entities.Data
 {
-    public class TestResult : TestBase
+    public class TestResult<T> : Entity
     {
         public int TestSessionId { get; set; }
-        public string UserId { get; set; }
-        public string Subject { get; set; }
-        public string Name { get; set; }
-        public string Term { get; set; }
+        public int TestSectionId { get; set; }
+        public string StudentId { get; set; }
         public DateTime Date { get; set; }
-        public TestSection[] Sections { get; set; }
+        public T Score { get; set; }
     }
 }

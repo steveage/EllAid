@@ -1,6 +1,12 @@
 PURPOSE
     To keep track of the development activities set for the near future.
 
+STATUS INDICATORS
+W - Waiting to start working on the item.
+S - Started working on the item.
+C - Completed work on the item.
+R - Removed item from the backlog. 
+
 R   Move data objects that are specific to the persistence layer from Core to Adapter layer:
 -   Item.Version - database specific, only used in CosmosDb
 -   Item.Type - database specific, only used in no SQL dbs
@@ -38,9 +44,18 @@ C   Replace EllCoachProvider with UserProvider.
 W   Write acceptance tests.
 W   Move framework specific classes in Infrastructure to dedicated folders.
 S   Redesign entity model to better represent real life objects and remove resemblance to no sql db objects.
--   Change UserCreatorTests to return modified Students, Instructors, EllCoaches and Assistants.
+-C  Change UserCreatorTests to return modified Students, Instructors, EllCoaches and Assistants.
     -   Remove User.Classes - school classes will be queried separately to simplify the model.
     -   Remove User.Type - user type such as teacher, ell coach, etc. will be only used in the dtos. The value of Type for the dto will set manually in the adapter layer.
     -   Rename Item class to Entity.
     -   Change tests to use the actual fake data provider instead and user data provider instead of using mocks.
     -   Rename FakeDataProvider class to BogusFabricator and IFakeData to IDataFabricator.
+-C  Remove lists from the remaining entities
+    -C   Course.Teachers
+    -C   SchoolClass.Assistants, EllCoaches, Students
+    -C   Test.Sections - change to list
+    -C   TestResult.Sections - change to list
+-C  Change Test, TestSession, TestSection, TestResult and Dtos.
+-C  Change MappingProvider tests after type was added.
+-C  Add new classes to the model: Enrollment, SupportAssignment, CourseAssignment, Grade, CourseGrade, Term.
+-W  Create dtos for the corresponding new classes.
