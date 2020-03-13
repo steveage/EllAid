@@ -62,3 +62,5 @@ S   Redesign entity model to better represent real life objects and remove resem
 
 W  Create dtos for the corresponding new classes.
 S  Fix item creation and assignment once model changes are finished.
+-C  PersonCreator
+-C  PersonProvider

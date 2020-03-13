@@ -9,52 +9,33 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         bool isInitialized;
         int numberOfRequests = 0;
         List<Person> users;
-        public string Type { get; private set; }
         public int Count { get; private set; }
 
-        public PersonProvider(IPersonCreator creator)
-        {
-            this.creator = creator;
-        }
+        public PersonProvider(IPersonCreator creator) => this.creator = creator;
         
         public void Initialize(int count)
         {
-            if (count > 0)
-            {
-                Count = count;
-                users = creator.CreatePeople(count);
-                isInitialized = true;
-            }
-            else
-            {
-                throw new PersonProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
-            }
+            if (count<=0) throw new PersonProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
+
+            Count = count;
+            users = creator.CreatePeople(count);
+            isInitialized = true;
         }
 
         public Person GetPerson()
         {
-            if (isInitialized)
-            {
-                numberOfRequests++;
-                int userIndex = (numberOfRequests-1)%Count;
-                return users[userIndex];
-            }
-            else
-            {
-                throw new PersonProviderNotInitializedException("Provider must be initialized first.");
-            }
+            if(!isInitialized) throw new PersonProviderNotInitializedException("Provider must be initialized first.");
+
+            numberOfRequests++;
+            int userIndex = (numberOfRequests-1)%Count;
+            return users[userIndex];
         }
 
         public List<Person> GetPeople()
         {
-            if (isInitialized)
-            {
-                return users;
-            }
-            else
-            {
-                throw new PersonProviderNotInitializedException("Provider must be initialized first.");
-            }
+            if(!isInitialized) throw new PersonProviderNotInitializedException("Provider must be initialized first.");
+            
+            return users;
         }
     }
 }
