@@ -5,14 +5,14 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     class PersonProvider : IPersonProvider
     {
-        readonly IUserCreator creator;
+        readonly IPersonCreator creator;
         bool isInitialized;
         int numberOfRequests = 0;
         List<Person> users;
         public string Type { get; private set; }
         public int Count { get; private set; }
 
-        public PersonProvider(IUserCreator creator)
+        public PersonProvider(IPersonCreator creator)
         {
             this.creator = creator;
         }

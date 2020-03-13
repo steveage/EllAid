@@ -8,14 +8,14 @@ using Xunit;
 
 namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
 {
-    public class UserProviderTests
+    public class PersonProviderTests
     {
         [Fact]
-        public void GetUser_WhenCalledUpToCountTimes_ReturnsDifferentUser()
+        public void GetPerson_WhenCalledUpToCountTimes_ReturnsDifferentPerson()
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize(userCount);
 
@@ -34,11 +34,11 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         [Fact]
-        void GetUser_WhenCalledMoreThanCountTimes_ReturnsSameUsers()
+        void GetPerson_WhenCalledMoreThanCountTimes_ReturnsSamePeople()
         {
             // Arrange
             List<string> userIds = new List<string>();
-            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int userCount = 4;
             provider.Initialize(userCount);
             const int requestSets = 3;
@@ -64,7 +64,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void Initialize_WhenInvalidParameters_ThrowsException(int count)
         {
             //Given
-            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action initializeAction = () => provider.Initialize(count);
@@ -74,10 +74,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         [Fact]
-        public void GetUser_WhenNotInitialized_ThrowsException()
+        public void GetPerson_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IPersonProvider provider = new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider = new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action action = ()=> provider.GetPerson();
@@ -87,10 +87,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         [Fact]
-        public void GetUsers_WhenNotInitialized_ThrowsException()
+        public void GetPeople_WhenNotInitialized_ThrowsException()
         {
             //Given
-            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
 
             //When
             Action action = ()=> provider.GetPeople();
@@ -100,10 +100,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         [Fact]
-        public void GetUsers_WhenInitialized_ReturnsSameCountOfUsers()
+        public void GetPeople_WhenInitialized_ReturnsSameCountOfPeople()
         {
             //Given
-            IPersonProvider provider =  new PersonProvider(new UserCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+            IPersonProvider provider =  new PersonProvider(new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
             const int count = 4;
             provider.Initialize(count);
 

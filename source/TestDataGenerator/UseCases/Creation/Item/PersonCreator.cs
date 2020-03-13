@@ -4,19 +4,15 @@ using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
-    class UserCreator : IUserCreator
+    class PersonCreator : IPersonCreator
     {
         readonly IDataFabricator fakeDataProvider;
-        readonly List<string> malePictureUrls;
-        readonly List<string> femalePictureUrls;
-        readonly List<string> languages;
+        readonly IUserDataAccess userData;
 
-        public UserCreator(IDataFabricator fakeDataProvider, IUserDataAccess userData)
+        public PersonCreator(IDataFabricator fakeDataProvider, IUserDataAccess userData)
         {
             this.fakeDataProvider = fakeDataProvider;
-            malePictureUrls = userData.GetMalePictures();
-            femalePictureUrls = userData.GetFemalePictures();
-            languages = userData.GetLanguages();
+            this.userData = userData;
         }
 
         public List<Student> CreateStudents(int count, int birthYear)
@@ -33,9 +29,10 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         Student GetStudent(int birthYear)
         {
-            Student student = (Student)GetPerson();
-            string language = fakeDataProvider.PickRandom(languages);
-            List<string> pictureUrls = student.Gender==Gender.Male? malePictureUrls: femalePictureUrls; 
+            Student student = new Student();
+            Populate(student);
+            string language = fakeDataProvider.PickRandom(userData.GetLanguages());
+            List<string> pictureUrls = student.Gender==Gender.Male? userData.GetMalePictures(): userData.GetFemalePictures(); 
             string pictureUrl = fakeDataProvider.PickRandom(pictureUrls);
             const int yearsToGoBack = 1;
             DateTime birthYearDate = new DateTime(birthYear, 1, 1);
@@ -59,33 +56,29 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
             for (int i = 0; i < count; i++)
             {
-                users.Add(GetPerson());
+                Person person = new Person();
+                Populate(person);
+                users.Add(person);
             }
 
             return users;
         }
-        
-        Person GetPerson()
+
+        void Populate(Person person)
         {
             Gender gender = fakeDataProvider.PickRandomGender();
             // TODO: Setup Id provider that will generate unique number.
             // string id = Guid.NewGuid().ToString();
-            int id = 1;
+            Guid id = Guid.NewGuid();
             string firstName = fakeDataProvider.PickRandomFirstName(gender);
             string lastName = fakeDataProvider.PickRandomLastName(gender);
             string userId = GetEmail(firstName, lastName);
             int userNumber = fakeDataProvider.PickRandomNumber(10000000, 99999999);
-
-            Person person = new Person()
-            {
-                Id = id,
-                Email = userId,
-                Gender = gender,
-                FirstName = firstName,
-                LastName = lastName,
-            };
-
-            return person;
+            person.Id = id;
+            person.Email = userId;
+            person.Gender = gender;
+            person.FirstName = firstName;
+            person.LastName = lastName;
         }
 
         string GetEmail(string firstName, string lastName) => $"{firstName}.{lastName}@school.com";

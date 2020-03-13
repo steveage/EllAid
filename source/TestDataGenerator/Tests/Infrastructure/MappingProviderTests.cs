@@ -42,7 +42,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             Person user = new Person(){
-                Id = 1,
+                Id = Guid.NewGuid(),
                 FirstName = "firstName",
                 LastName = "lastName",
                 Gender = Gender.Female
@@ -52,7 +52,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             PersonDto dto = GetMapped<PersonDto, Person>(user);
 
             //Then
-            Assert.Equal(user.Id, dto.Id);
+            Assert.Equal(user.Id.ToString(), dto.Id);
             Assert.Equal(user.FirstName, dto.FirstName);
             Assert.Equal(user.LastName, dto.LastName);
             Assert.Equal(user.Gender, dto.Gender);
@@ -74,22 +74,22 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             //Given
             MappingProvider provider = GetProvider();
             SchoolClass schoolClass = new SchoolClass(){
-                Name = "className",
-                Section = 1,
-                Grade = "grade1",
-                Year = "2000",
-                Department = "department1"
+                // Name = "className",
+                // Section = 1,
+                // Grade = "grade1",
+                // Year = "2000",
+                // Department = "department1"
             };
 
             //When
             SchoolClassDto dto = GetMapped<SchoolClassDto, SchoolClass>(schoolClass);
 
             //Then
-            Assert.Equal(schoolClass.Name, dto.Name);
-            Assert.Equal(schoolClass.Section, dto.Section);
-            Assert.Equal(schoolClass.Grade, dto.Grade);
-            Assert.Equal(schoolClass.Year, dto.Year);
-            Assert.Equal(schoolClass.Department, dto.Department);
+            // Assert.Equal(schoolClass.Name, dto.Name);
+            // Assert.Equal(schoolClass.Section, dto.Section);
+            // Assert.Equal(schoolClass.Grade, dto.Grade);
+            // Assert.Equal(schoolClass.Year, dto.Year);
+            // Assert.Equal(schoolClass.Department, dto.Department);
         }
 
         [Fact]
@@ -111,20 +111,19 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             Course course = new Course(){
-                Id = 1,
-                Class = 2,
-                IsCurrent = true,
-                Score = "score1"
+                Id = Guid.NewGuid(),
+                Name = "testName",
+                Department = Department.EarlyChildhood,
             };
 
             //When
             CourseDto dto = GetMapped<CourseDto, Course>(course);
 
             //Then
-            Assert.Equal(course.Id, dto.Id);
-            Assert.Equal(course.Class, dto.Class);
-            Assert.Equal(course.IsCurrent, dto.IsCurrent);
-            Assert.Equal(course.Score, dto.Score);
+            Assert.Equal(course.Id.ToString(), dto.Id);
+            // Assert.Equal(course.Class.ToString(), dto.Class);
+            // Assert.Equal(course.IsCurrent, dto.IsCurrent);
+            // Assert.Equal(course.Score, dto.Score);
         }
 
         [Fact]
@@ -145,10 +144,10 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             TestResult<int> result = new TestResult<int>(){
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // TestId = 2,
-                TestSessionId = 3,
-                StudentId = "userId1",
+                TestSessionId = Guid.NewGuid(),
+                StudentId = Guid.NewGuid(),
                 // Subject = "subject1",
                 // Name = "name1",
                 // Term = "term1",
@@ -165,9 +164,9 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             TestResultDto<int> dto = GetMapped<TestResultDto<int>, TestResult<int>>(result);
 
             //Then
-            Assert.Equal(result.Id, dto.Id);
+            Assert.Equal(result.Id.ToString(), dto.Id);
             // Assert.Equal(result.TestId, dto.TestId);
-            Assert.Equal(result.TestSessionId, dto.TestSessionId);
+            Assert.Equal(result.TestSessionId.ToString(), dto.TestSessionId);
             // Assert.Equal(result.Subject, dto.Subject);
             // Assert.Equal(result.Name, dto.Name);
             // Assert.Equal(result.Term, dto.Term);
@@ -190,7 +189,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             TestSession session = new TestSession(){
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // TestId = 2,
                 // Teacher = "teacher1",
                 // Grade = "grade1",
@@ -203,7 +202,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             TestSessionDto dto = GetMapped<TestSessionDto, TestSession>(session);
 
             //Then
-            Assert.Equal(session.Id, dto.Id);
+            Assert.Equal(session.Id.ToString(), dto.Id);
             // Assert.Equal(session.TestId, dto.TestId);
             // Assert.Equal(session.Teacher, dto.Teacher);
             // Assert.Equal(session.Grade, dto.Grade);
@@ -231,7 +230,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
         {
             //Given
             Student student = new Student(){
-                Id = 1,
+                Id = Guid.NewGuid(),
                 FirstName = "firstName1",
                 LastName = "lastName1",
                 Gender = Gender.Female,
@@ -246,7 +245,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             StudentDto dto = GetMapped<StudentDto, Student>(student);
 
             //Then
-            Assert.Equal(student.Id, dto.Id);
+            Assert.Equal(student.Id.ToString(), dto.Id);
             Assert.Equal(student.FirstName, dto.FirstName);
             Assert.Equal(student.LastName, dto.LastName);
             Assert.Equal(student.Gender, dto.Gender);

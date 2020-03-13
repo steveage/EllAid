@@ -2,6 +2,6 @@
 {
     public abstract class TestBase : Entity
     {
-        public int TestId { get; set; }
+        public string TestId { get; set; }
     }
 }

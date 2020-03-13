@@ -1,11 +1,16 @@
 namespace EllAid.Entities.Data
 {
+    public enum Department
+    {
+        Invalid = 0,
+        EarlyChildhood,
+        ElementarySchool,
+        MiddleSchool,
+        HighSchool
+    }
     public class Course : Entity
     {
-        // TODO: solve missing UserId
-        public string Email { get; set; }
-        public int Class { get; set; }
-        public bool IsCurrent { get; set; }
-        public string Score { get; set; }
+        public string Name { get; set; }
+        public Department Department { get; set; }
     }
 }

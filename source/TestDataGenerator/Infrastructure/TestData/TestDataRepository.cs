@@ -26,14 +26,14 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             
             foreach (Person user in users)
             {
-                tasks.Add(CreateItemAsync(user, dbAccess.UsersContainer, user.Id));
+                tasks.Add(CreateItemAsync(user, dbAccess.UsersContainer, user.Email));
             }
             await Task.WhenAll(tasks);
         }
 
         public async Task CreateUserItemAsync(Person user)
         {
-            await CreateItemAsync(user, dbAccess.UsersContainer, user.Id);
+            await CreateItemAsync(user, dbAccess.UsersContainer, user.Email);
         }
 
         public async Task CreateTestItemAsync(TestBase test)
@@ -52,7 +52,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             await Task.WhenAll(tasks);
         }
 
-        async Task CreateItemAsync(Entity item, Container container, int partitionKeyValue)
+        async Task CreateItemAsync(Entity item, Container container, string partitionKeyValue)
         {
             PartitionKey partitionKey = new PartitionKey(partitionKeyValue);
             try

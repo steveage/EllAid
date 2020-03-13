@@ -4,9 +4,9 @@ namespace EllAid.Entities.Data
 {
     public class TestResult<T> : Entity
     {
-        public int TestSessionId { get; set; }
-        public int TestSectionId { get; set; }
-        public string StudentId { get; set; }
+        public Guid TestSessionId { get; set; }
+        public Guid TestSectionId { get; set; }
+        public Guid StudentId { get; set; }
         public DateTime Date { get; set; }
         public T Score { get; set; }
     }

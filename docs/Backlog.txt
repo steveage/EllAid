@@ -11,8 +11,8 @@ R   Move data objects that are specific to the persistence layer from Core to Ad
 -   Item.Version - database specific, only used in CosmosDb
 -   Item.Type - database specific, only used in no SQL dbs
 Keep Type in user entities and change it into enum. Remove it from other entities since entity object type defines type.
--   UserBase.UserId - database specific, only used in no SQL dbs as partition key. Change it to Email property and move it out from UserBase to User. There remove UserBase.
-In dtos set userId=Id for students and userId=Email for other users.
+-   UserBase.UserId - database specific, only used in no SQL dbs as partition key. Change it to Email property and move it out from UserBase to User. Then remove UserBase.
+-R  In dtos set userId=Id for students and userId=Email for other users.
 -   Item.Id
 Change from guid to int and use it to replace User.Number.
 -   User.Number
@@ -58,4 +58,7 @@ S   Redesign entity model to better represent real life objects and remove resem
 -C  Change Test, TestSession, TestSection, TestResult and Dtos.
 -C  Change MappingProvider tests after type was added.
 -C  Add new classes to the model: Enrollment, SupportAssignment, CourseAssignment, Grade, CourseGrade, Term.
--W  Create dtos for the corresponding new classes.
+-C  Decide what to do with SchoolClass. Changed SchoolClass to represent real world object and added StudentClass that was needed for many to many relation between Student and SchoolClass.
+
+W  Create dtos for the corresponding new classes.
+S  Fix item creation and assignment once model changes are finished.

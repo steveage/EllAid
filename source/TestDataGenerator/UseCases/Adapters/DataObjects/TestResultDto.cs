@@ -6,7 +6,7 @@ namespace EllAid.TestDataGenerator.UseCases.Adapters.DataObjects
 {
     public class TestResultDto<T> : EntityDto
     {
-        public int TestSessionId { get; set; }
+        public string TestSessionId { get; set; }
         public string UserId { get; set; }
         public string Subject { get; set; }
         public string Name { get; set; }

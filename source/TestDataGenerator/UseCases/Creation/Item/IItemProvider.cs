@@ -11,7 +11,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         Student GetStudent();
         List<Student> GetStudents(int count);
         SchoolClass GetClass(string className, string grade, int year, string department, int section);
-        Course GetStudentCourse(string userId, int classId, string teacherId, string score, bool isCurrent);
+        Course GetStudentCourse(Guid userId, Guid classId, Guid teacherId, string score, bool isCurrent);
         TestResult<T> GetWidaTestResult<T>(DateTime resultDate, string term);
         List<TestResult<T>> GetWidaTestResults<T>(DateTime resultDate, string term, int count);
         List<TestSession> GetTestSessions(int testId, DateTime sessionDate, int count);

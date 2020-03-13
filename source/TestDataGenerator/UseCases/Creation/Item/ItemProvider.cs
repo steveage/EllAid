@@ -41,14 +41,14 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             SchoolClass schoolClass = new SchoolClass()
             {
                 // TODO: Setup Id provider that will generate unique number.
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // Id = Guid.NewGuid().ToString(),
                 //Type = "class",
-                Name = className,
-                Section = section,
-                Grade = grade,
-                Year = year.ToString(),
-                Department = department,
+                // Name = className,
+                // Section = section,
+                // Grade = grade,
+                // Year = year.ToString(),
+                // Department = department,
                 // Version = 1,
                 // Teachers = new List<string>(),
                 // Assistants = new List<string>(),
@@ -76,19 +76,19 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             return student;
         }
 
-        public Course GetStudentCourse(string userId, int classId, string teacherId, string score, bool isCurrent)
+        public Course GetStudentCourse(Guid userId, Guid classId, Guid teacherId, string score, bool isCurrent)
         {
             Course studentCourse = new Course()
             {
                 // TODO: Setup Id provider that will generate unique number.
-                Id =1,
+                Id =Guid.NewGuid(),
                 // Id = Guid.NewGuid().ToString(),
-                Email =userId,
+                // Email = userId,
                 //Type = "studentCourse",
-                Class = classId,
+                // Class = classId,
                 // Teachers = new List<string>() { teacherId },
-                IsCurrent = isCurrent,
-                Score = score,
+                // IsCurrent = isCurrent,
+                // Score = score,
                 // Version = 1
             };
 
@@ -112,7 +112,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             Gender gender = fakeDataProvider.PickRandomGender();
             // TODO: Setup Id provider that will generate unique number.
             // string id = Guid.NewGuid().ToString();
-            int id = 1;
+            Guid id = Guid.NewGuid();
             string firstName = fakeDataProvider.PickRandomFirstName(gender);
             string lastName = fakeDataProvider.PickRandomLastName(gender);
             string email = GetEmail(firstName, lastName);
@@ -162,7 +162,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             {
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = Guid.NewGuid().ToString(),
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // TestId = test.Id,
                 //Type = "testResult",
                 // Subject = test.Subject,
@@ -207,7 +207,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             {
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = Guid.NewGuid().ToString(),
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // TestId = testId,
                 //Type = "testSession",
                 Date = sessionDate,

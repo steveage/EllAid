@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using EllAid.Entities.Data;
 
@@ -17,7 +18,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             {
                 // TODO: Setup Id provider that will generate unique number.
                 // Id = "1",
-                Id = 1,
+                Id = Guid.NewGuid(),
                 // TestId = 2,
                 //Type = "test",
                 // Subject = "English",

@@ -129,7 +129,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
                 logger.LogInformation($"Attempting to create container {testsContainerId}...");
                 TestsContainer = await database.CreateContainerAsync(testsContainerId, "/testId");
                 logger.LogInformation($"Attempting to create container {usersContainerId}...");
-                UsersContainer = await database.CreateContainerAsync(usersContainerId, "/userId");
+                UsersContainer = await database.CreateContainerAsync(usersContainerId, "/email");
                 databaseIsReady = true;
             }
             catch (Exception ex)

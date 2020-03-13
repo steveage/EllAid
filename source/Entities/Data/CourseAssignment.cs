@@ -1,9 +1,11 @@
+using System;
+
 namespace EllAid.Entities.Data
 {
     public class CourseAssignment : Entity
     {
-        public int CourseGradeId { get; set; }
-        public int InstructorId { get; set; }
-        public int TermId { get; set; }
+        public Guid CourseGradeId { get; set; }
+        public Guid InstructorId { get; set; }
+        public Guid TermId { get; set; }
     }
 }
