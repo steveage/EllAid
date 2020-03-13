@@ -64,3 +64,4 @@ W  Create dtos for the corresponding new classes.
 S  Fix item creation and assignment once model changes are finished.
 -C  PersonCreator
 -C  PersonProvider
+-W  Convert PersonProvider into a generic class.

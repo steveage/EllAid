@@ -18,7 +18,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             if (count<=0) throw new PersonProviderNotInitializedException($"The value for {nameof(count)} parameters is invalid.");
 
             Count = count;
-            users = creator.CreatePeople(count);
+            users = creator.CreatePeople<Person>(count);
             isInitialized = true;
         }
 
@@ -28,6 +28,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
             numberOfRequests++;
             int userIndex = (numberOfRequests-1)%Count;
+            
             return users[userIndex];
         }
 

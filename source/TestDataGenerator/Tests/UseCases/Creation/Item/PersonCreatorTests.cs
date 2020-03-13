@@ -18,7 +18,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             PersonCreator creator = GetCreator();
 
             //When
-            List<Person> users = creator.CreatePeople(userCount);
+            List<Person> users = creator.CreatePeople<Person>(userCount);
 
             //Then
             Assert.All<Person>(users, user => Assert.NotEqual(Guid.Empty, user.Id));
@@ -36,7 +36,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             return creator;
         }
 
-        bool IsEmailAddress(string text)
+        static internal bool IsEmailAddress(string text)
         {
             try
             {
@@ -71,6 +71,23 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             Assert.All<Student>(students, user => Assert.NotEmpty(user.HomeCommunicationLanguage));
             Assert.All<Student>(students, user => Assert.NotEmpty(user.PictureUrl));
             Assert.All<Student>(students, user => Assert.NotEqual(Gender.Invalid, user.Gender));
+        }
+
+        [Fact]
+        public void GetPerson_ReturnsPopulatedPerson()
+        {
+            //Given
+            PersonCreator creator = GetCreator();
+
+            //When
+            Person person = creator.CreatePerson<Person>();
+        
+            //Then
+            Assert.NotEqual(Guid.Empty, person.Id);
+            Assert.NotEmpty(person.FirstName);
+            Assert.NotEmpty(person.LastName);
+            Assert.True(IsEmailAddress(person.Email));
+            Assert.NotEqual(Gender.Invalid, person.Gender);
         }
     }
 }

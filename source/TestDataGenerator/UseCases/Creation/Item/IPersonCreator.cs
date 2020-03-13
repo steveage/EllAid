@@ -5,7 +5,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     interface IPersonCreator
     {
-        List<Person> CreatePeople(int count);
+        T CreatePerson<T>() where T : Person, new();
+        List<T> CreatePeople<T>(int count) where T : Person, new();
         List<Student> CreateStudents(int count, int birthYear);
     }
 }
