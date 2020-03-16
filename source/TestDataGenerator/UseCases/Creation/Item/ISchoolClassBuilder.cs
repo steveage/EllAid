@@ -4,6 +4,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
     interface ISchoolClassBuilder
     {
-        SchoolClass BuildGenEdClass();
+        SchoolClass BuildGenEdClass(string name);
     }
 }

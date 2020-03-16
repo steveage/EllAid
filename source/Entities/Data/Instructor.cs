@@ -6,5 +6,6 @@ namespace EllAid.Entities.Data
     {
         public List<Assistant> Assistants { get; set; }
         public EllCoach EllCoach { get; set; }
+        public Department Department { get; set; }
     }
 }

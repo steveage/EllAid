@@ -4,8 +4,9 @@ namespace EllAid.Entities.Data
 {
     public class CourseAssignment : Entity
     {
-        public Guid CourseGradeId { get; set; }
-        public Guid InstructorId { get; set; }
-        public Guid TermId { get; set; }
+        public Course Course { get; set; }
+        public Instructor Instructor { get; set; }
+        public SchoolGrade Grade { get; set; }
+        public Term Term { get; set; }
     }
 }
