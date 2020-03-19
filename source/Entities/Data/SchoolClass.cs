@@ -24,10 +24,9 @@ namespace EllAid.Entities.Data
 
     public class SchoolClass : Entity
     {
+        public SchoolClass() => Students = new List<Student>();
         public string Name { get; set; }
-        public Instructor Instructor { get; set; }
+        public CourseAssignment CourseAssignment { get; set; }
         public List<Student> Students { get; set; }
-        public Term Term { get; set; }
-        public SchoolGrade Grade { get; set; }
     }
 }

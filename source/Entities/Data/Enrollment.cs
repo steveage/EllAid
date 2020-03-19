@@ -6,4 +6,4 @@ namespace EllAid.Entities.Data
         public CourseAssignment CourseAssignment { get; set; }
         public string Score { get; set; }
     }
-}
+}   

@@ -5,6 +5,7 @@ namespace EllAid.Entities.Data
 {
     public class Student : Person
     {
+        public Student() => Enrollments = new List<Enrollment>();
         public DateTime DateOfBirth { get; set; }
         public DateTime EntryDate { get; set; }
         public string HomeLanguage { get; set; }
