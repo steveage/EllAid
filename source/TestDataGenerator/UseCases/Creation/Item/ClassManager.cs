@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
@@ -12,15 +11,10 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             schoolClass.Students.Add(student);
         }
 
-        public SchoolClass Create(string className, CourseAssignment assignment)
+        public SchoolClass Create(string className) => new SchoolClass()
         {
-            SchoolClass schoolClass = new SchoolClass()
-            {
-                Id = Guid.NewGuid(),
-                Name = className,
-                CourseAssignment = assignment
-            };
-            return schoolClass;
-        }
+            Id = Guid.NewGuid(),
+            Name = className
+        };
     }
 }

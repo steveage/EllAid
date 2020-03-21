@@ -13,13 +13,11 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Given
             ClassManager manager = new ClassManager();
             const string className = "Ms Brandon's Butterflies";
-            CourseAssignment assignment = new CourseAssignment();
             //When
-            SchoolClass schoolClass = manager.Create(className, assignment);
+            SchoolClass schoolClass = manager.Create(className);
             //Then
             Assert.NotEqual(Guid.Empty, schoolClass.Id);
             Assert.Equal(className, schoolClass.Name);
-            Assert.Equal(assignment, schoolClass.CourseAssignment);
         }
 
         [Fact]

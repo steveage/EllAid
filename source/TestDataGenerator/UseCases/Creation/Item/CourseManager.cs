@@ -19,13 +19,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             Instructor = instructor
         };
 
-        // public Enrollment CreateEnrollment(Student student, CourseAssignment assignment) => new Enrollment()
-        // {
-        //     Id = Guid.NewGuid(),
-        //     Student = student,
-        //     CourseAssignment = assignment
-        // };
-
         public GradeCourse CreateGradeCourse(Course course, SchoolGrade grade) => new GradeCourse()
         {
             Id = Guid.NewGuid(),
