@@ -9,7 +9,7 @@ namespace EllAid.Entities.Data
     }
     public class TestSection : Entity
     {
-        public int TestId { get; set; }
+        public Test Test { get; set; }
         public string Name { get; set; }
         public TestMetric Metric { get; set; }
     }

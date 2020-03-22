@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace EllAid.TestDataGenerator.Infrastructure
 {
     static class Globals
