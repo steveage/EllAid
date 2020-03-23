@@ -8,12 +8,10 @@ namespace EllAid.TestDataGenerator.UseCases
     class DataCreationUseCase : IDataCreationInputBoundary
     {
         private readonly IDataSourceBuilder builder;
-        private readonly IItemCreator itemCreator;
 
-        public DataCreationUseCase(IDataSourceBuilder builder, IItemCreator itemCreator)
+        public DataCreationUseCase(IDataSourceBuilder builder)
         {
             this.builder = builder;
-            this.itemCreator = itemCreator;
         }
 
         public async Task BuildDatabaseAsync()
@@ -21,7 +19,7 @@ namespace EllAid.TestDataGenerator.UseCases
             bool databaseIsBuilt = await builder.BuildAsync();
             if(databaseIsBuilt)
             {
-                await itemCreator.CreateAsync();
+                // await itemCreator.CreateAsync();
             }
         }
     }
