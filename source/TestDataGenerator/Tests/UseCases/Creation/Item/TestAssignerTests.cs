@@ -15,7 +15,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             Course course = new Course();
             Test test = new Test();
             //When
-            CourseTest courseTest = assigner.AssignCourse(test, course);
+            CourseTest courseTest = new CourseTest(test, course);
             //Then
             Assert.NotEqual(Guid.Empty, courseTest.Id);
             Assert.Equal(course, courseTest.Course);
@@ -30,7 +30,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             GradeCourse gradeCourse = new GradeCourse();
             Test test = new Test();            
             //When
-            GradeCourseTest gradeTest = assigner.AssignGrade(test, gradeCourse);
+            GradeCourseTest gradeTest = new GradeCourseTest(test, gradeCourse);
             //Then
             Assert.NotEqual(Guid.Empty, gradeTest.Id);
             Assert.Equal(gradeCourse, gradeTest.GradeCourse);
@@ -45,7 +45,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             TermCourse termCourse = new TermCourse();
             Test test = new Test();
             //When
-            TermCourseTest termTest = assigner.AssignTerm(test, termCourse);
+            TermCourseTest termTest = new TermCourseTest(test, termCourse);
             //Then
             Assert.NotEqual(Guid.Empty, termTest.Id);
             Assert.Equal(termCourse, termTest.TermCourse);

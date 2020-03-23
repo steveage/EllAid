@@ -11,7 +11,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void Build_ReturnsWidaTest()
         {
             //Given
-            WidaTestBuilder builder = new WidaTestBuilder(new TestBuilder(), new TestAssigner());
+            WidaTestBuilder builder = new WidaTestBuilder(new TestAssigner());
             //When
             Test test = builder.Build();
             //Then

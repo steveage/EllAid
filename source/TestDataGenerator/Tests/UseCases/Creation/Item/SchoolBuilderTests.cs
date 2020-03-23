@@ -84,6 +84,6 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         SchoolBuilder GetBuilder() =>
-        new SchoolBuilder(new ClassManager(), new ClassAssigner(new ClassManager(), new CourseManager(), new InstructorManager()), new CourseManager(), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+        new SchoolBuilder(new ClassAssigner(new InstructorManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
     }
 }

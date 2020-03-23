@@ -78,21 +78,22 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 
         public Course GetStudentCourse(Guid userId, Guid classId, Guid teacherId, string score, bool isCurrent)
         {
-            Course studentCourse = new Course()
-            {
-                // TODO: Setup Id provider that will generate unique number.
-                Id =Guid.NewGuid(),
-                // Id = Guid.NewGuid().ToString(),
-                // Email = userId,
-                //Type = "studentCourse",
-                // Class = classId,
-                // Teachers = new List<string>() { teacherId },
-                // IsCurrent = isCurrent,
-                // Score = score,
-                // Version = 1
-            };
+            // Course studentCourse = new Course()
+            // {
+            //     // TODO: Setup Id provider that will generate unique number.
+            //     Id =Guid.NewGuid(),
+            //     // Id = Guid.NewGuid().ToString(),
+            //     // Email = userId,
+            //     //Type = "studentCourse",
+            //     // Class = classId,
+            //     // Teachers = new List<string>() { teacherId },
+            //     // IsCurrent = isCurrent,
+            //     // Score = score,
+            //     // Version = 1
+            // };
 
-            return studentCourse;
+            // return studentCourse;
+            return null;
         }
 
         public List<Student> GetStudents(int count)

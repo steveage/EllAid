@@ -11,7 +11,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         public void CreateClass_ReturnsPopulatedClass()
         {
             //Given
-            ClassAssigner builder = new ClassAssigner(new ClassManager(), new CourseManager(), new InstructorManager());
+            ClassAssigner builder = new ClassAssigner(new InstructorManager());
             SchoolClass schoolClass = new SchoolClass();
             Instructor instructor = new Instructor();
             List<Assistant> assistants = new List<Assistant>() { new Assistant(), new Assistant()};

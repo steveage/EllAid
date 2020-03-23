@@ -9,18 +9,14 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         List<Term> terms;
         List<SchoolClass> classes;
         bool isBuilt;
-        readonly IClassManager classManager;
         readonly IClassAssigner classAssigner;
-        readonly ICourseManager courseManager;
         readonly IPersonCreator personCreator;
 
-        public SchoolBuilder(IClassManager classManager, IClassAssigner classAssigner, ICourseManager courseManager, IPersonCreator personCreator)
+        public SchoolBuilder(IClassAssigner classAssigner, IPersonCreator personCreator)
         {
             terms = new List<Term>();
             classes = new List<SchoolClass>();
-            this.classManager = classManager;
             this.classAssigner = classAssigner;
-            this.courseManager = courseManager;
             this.personCreator = personCreator;
         }
 
@@ -44,15 +40,15 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             Department department = Department.EarlyChildhood;
             Term term = CreateTerm(SchoolTerm.Fall, schoolYear);
             terms.Add(term);
-            Course course = courseManager.CreateCourse("PreKindergarten General Education", department);
-            GradeCourse gradeCourse = courseManager.CreateGradeCourse(course, SchoolGrade.PreKindergarten);
-            TermCourse termCourse = courseManager.CreateTermCourse(term, gradeCourse);
+            Course course = new Course("PreKindergarten General Education", department);
+            GradeCourse gradeCourse = new GradeCourse(course, SchoolGrade.PreKindergarten);
+            TermCourse termCourse = new TermCourse(term, gradeCourse);
             Instructor instructor = personCreator.CreatePerson<Instructor>();
             instructor.Department = department;
             EllCoach coach = personCreator.CreatePerson<EllCoach>();
             List<Assistant> assistants = personCreator.CreatePeople<Assistant>(2);
             List<Student> students = personCreator.CreateStudents(20, schoolYear-4);
-            SchoolClass schoolClass = classManager.Create("Section A");
+            SchoolClass schoolClass = new SchoolClass("Section A");
             classAssigner.AssignClass(schoolClass, instructor, assistants, coach, students, termCourse);
             classes.Add(schoolClass);
         }
