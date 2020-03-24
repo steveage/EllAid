@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\Entities\EllAid.Entities.csproj"/>
+    <ProjectReference Include="..\..\Entities\Entities\EllAid.Entities.csproj"/>
     <ProjectReference Include="..\UseCases\EllAid.TestDataGenerator.UseCases.csproj"/>
     <ProjectReference Include="..\Infrastructure\EllAid.TestDataGenerator.Infrastructure.csproj"/>
   </ItemGroup>

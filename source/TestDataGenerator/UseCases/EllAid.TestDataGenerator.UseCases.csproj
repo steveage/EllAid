@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Entities\EllAid.Entities.csproj" />
+    <ProjectReference Include="..\..\Entities\Entities\EllAid.Entities.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
