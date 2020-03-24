@@ -2,10 +2,8 @@ namespace EllAid.Entities.Data
 {
     public class TermCourseTest : Entity
     {
-        public TermCourseTest() : base()
-        {
-        }
-        public TermCourseTest(Test test, TermCourse termCourse) : this()
+        public TermCourseTest(){}
+        public TermCourseTest(Test test, TermCourse termCourse)
         {
             Test = test;
             TermCourse = termCourse;

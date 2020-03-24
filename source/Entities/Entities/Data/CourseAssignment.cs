@@ -2,10 +2,8 @@ namespace EllAid.Entities.Data
 {
     public class CourseAssignment : Entity
     {
-        public CourseAssignment() : base()
-        {
-        }
-        public CourseAssignment(TermCourse termCourse, Instructor instructor) : this()
+        public CourseAssignment(){}
+        public CourseAssignment(TermCourse termCourse, Instructor instructor)
         {
             TermCourse = termCourse;
             Instructor = instructor;

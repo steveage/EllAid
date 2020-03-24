@@ -2,9 +2,7 @@ namespace EllAid.Entities.Data
 {
     public class CourseTest : Entity
     {
-        public CourseTest() : base()
-        {
-        }
+        public CourseTest(){}
         public CourseTest(Test test, Course course)
         {
             Test = test;

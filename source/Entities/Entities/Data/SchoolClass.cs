@@ -24,7 +24,7 @@ namespace EllAid.Entities.Data
 
     public class SchoolClass : Entity
     {
-        public SchoolClass() : base() => Students = new List<Student>();
+        public SchoolClass() => Students = new List<Student>();
         public SchoolClass(string name) : this() => Name = name;
         public string Name { get; set; }
         public CourseAssignment CourseAssignment { get; set; }

@@ -10,7 +10,7 @@ namespace EllAid.Entities.Data
 
     public class Test : Entity
     {
-        public Test() : base() => Sections = new List<TestSection>();
+        public Test() => Sections = new List<TestSection>();
 
         public Test(string name, TestSubject subject) : this()
         {

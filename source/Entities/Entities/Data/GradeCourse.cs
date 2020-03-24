@@ -4,9 +4,7 @@ namespace EllAid.Entities.Data
 {
     public class GradeCourse : Entity
     {
-        public GradeCourse() : base()
-        {
-        }
+        public GradeCourse(){}
 
         public GradeCourse(Course course, SchoolGrade grade)
         {

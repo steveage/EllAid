@@ -10,10 +10,8 @@ namespace EllAid.Entities.Data
     }
     public class Course : Entity
     {
-        public Course() : base()
-        {
-        }
-        public Course(string name, Department department) : this()
+        public Course(){}
+        public Course(string name, Department department)
         {
             Name = name;
             Department = department;
