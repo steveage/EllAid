@@ -2,9 +2,7 @@ namespace EllAid.Entities.Data
 {
     public class TermCourse : Entity
     {
-        public TermCourse() : base()
-        {
-        }
+        public TermCourse() : base(){}
         public TermCourse(Term term, GradeCourse gradeCourse)
         {
             Term = term;

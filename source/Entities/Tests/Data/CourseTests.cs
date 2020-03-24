@@ -2,7 +2,7 @@ using System;
 using EllAid.Entities.Data;
 using Xunit;
 
-namespace EllAid.Entities.Tests
+namespace EllAid.Entities.Tests.Data
 {
     public class CourseTests
     {
