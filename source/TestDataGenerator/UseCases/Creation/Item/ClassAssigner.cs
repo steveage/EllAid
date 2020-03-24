@@ -6,10 +6,12 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
     class ClassAssigner : IClassAssigner
     {
         readonly IInstructorManager instructorManager;
+        readonly ICourseManager courseManager;
 
-        public ClassAssigner(IInstructorManager instructorManager)
+        public ClassAssigner(IInstructorManager instructorManager, ICourseManager courseManager)
         {
             this.instructorManager = instructorManager;
+            this.courseManager = courseManager;
         }
 
         public void AddStudent(Student student, SchoolClass schoolClass)
@@ -25,7 +27,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             instructorManager.AddCoach(coach, instructor);
             schoolClass.CourseAssignment = assignment;
             students.ForEach(student => AddStudent(student, schoolClass));
-            students.ForEach(student => student.Enrollments.Add(new Enrollment(student, assignment)));
+            students.ForEach(student => courseManager.Enroll(student, new Enrollment(assignment)));
         }
     }
 }

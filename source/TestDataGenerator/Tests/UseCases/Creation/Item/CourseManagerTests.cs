@@ -69,13 +69,16 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             //Given
             Student student = new Student();
             CourseAssignment assignment = new CourseAssignment();
+            Enrollment enrollment = new Enrollment(assignment);
+            CourseManager manager = new CourseManager();
             //When
-            student.Enrollments.Add(new Enrollment(student, assignment));
+            manager.Enroll(student, enrollment);
             //Then
             Assert.Equal(1, student.Enrollments.Count);
             Assert.NotEqual(Guid.Empty, student.Enrollments[0].Id);
             Assert.Equal(student, student.Enrollments[0].Student);
             Assert.Equal(assignment, student.Enrollments[0].CourseAssignment);
         }
+        
     }
 }

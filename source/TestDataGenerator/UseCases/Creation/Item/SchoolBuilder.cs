@@ -50,6 +50,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             List<Student> students = personCreator.CreateStudents(20, schoolYear-4);
             SchoolClass schoolClass = new SchoolClass("Section A");
             classAssigner.AssignClass(schoolClass, instructor, assistants, coach, students, termCourse);
+            
             classes.Add(schoolClass);
         }
 
