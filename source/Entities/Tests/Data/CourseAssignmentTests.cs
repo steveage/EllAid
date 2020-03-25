@@ -13,6 +13,7 @@ namespace EllAid.Entities.Tests.Data
             CourseAssignment assignment = new CourseAssignment();        
             //Then
             Assert.NotEqual(Guid.Empty, assignment.Id);
+            Assert.NotNull(assignment.TestSessions);
         }
 
         [Fact]
@@ -24,6 +25,7 @@ namespace EllAid.Entities.Tests.Data
             CourseAssignment assignment = new CourseAssignment(termCourse, instructor);
             //Then
             Assert.NotEqual(Guid.Empty, assignment.Id);
+            Assert.NotNull(assignment.TestSessions);
             Assert.Equal(termCourse, assignment.TermCourse);
             Assert.Equal(instructor, assignment.Instructor);
         }

@@ -21,17 +21,15 @@ namespace EllAid.Entities.Tests.Data
         {
             //Given
             Test test = new Test();
-            CourseAssignment assignment = new CourseAssignment();
             string name = "WIDA Spring Test Session";
             DateTime date = DateTime.Now;
             //When
-            TestSession session = new TestSession(name, date, test, assignment);
+            TestSession session = new TestSession(name, date, test);
             //Then
             Assert.NotEqual(Guid.Empty, session.Id);
             Assert.Equal(name, session.Name);
             Assert.Equal(date, session.Date);
             Assert.Equal(test, session.Test);
-            Assert.Equal(assignment, session.CourseAssignment);
         }
     }
 }

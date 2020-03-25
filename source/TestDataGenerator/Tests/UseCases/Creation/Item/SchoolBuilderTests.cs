@@ -64,6 +64,22 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
             Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.Instructor.Assistants, assistant => Assert.NotEmpty(assistant.FirstName)));
             Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.Instructor.Assistants, assistant => Assert.NotEmpty(assistant.LastName)));
             Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.Instructor.Assistants, assistant => Assert.NotEqual(Gender.Invalid, assistant.Gender)));
+            // SchoolClass.CourseAssignment.TestSessions
+            Assert.All(classes, schoolClass => Assert.Equal(1, schoolClass.CourseAssignment.TestSessions.Count));
+            Assert.All(classes, schoolClass => Assert.NotEqual(Guid.Empty,schoolClass.CourseAssignment.TestSessions[0].Id));
+            Assert.All(classes, schoolClass => Assert.Equal(schoolClass.CourseAssignment, schoolClass.CourseAssignment.TestSessions[0].CourseAssignment));
+            Assert.All(classes, schoolClass => Assert.NotEqual(DateTime.MinValue, schoolClass.CourseAssignment.TestSessions[0].Date));
+            Assert.All(classes, schoolClass => Assert.NotEmpty(schoolClass.CourseAssignment.TestSessions[0].Name));
+            // SchoolClass.CourseAssignment.TestSessions.Test
+            Assert.All(classes, schoolClass => Assert.NotEqual(Guid.Empty, schoolClass.CourseAssignment.TestSessions[0].Test.Id));
+            Assert.All(classes, schoolClass => Assert.NotEmpty(schoolClass.CourseAssignment.TestSessions[0].Test.Name));
+            Assert.All(classes, schoolClass => Assert.NotEqual(TestSubject.Invalid, schoolClass.CourseAssignment.TestSessions[0].Test.Subject));
+            Assert.All(classes, schoolClass => Assert.Equal(4, schoolClass.CourseAssignment.TestSessions[0].Test.Sections.Count));
+            // SchoolClass.CourseAssignment.TestSessions.Test.TestSections
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.TestSessions[0].Test.Sections, section => Assert.NotEqual(Guid.Empty, section.Id)));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.TestSessions[0].Test.Sections, section => Assert.Equal(schoolClass.CourseAssignment.TestSessions[0].Test, section.Test)));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.TestSessions[0].Test.Sections, section => Assert.NotEmpty(section.Name)));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.CourseAssignment.TestSessions[0].Test.Sections, section => Assert.NotEqual(TestMetric.Invalid, section.Metric)));
             // SchoolClass.Students
             Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.NotEqual(Guid.Empty, student.Id)));
             Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.NotEmpty(student.FirstName)));
@@ -84,6 +100,6 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Item
         }
 
         SchoolBuilder GetBuilder() =>
-        new SchoolBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()));
+        new SchoolBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()), new WidaTestBuilder(new TestAssigner()), new CourseManager());
     }
 }

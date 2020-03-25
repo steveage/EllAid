@@ -2,7 +2,7 @@ using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases.Creation.Item
 {
-    class WidaTestBuilder : IWidaTestBuilder
+    class WidaTestBuilder : ITestBuilder
     {
         internal const string widaTestName = "WIDA";
         readonly ITestAssigner assigner;

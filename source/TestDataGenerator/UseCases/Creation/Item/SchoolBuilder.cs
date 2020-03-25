@@ -11,13 +11,17 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
         bool isBuilt;
         readonly IClassAssigner classAssigner;
         readonly IPersonCreator personCreator;
+        private readonly ITestBuilder testBuilder;
+        private readonly ICourseManager courseManager;
 
-        public SchoolBuilder(IClassAssigner classAssigner, IPersonCreator personCreator)
+        public SchoolBuilder(IClassAssigner classAssigner, IPersonCreator personCreator, ITestBuilder testBuilder, ICourseManager courseManager)
         {
             terms = new List<Term>();
             classes = new List<SchoolClass>();
             this.classAssigner = classAssigner;
             this.personCreator = personCreator;
+            this.testBuilder = testBuilder;
+            this.courseManager = courseManager;
         }
 
         public void Build()
@@ -50,7 +54,9 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Item
             List<Student> students = personCreator.CreateStudents(20, schoolYear-4);
             SchoolClass schoolClass = new SchoolClass("Section A");
             classAssigner.AssignClass(schoolClass, instructor, assistants, coach, students, termCourse);
-            
+            Test widaTest = testBuilder.Build();
+            TestSession session = new TestSession("Fall Test Session 1", new DateTime(schoolYear, 10, 1), widaTest);
+            courseManager.AddTestSession(session, schoolClass.CourseAssignment);
             classes.Add(schoolClass);
         }
 
