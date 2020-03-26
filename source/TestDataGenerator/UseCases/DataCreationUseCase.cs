@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using EllAid.TestDataGenerator.UseCases.Creation.Datasource;
-using EllAid.TestDataGenerator.UseCases.Creation.Item;
 
 namespace EllAid.TestDataGenerator.UseCases
 {

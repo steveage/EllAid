@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.UseCases.Creation.Item;
+using EllAid.TestDataGenerator.UseCases.Adapters;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using Person = EllAid.Entities.Data.Person;

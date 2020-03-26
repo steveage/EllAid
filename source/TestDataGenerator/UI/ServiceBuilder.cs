@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using EllAid.TestDataGenerator.UseCases.Creation.Item;
+using EllAid.TestDataGenerator.UseCases.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

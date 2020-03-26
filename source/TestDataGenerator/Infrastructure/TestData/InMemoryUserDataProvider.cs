@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using EllAid.TestDataGenerator.UseCases.Creation.Item;
+using EllAid.TestDataGenerator.UseCases.Adapters;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {

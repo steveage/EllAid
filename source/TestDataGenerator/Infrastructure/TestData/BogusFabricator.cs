@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bogus;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.UseCases.Creation.Item;
+using EllAid.TestDataGenerator.UseCases.Adapters;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {
