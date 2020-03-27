@@ -21,7 +21,7 @@ namespace EllAid.TestDataGenerator.UI
         static async Task BuildDatabaseAsync()
         {
             IDataCreationInputBoundary builder = serviceBuilder.GetService<IDataCreationInputBoundary>();
-            await builder.BuildDatabaseAsync();
+            // await builder.BuildDatabaseAsync();
         }
     }
 }

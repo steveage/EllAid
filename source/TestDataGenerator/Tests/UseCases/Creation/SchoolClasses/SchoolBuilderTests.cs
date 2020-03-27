@@ -13,22 +13,13 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
 {
     public class SchoolBuilderTests
     {
-        [Fact]
-        public void GetClasses_WhenNotBuilt_ThrowsException()
-        {
-            //Given
-            SchoolClassBuilder builder = GetBuilder();
-            //When, Then
-            Assert.Throws<DomainModelNotBuiltException>(()=>builder.GetClasses(SchoolGrade.PreKindergarten, 2020));
-        }
 
         [Fact]
-        public void GetClasses_WhenBuilt_ReturnsFourClassesPerYear()
+        public void GetClasses_ReturnsFourClassesPerYear()
         {
             //Given
             SchoolClassBuilder builder = GetBuilder();
             //When
-            builder.Build();
             List<SchoolClass> classes = builder.GetClasses(SchoolGrade.PreKindergarten, 2020);
             //Then
             Assert.Equal(4, classes.Count);

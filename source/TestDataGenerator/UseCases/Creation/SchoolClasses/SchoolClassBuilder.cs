@@ -27,12 +27,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
             this.courseManager = courseManager;
         }
 
-        public void Build()
-        {
-            CreatePreKClasses();
-            isBuilt = true;
-        }
-
         void CreatePreKClasses()
         {
             for (int i = 0; i < 4; i++)
@@ -74,11 +68,17 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
         {
             if (!isBuilt)
             {
-                throw new DomainModelNotBuiltException("Domain model not built. Use Build() method first.");
+                Build();
             }
             Predicate<SchoolClass> gradeAndYearMatch = schoolClass => schoolClass.CourseAssignment.TermCourse.Term.Year == year && schoolClass.CourseAssignment.TermCourse.GradeCourse.Grade == grade;
 
             return classes.FindAll(gradeAndYearMatch);
+        }
+        
+        void Build()
+        {
+            CreatePreKClasses();
+            isBuilt = true;
         }
     }
 }

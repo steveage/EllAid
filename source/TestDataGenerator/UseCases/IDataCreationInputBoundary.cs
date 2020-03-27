@@ -1,9 +1,10 @@
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.UseCases
 {
     public interface IDataCreationInputBoundary
     {
-        Task BuildDatabaseAsync();
+        List<SchoolClass> GetClasses();
     }
 }
