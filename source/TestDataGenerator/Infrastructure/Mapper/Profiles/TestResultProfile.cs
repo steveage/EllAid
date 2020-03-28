@@ -8,7 +8,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
     {
         public TestResultProfile()
         {
-            CreateMap(typeof(TestResult<>), typeof(TestResultDto<>))
+            CreateMap(typeof(TestResult), typeof(TestResultDto<>))
                 .ForMember("Version", t=>t.MapFrom(src=>Globals.noSqlTestResultVersion))
                 .ForMember("Type", t=>t.MapFrom(src=>Globals.noSqlTestResultType));
         }

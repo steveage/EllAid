@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.UseCases;
 
 namespace EllAid.TestDataGenerator.UI
@@ -7,10 +10,10 @@ namespace EllAid.TestDataGenerator.UI
     {
         static ServiceBuilder serviceBuilder;
 
-        static async Task Main(string[] args)
+        static void  Main(string[] args)
         {
             Initialize();
-            await BuildDatabaseAsync();
+            CheckClassBuilder();
         }
 
         static void Initialize()
@@ -18,10 +21,11 @@ namespace EllAid.TestDataGenerator.UI
             serviceBuilder = new ServiceBuilder();
         }
 
-        static async Task BuildDatabaseAsync()
+        static void CheckClassBuilder()
         {
             IDataCreationInputBoundary builder = serviceBuilder.GetService<IDataCreationInputBoundary>();
-            // await builder.BuildDatabaseAsync();
+            List<SchoolClass> schoolClasses = builder.GetClasses();
+            Console.WriteLine($"{schoolClasses.Count} classes were created: {schoolClasses}");
         }
     }
 }

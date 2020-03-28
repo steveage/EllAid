@@ -14,8 +14,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
         bool isBuilt;
         readonly IClassAssigner classAssigner;
         readonly IPersonCreator personCreator;
-        private readonly ITestBuilder testBuilder;
-        private readonly ICourseManager courseManager;
+        readonly ITestBuilder testBuilder;
+        readonly ICourseManager courseManager;
 
         public SchoolClassBuilder(IClassAssigner classAssigner, IPersonCreator personCreator, ITestBuilder testBuilder, ICourseManager courseManager)
         {

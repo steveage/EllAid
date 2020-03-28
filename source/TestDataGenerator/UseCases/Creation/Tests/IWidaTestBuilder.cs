@@ -5,6 +5,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Tests
 {
     interface IWidaTestBuilder : ITestBuilder
     {
-        TestResult<int?> BuildResult(TestSession session, TestSection section, Student student, DateTime date);
+        TestResult BuildResult(TestSection section, DateTime date);
     }
 }

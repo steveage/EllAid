@@ -8,51 +8,6 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
     public class TestAssignerTests
     {
         [Fact]
-        public void AssignCourse_ReturnsCourseAssignedToTest()
-        {
-            //Given
-            TestAssigner assigner = new TestAssigner();
-            Course course = new Course();
-            Test test = new Test();
-            //When
-            CourseTest courseTest = new CourseTest(test, course);
-            //Then
-            Assert.NotEqual(Guid.Empty, courseTest.Id);
-            Assert.Equal(course, courseTest.Course);
-            Assert.Equal(test, courseTest.Test);
-        }
-
-        [Fact]
-        public void AssignGrade_ReturnsGradeCourseAssignedToTest()
-        {
-            //Given
-            TestAssigner assigner = new TestAssigner();
-            GradeCourse gradeCourse = new GradeCourse();
-            Test test = new Test();            
-            //When
-            GradeCourseTest gradeTest = new GradeCourseTest(test, gradeCourse);
-            //Then
-            Assert.NotEqual(Guid.Empty, gradeTest.Id);
-            Assert.Equal(gradeCourse, gradeTest.GradeCourse);
-            Assert.Equal(test, gradeTest.Test);
-        }
-
-        [Fact]
-        public void AssignTerm_ReturnsTermCourseAssignedToTest()
-        {
-            //Given
-            TestAssigner assigner = new TestAssigner();
-            TermCourse termCourse = new TermCourse();
-            Test test = new Test();
-            //When
-            TermCourseTest termTest = new TermCourseTest(test, termCourse);
-            //Then
-            Assert.NotEqual(Guid.Empty, termTest.Id);
-            Assert.Equal(termCourse, termTest.TermCourse);
-            Assert.Equal(test, termTest.Test);
-        }
-
-        [Fact]
         public void AssignSection_AddsSectionToTest()
         {
             //Given
@@ -64,6 +19,28 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
             //Then
             Assert.Equal(section, test.Sections[0]);
             Assert.Equal(test, section.Test);
+        }
+
+        [Fact]
+        public void AssignTest_CreatesTestAssignmentAndAssignsIt()
+        {
+            //Given
+            TestAssigner assigner = new TestAssigner();
+            Enrollment enrollment = new Enrollment();
+            TestSession session = new TestSession();
+            TestResult result = new TestResult();
+            //When
+            assigner.AssignTest(enrollment, session, result);
+            //Then
+            Assert.Equal(1, session.TestAssignments.Count);
+            Assert.NotEqual(Guid.Empty, session.TestAssignments[0].Id);
+            Assert.Equal(session, session.TestAssignments[0].Session);
+            Assert.Equal(enrollment, session.TestAssignments[0].Enrollment);
+            Assert.Equal(1, session.TestAssignments[0].Results.Count);
+            Assert.Contains(result, session.TestAssignments[0].Results);
+            Assert.Equal(session.TestAssignments[0], result.TestAssignment);
+            Assert.Equal(1, enrollment.TestAssignments.Count);
+            Assert.Contains(result.TestAssignment, enrollment.TestAssignments);
         }
     }
 }

@@ -9,5 +9,16 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Tests
             test.Sections.Add(testSection);
             testSection.Test = test;
         }
+
+        public void AssignTest(Enrollment enrollment, TestSession session, TestResult result)
+        {
+            TestAssignment assignment = new TestAssignment();
+            assignment.Session = session;
+            assignment.Enrollment = enrollment;
+            assignment.Results.Add(result);
+            result.TestAssignment = assignment;
+            enrollment.TestAssignments.Add(assignment);
+            session.TestAssignments.Add(assignment);
+        }
     }
 }

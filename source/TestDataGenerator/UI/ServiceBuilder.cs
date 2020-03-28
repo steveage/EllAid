@@ -7,6 +7,11 @@ using Microsoft.Extensions.Logging;
 using EllAid.TestDataGenerator.UseCases.Creation.Datasource;
 using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.UseCases;
+using EllAid.TestDataGenerator.UseCases.Creation.Courses;
+using EllAid.TestDataGenerator.UseCases.Creation.People;
+using EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses;
+using EllAid.TestDataGenerator.UseCases.Creation.Tests;
+using EllAid.TestDataGenerator.Infrastructure.Mapper;
 
 namespace EllAid.TestDataGenerator.UI
 {
@@ -33,12 +38,24 @@ namespace EllAid.TestDataGenerator.UI
         IServiceProvider CreateServiceProvider() =>
             new ServiceCollection()
                 .AddSingleton<IConfiguration>(config)
+                //EllAid.TestDataGenerator.Infrastructure
+                .AddTransient<IMappingProvider, MappingProvider>()
+                .AddTransient<IDataFabricator, BogusFabricator>()
                 .AddSingleton<IDataSourceBuilder, CosmosDbBuilder>()
                 .AddSingleton<IDatabaseAccess, CosmosDbBuilder>()
-                .AddTransient<ITestDataRepository, TestDataRepository>()
-                .AddTransient<IDataCreationInputBoundary, DataCreationUseCase>()
                 .AddTransient<IUserDataAccess, InMemoryUserDataProvider>()
-                .AddTransient<IDataFabricator, BogusFabricator>()
+                .AddTransient<ITestDataRepository, TestDataRepository>()
+                //EllAid.TestDataGenerator.UseCases
+                .AddTransient<IDataCreationInputBoundary, DataCreationUseCase>()
+                .AddTransient<ISchoolClassOutput, SchoolClassOutput>()
+                .AddTransient<ICourseManager, CourseManager>()
+                .AddTransient<IInstructorManager, InstructorManager>()
+                .AddTransient<IPersonCreator, PersonCreator>()
+                .AddTransient<IPersonProvider, PersonProvider>()
+                .AddTransient<IClassAssigner, ClassAssigner>()
+                .AddTransient<ISchoolClassBuilder, SchoolClassBuilder>()
+                .AddTransient<ITestAssigner, TestAssigner>()
+                .AddTransient<IWidaTestBuilder, WidaTestBuilder>()
                 .AddLogging(cfg => cfg.AddApplicationInsights(config["ApplicationInsightsKey"]))
                 .AddLogging(cfg => cfg.AddConsole().AddConfiguration(config.GetSection("Logging")))
                 .BuildServiceProvider();

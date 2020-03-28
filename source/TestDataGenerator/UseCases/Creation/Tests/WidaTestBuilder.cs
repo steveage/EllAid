@@ -25,13 +25,11 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Tests
             return test;
         }
 
-        public TestResult<int?> BuildResult(TestSession session, TestSection section, Student student, DateTime date) => new TestResult<int?>()
+        public TestResult BuildResult(TestSection section,DateTime date) => new TestResult()
         {
-            Session = session,
             Section = section,
-            Student = student,
             Date = date,
-            Score = GetScore(section.Metric)
+            Score = GetScore(section.Metric).ToString()
         };
 
         TestSection GetSection(string name, TestMetric metric) => new TestSection

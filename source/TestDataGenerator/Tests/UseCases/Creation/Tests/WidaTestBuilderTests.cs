@@ -43,12 +43,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
             Student student = new Student();
             DateTime date = DateTime.Now;
             //When
-            TestResult<int?> result = builder.BuildResult(session, section, student, date);
+            TestResult result = builder.BuildResult(section, date);
             //Then
             Assert.NotEqual(Guid.Empty, result.Id);
-            Assert.Equal(session, result.Session);
             Assert.Equal(section, result.Section);
-            Assert.Equal(student, result.Student);
             Assert.Equal(date, result.Date);
         }
 
@@ -68,11 +66,10 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
             Student student = new Student();
             DateTime date = DateTime.Now;
             // When
-            TestResult<int?> result = builder.BuildResult(session, section, student, date);
-            int score = result.Score?? 0;
+            TestResult result = builder.BuildResult(section, date);
             // Then
             Assert.NotNull(result.Score);
-            Assert.InRange(score, scoreFrom, scoreTo);
+            Assert.InRange(Int32.Parse(result.Score), scoreFrom, scoreTo);
         }
 
         [Fact]
@@ -85,7 +82,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
             Student student = new Student();
             DateTime date = DateTime.Now;
             //When, Then
-            Assert.Throws<ArgumentException>(() => builder.BuildResult(session, section, student, date));
+            Assert.Throws<ArgumentException>(() => builder.BuildResult(section, date));
         }
     }
 }
