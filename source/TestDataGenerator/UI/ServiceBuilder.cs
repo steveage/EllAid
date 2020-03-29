@@ -55,7 +55,7 @@ namespace EllAid.TestDataGenerator.UI
                 .AddTransient<IClassAssigner, ClassAssigner>()
                 .AddTransient<ISchoolClassBuilder, SchoolClassBuilder>()
                 .AddTransient<ITestAssigner, TestAssigner>()
-                .AddTransient<IWidaTestBuilder, WidaTestBuilder>()
+                .AddTransient<ITestBuilder, WidaTestBuilder>()
                 .AddLogging(cfg => cfg.AddApplicationInsights(config["ApplicationInsightsKey"]))
                 .AddLogging(cfg => cfg.AddConsole().AddConfiguration(config.GetSection("Logging")))
                 .BuildServiceProvider();
