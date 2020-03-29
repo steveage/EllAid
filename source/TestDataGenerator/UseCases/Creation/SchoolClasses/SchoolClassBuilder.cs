@@ -16,8 +16,9 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
         readonly IPersonCreator personCreator;
         readonly ITestBuilder testBuilder;
         readonly ICourseManager courseManager;
+        readonly ITestAssigner testAssigner;
 
-        public SchoolClassBuilder(IClassAssigner classAssigner, IPersonCreator personCreator, ITestBuilder testBuilder, ICourseManager courseManager)
+        public SchoolClassBuilder(IClassAssigner classAssigner, IPersonCreator personCreator, ITestBuilder testBuilder, ICourseManager courseManager, ITestAssigner testAssigner)
         {
             terms = new List<Term>();
             classes = new List<SchoolClass>();
@@ -25,6 +26,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
             this.personCreator = personCreator;
             this.testBuilder = testBuilder;
             this.courseManager = courseManager;
+            this.testAssigner = testAssigner;
         }
 
         void CreatePreKClasses()
@@ -38,6 +40,8 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
         private void CreatePreKClass()
         {
             int schoolYear = DateTime.Now.Year;
+            DateTime testSessionDate = new DateTime(schoolYear, 10, 1);
+            DateTime testResultDate = testSessionDate.AddDays(14);
             Department department = Department.EarlyChildhood;
             Term term = CreateTerm(SchoolTerm.Fall, schoolYear);
             terms.Add(term);
@@ -52,8 +56,9 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
             SchoolClass schoolClass = new SchoolClass("Section A");
             classAssigner.AssignClass(schoolClass, instructor, assistants, coach, students, termCourse);
             Test widaTest = testBuilder.Build();
-            TestSession session = new TestSession("Fall Test Session 1", new DateTime(schoolYear, 10, 1), widaTest);
+            TestSession session = new TestSession("Fall Test Session 1", testSessionDate, widaTest);
             courseManager.AddTestSession(session, schoolClass.CourseAssignment);
+            students.ForEach(student=> widaTest.Sections.ForEach(section=> testAssigner.AssignTest(student.Enrollments[0], session, ((IWidaTestBuilder)testBuilder).BuildResult(section, testResultDate))));    
             classes.Add(schoolClass);
         }
 

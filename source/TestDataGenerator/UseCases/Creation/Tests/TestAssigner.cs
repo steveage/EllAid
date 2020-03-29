@@ -15,7 +15,7 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.Tests
             TestAssignment assignment = new TestAssignment();
             assignment.Session = session;
             assignment.Enrollment = enrollment;
-            assignment.Results.Add(result);
+            assignment.Result = result;
             result.TestAssignment = assignment;
             enrollment.TestAssignments.Add(assignment);
             session.TestAssignments.Add(assignment);

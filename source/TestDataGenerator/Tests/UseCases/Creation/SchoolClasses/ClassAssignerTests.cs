@@ -7,10 +7,10 @@ using Xunit;
 
 namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
 {
-    public class SchoolClassBuilderTests
+    public class ClassAssignerTests
     {
         [Fact]
-        public void CreateClass_ReturnsPopulatedClass()
+        public void AssignClass_AssignsAllClassMembers()
         {
             //Given
             ClassAssigner builder = new ClassAssigner(new InstructorManager(), new CourseManager());

@@ -36,8 +36,7 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.Tests
             Assert.NotEqual(Guid.Empty, session.TestAssignments[0].Id);
             Assert.Equal(session, session.TestAssignments[0].Session);
             Assert.Equal(enrollment, session.TestAssignments[0].Enrollment);
-            Assert.Equal(1, session.TestAssignments[0].Results.Count);
-            Assert.Contains(result, session.TestAssignments[0].Results);
+            Assert.Equal(result, session.TestAssignments[0].Result);
             Assert.Equal(session.TestAssignments[0], result.TestAssignment);
             Assert.Equal(1, enrollment.TestAssignments.Count);
             Assert.Contains(result.TestAssignment, enrollment.TestAssignments);

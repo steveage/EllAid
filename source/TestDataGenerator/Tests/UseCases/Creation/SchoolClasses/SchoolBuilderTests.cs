@@ -11,7 +11,7 @@ using Xunit;
 
 namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
 {
-    public class SchoolBuilderTests
+    public class SchoolClassBuilderTests
     {
 
         [Fact]
@@ -92,9 +92,22 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
             Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments, enrollment => Assert.Equal(student, enrollment.Student))));
             Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments, enrollment => Assert.Equal(schoolClass.CourseAssignment, enrollment.CourseAssignment))));
             Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments, enrollment => Assert.Null(enrollment.Score))));
+            // SchoolClass.Students.Enrollments.TestAssignments
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments, enrollment => Assert.Equal(4, enrollment.TestAssignments.Count))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.NotEqual(Guid.Empty, assignment.Id))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.NotEqual(Guid.Empty, assignment.Id))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.Equal(student.Enrollments[0], assignment.Enrollment))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.Equal(schoolClass.CourseAssignment.TestSessions[0], assignment.Session))));
+            // SchoolClass.Students.Enrollments.TestAssignments.Result
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.NotEqual(Guid.Empty, assignment.Result.Id))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.NotEqual(DateTime.MinValue, assignment.Result.Date))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.NotNull(assignment.Result.Score))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.Equal(assignment, assignment.Result.TestAssignment))));
+            Assert.All(classes, schoolClass => Assert.All(schoolClass.Students, student => Assert.All(student.Enrollments[0].TestAssignments, assignment => Assert.Contains(assignment.Result.Section, assignment.Session.Test.Sections))));
+
         }
 
         SchoolClassBuilder GetBuilder() =>
-        new SchoolClassBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()), new WidaTestBuilder(new TestAssigner(), new BogusFabricator()), new CourseManager());
+        new SchoolClassBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()), new WidaTestBuilder(new TestAssigner(), new BogusFabricator()), new CourseManager(), new TestAssigner());
     }
 }
