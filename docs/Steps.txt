@@ -26,6 +26,8 @@ Create empty project
 		dotnet new xunit -n EllAid.Tests.Infrastructure
 		dotnet new xunit -n EllAid.Tests.Web
 		dotnet new xunit -n EllAid.Tests.TestData
+	8.	Create web project
+		dotnet new web -o UI.MVC
 	8.	Add project references to the test projects from the test project folders
 		dotnet add reference ..\..\EllAid.Core
 		dotnet add reference ..\..\EllAid.Infrastructure
