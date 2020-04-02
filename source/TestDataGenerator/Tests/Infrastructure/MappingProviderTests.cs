@@ -258,6 +258,152 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(student.PictureUrl, dto.PictureUrl);
         }
 
+        [Fact]
+        public void Map_MapsAssistant()
+        {
+            //Given
+            Instructor instructor = new Instructor()
+            {
+                FirstName = "instructorFirst",
+                LastName = "instructorLast",
+                Gender = Gender.Male,
+                Email = "instructor@school.com",
+                Department = Department.EarlyChildhood
+            };
+            Assistant assistant = new Assistant()
+            {
+                FirstName = "firstName1",
+                LastName = "lastName1",
+                Gender = Gender.Female,
+                Email = "test@email.com",
+                Instructor = instructor
+            };
+            //When
+            AssistantDto dto = GetMapped<AssistantDto, Assistant>(assistant);
+            //Then
+            Assert.Equal(assistant.Id.ToString(), dto.Id);
+            Assert.Equal(assistant.FirstName, dto.FirstName);
+            Assert.Equal(assistant.LastName, dto.LastName);
+            Assert.Equal(assistant.Gender, dto.Gender);
+            Assert.Equal(assistant.Instructor.Id.ToString(), dto.Instructor.Id);
+            Assert.Equal(assistant.Instructor.FirstName, dto.Instructor.FirstName);
+            Assert.Equal(assistant.Instructor.LastName, dto.Instructor.LastName);
+            Assert.Equal(assistant.Instructor.Gender, dto.Instructor.Gender);
+            Assert.Equal(assistant.Instructor.Email, dto.Instructor.Email);
+            Assert.Equal(assistant.Instructor.Department, dto.Instructor.Department);
+        }
+
+        [Fact]
+        public void Map_MapsEllCoach()
+        {
+            //Given
+            Instructor instructor1 = new Instructor()
+            {
+                FirstName = "instructor1First",
+                LastName = "instructor1Last",
+                Gender = Gender.Male,
+                Email = "instructor1@school.com"
+            };
+            Instructor instructor2 = new Instructor()
+            {
+                FirstName = "instructor2First",
+                LastName = "instructor2Last",
+                Gender = Gender.Male,
+                Email = "instructor2@school.com"
+            };
+            EllCoach coach = new EllCoach()
+            {
+                FirstName = "coachFirst",
+                LastName = "coachLast",
+                Gender = Gender.Male,
+                Email = "coach@school.com"
+            };
+            coach.Instructors.Add(instructor1);
+            coach.Instructors.Add(instructor2);
+            //When
+            EllCoachDto dto = GetMapped<EllCoachDto, EllCoach>(coach);
+            //Then
+            Assert.Equal(coach.Id.ToString(), dto.Id);
+            Assert.Equal(coach.FirstName, dto.FirstName);
+            Assert.Equal(coach.LastName, dto.LastName);
+            Assert.Equal(coach.Email, dto.Email);
+            Assert.Equal(coach.Gender, dto.Gender);
+            Assert.Equal(2, dto.Instructors.Count);
+            Assert.Equal(instructor1.Id.ToString(), dto.Instructors[0].Id);
+            Assert.Equal(instructor1.FirstName, dto.Instructors[0].FirstName);
+            Assert.Equal(instructor1.LastName, dto.Instructors[0].LastName);
+            Assert.Equal(instructor1.Email, dto.Instructors[0].Email);
+            Assert.Equal(instructor1.Gender, dto.Instructors[0].Gender);
+            Assert.Equal(instructor1.Department, dto.Instructors[0].Department);
+            Assert.Equal(instructor2.Id.ToString(), dto.Instructors[1].Id);
+            Assert.Equal(instructor2.FirstName, dto.Instructors[1].FirstName);
+            Assert.Equal(instructor2.LastName, dto.Instructors[1].LastName);
+            Assert.Equal(instructor2.Email, dto.Instructors[1].Email);
+            Assert.Equal(instructor2.Gender, dto.Instructors[1].Gender);
+            Assert.Equal(instructor2.Department, dto.Instructors[1].Department);
+        }
+
+        [Fact]
+        public void Map_MapsInstructor()
+        {
+            //Given
+            Instructor instructor = new Instructor()
+            {
+                FirstName = "instructorFirst",
+                LastName = "instructorLast",
+                Gender = Gender.Female,
+                Email = "instructor@school.com"
+            };
+            EllCoach coach = new EllCoach()
+            {
+                FirstName = "coachFirst",
+                LastName = "coachLast",
+                Gender = Gender.Female,
+                Email = "coach@school.com"
+            };
+            Assistant assistant1 = new Assistant()
+            {
+                FirstName = "assistantFirst",
+                LastName = "assistantLast",
+                Gender = Gender.Female,
+                Email = "assistant1@school.com"
+            };
+            Assistant assistant2 = new Assistant()
+            {
+                FirstName = "assistantFist",
+                LastName = "assistantLast",
+                Gender = Gender.Male,
+                Email = "assistant2@school.com"
+            };
+            instructor.EllCoach = coach;
+            instructor.Assistants.Add(assistant1);
+            instructor.Assistants.Add(assistant2);
+            //When
+            InstructorDto dto = GetMapped<InstructorDto, Instructor>(instructor);
+            //Then
+            Assert.Equal(instructor.Id.ToString(), dto.Id);
+            Assert.Equal(instructor.FirstName, dto.FirstName);
+            Assert.Equal(instructor.LastName, dto.LastName);
+            Assert.Equal(instructor.Email, dto.Email);
+            Assert.Equal(instructor.Gender, dto.Gender);
+            Assert.Equal(instructor.Department, dto.Department);
+            Assert.Equal(instructor.EllCoach.Id.ToString(), dto.EllCoach.Id);
+            Assert.Equal(instructor.EllCoach.FirstName, dto.EllCoach.FirstName);
+            Assert.Equal(instructor.EllCoach.LastName, dto.EllCoach.LastName);
+            Assert.Equal(instructor.EllCoach.Email, dto.EllCoach.Email);
+            Assert.Equal(instructor.EllCoach.Gender, dto.EllCoach.Gender);
+            Assert.Equal(assistant1.Id.ToString(), dto.Assistants[0].Id);
+            Assert.Equal(assistant1.FirstName, dto.Assistants[0].FirstName);
+            Assert.Equal(assistant1.LastName, dto.Assistants[0].LastName);
+            Assert.Equal(assistant1.Email, dto.Assistants[0].Email);
+            Assert.Equal(assistant1.Gender, dto.Assistants[0].Gender);
+            Assert.Equal(assistant2.Id.ToString(), dto.Assistants[1].Id);
+            Assert.Equal(assistant2.FirstName, dto.Assistants[1].FirstName);
+            Assert.Equal(assistant2.LastName, dto.Assistants[1].LastName);
+            Assert.Equal(assistant2.Email, dto.Assistants[1].Email);
+            Assert.Equal(assistant2.Gender, dto.Assistants[1].Gender);
+        }
+
         ///TODO: test if userId is set to id of entity.
     }
 }
