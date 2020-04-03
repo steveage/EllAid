@@ -10,10 +10,10 @@ namespace EllAid.TestDataGenerator.UI
     {
         static ServiceBuilder serviceBuilder;
 
-        static void  Main(string[] args)
+        static async Task Main(string[] args)
         {
             Initialize();
-            CheckClassBuilder();
+            await CheckClassBuilderAsync();
         }
 
         static void Initialize()
@@ -21,11 +21,10 @@ namespace EllAid.TestDataGenerator.UI
             serviceBuilder = new ServiceBuilder();
         }
 
-        static void CheckClassBuilder()
+        static async Task CheckClassBuilderAsync()
         {
             IDataCreationInputBoundary builder = serviceBuilder.GetService<IDataCreationInputBoundary>();
-            List<SchoolClass> schoolClasses = builder.GetClasses();
-            Console.WriteLine($"{schoolClasses.Count} classes were created: {schoolClasses}");
+            await builder.CreateClassesAsync();
         }
     }
 }

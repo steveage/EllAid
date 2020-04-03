@@ -31,13 +31,14 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
 
         void CreatePreKClasses()
         {
+            EllCoach coach = personCreator.CreatePerson<EllCoach>();
             for (int i = 0; i < 4; i++)
             {
-                CreatePreKClass();
+                CreatePreKClass(coach);
             }
         }
 
-        private void CreatePreKClass()
+        private void CreatePreKClass(EllCoach coach)
         {
             int schoolYear = DateTime.Now.Year;
             DateTime testSessionDate = new DateTime(schoolYear, 10, 1);
@@ -50,7 +51,6 @@ namespace EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses
             TermCourse termCourse = new TermCourse(term, gradeCourse);
             Instructor instructor = personCreator.CreatePerson<Instructor>();
             instructor.Department = department;
-            EllCoach coach = personCreator.CreatePerson<EllCoach>();
             List<Assistant> assistants = personCreator.CreatePeople<Assistant>(2);
             List<Student> students = personCreator.CreateStudents(20, schoolYear-4);
             SchoolClass schoolClass = new SchoolClass("Section A");

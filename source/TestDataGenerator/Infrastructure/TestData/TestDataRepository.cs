@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.UseCases.Adapters;
+using EllAid.TestDataGenerator.UseCases.Adapters.DataObjects;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using Person = EllAid.Entities.Data.Person;
@@ -65,6 +66,21 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             {
                 logger.LogError($"Exception when creating item with id {item.Id} and type {item/*.Type*/} in container {container.Id}. Exception: {ex}");
             }
+        }
+
+        public Task SaveInstructorsAsync(List<InstructorDto> instructors)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveEllCoachesAsync(List<EllCoachDto> coaches)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAssistantsAsync(List<AssistantDto> assistants)
+        {
+            throw new NotImplementedException();
         }
     }
 }

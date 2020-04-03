@@ -22,7 +22,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(Globals.noSqlUserVersion, dto.Version);
         }
 
-        MappingProvider GetProvider()
+        internal static MappingProvider GetProvider()
         {
             MapperConfiguration config = new MapperConfiguration(cfg=>
                 {

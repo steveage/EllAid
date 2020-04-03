@@ -8,6 +8,7 @@ using EllAid.TestDataGenerator.UseCases.Creation.People;
 using EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses;
 using EllAid.TestDataGenerator.Tests.UseCases.Creation.People;
 using Xunit;
+using System.Linq;
 
 namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
 {
@@ -44,12 +45,13 @@ namespace EllAid.TestDataGenerator.Tests.UseCases.Creation.SchoolClasses
             Assert.All(classes, schoolClass => Assert.NotEmpty(schoolClass.CourseAssignment.Instructor.LastName));
             Assert.All(classes, schoolClass => Assert.NotEqual(Gender.Invalid, schoolClass.CourseAssignment.Instructor.Gender));
             // SchoolClass.CourseAssignment.Instructor.EllCoach
+            Assert.Equal(1, classes.Select(schoolClass => schoolClass.CourseAssignment.Instructor.EllCoach).Distinct().ToList().Count);
             Assert.All(classes, schoolClass => Assert.NotEqual(Guid.Empty, schoolClass.CourseAssignment.Instructor.EllCoach.Id));
             Assert.All(classes, schoolClass => Assert.True(PersonCreatorTests.IsEmailAddress(schoolClass.CourseAssignment.Instructor.EllCoach.Email)));
             Assert.All(classes, schoolClass => Assert.NotEmpty(schoolClass.CourseAssignment.Instructor.EllCoach.FirstName));
             Assert.All(classes, schoolClass => Assert.NotEmpty(schoolClass.CourseAssignment.Instructor.EllCoach.LastName));
             Assert.All(classes, schoolClass => Assert.NotEqual(Gender.Invalid, schoolClass.CourseAssignment.Instructor.EllCoach.Gender));
-            Assert.All(classes, schoolClass => Assert.Equal(1, schoolClass.CourseAssignment.Instructor.EllCoach.Instructors.Count));
+            Assert.All(classes, schoolClass => Assert.Equal(4, schoolClass.CourseAssignment.Instructor.EllCoach.Instructors.Count));
             Assert.All(classes, schoolClass => Assert.Contains(schoolClass.CourseAssignment.Instructor, schoolClass.CourseAssignment.Instructor.EllCoach.Instructors));
             // SchoolClass.CourseAssignment.Instructor.Assistants
             Assert.All(classes, schoolClass => Assert.Equal(2, schoolClass.CourseAssignment.Instructor.Assistants.Count));
