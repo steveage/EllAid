@@ -35,14 +35,6 @@ namespace EllAid.TestDataGenerator.UseCases
             public List<EllCoachDto> EllCoaches { get; private set; }
             public List<AssistantDto> Assistants { get; private set; }
 
-            public Task CreateTestItemAsync(TestBase test) => throw new System.NotImplementedException();
-
-            public Task CreateTestItemsAsync(List<TestBase> tests) => throw new System.NotImplementedException();
-
-            public Task CreateUserItemAsync(Person user) => throw new System.NotImplementedException();
-
-            public Task CreateUserItemsAsync(List<Person> users) => throw new System.NotImplementedException();
-
             public async Task SaveAssistantsAsync(List<AssistantDto> assistants)
             {
                 Assistants = assistants;

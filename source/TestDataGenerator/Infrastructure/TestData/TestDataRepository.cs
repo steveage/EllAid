@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.UseCases.Adapters;
 using EllAid.TestDataGenerator.UseCases.Adapters.DataObjects;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
-using Person = EllAid.Entities.Data.Person;
 
 namespace EllAid.TestDataGenerator.Infrastructure.TestData
 {
@@ -21,46 +19,19 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             this.logger = logger;
         }
 
-        public async Task CreateUserItemsAsync(List<Person> users)
-        {
-            List<Task> tasks = new List<Task>();
-            
-            foreach (Person user in users)
-            {
-                tasks.Add(CreateItemAsync(user, dbAccess.UsersContainer, user.Email));
-            }
-            await Task.WhenAll(tasks);
-        }
+        public async Task SaveInstructorsAsync(List<InstructorDto> instructors) => await SavePeopleAsync<InstructorDto>(instructors);
+        
+        public async Task SaveEllCoachesAsync(List<EllCoachDto> coaches) => await SavePeopleAsync<EllCoachDto>(coaches);
 
-        public async Task CreateUserItemAsync(Person user)
-        {
-            await CreateItemAsync(user, dbAccess.UsersContainer, user.Email);
-        }
+        public async Task SaveAssistantsAsync(List<AssistantDto> assistants) => await SavePeopleAsync<AssistantDto>(assistants);
 
-        public async Task CreateTestItemAsync(TestBase test)
-        {
-            await CreateItemAsync(test, dbAccess.TestsContainer, test.TestId);
-        }
-
-        public async Task CreateTestItemsAsync(List<TestBase> tests)
-        {
-            List<Task> tasks = new List<Task>();
-
-            foreach (TestBase test in tests)
-            {
-                tasks.Add(CreateItemAsync(test, dbAccess.TestsContainer, test.TestId));
-            }
-            await Task.WhenAll(tasks);
-        }
-
-        async Task CreateItemAsync(Entity item, Container container, string partitionKeyValue)
+        async Task SaveItemAsync<T>(T item, Container container, string partitionKeyValue) where T : EntityDto
         {
             PartitionKey partitionKey = new PartitionKey(partitionKeyValue);
             try
             {
-                ItemResponse<Entity> response = await container.CreateItemAsync<Entity>(item, partitionKey);
-                // logger.LogDebug($"Saved item with id {item.Id} and type {item.Type} in container {container.Id}. Operation consumed {response.RequestCharge} RUs.");
-                logger.LogDebug($"Saved item with id {item.Id} and type {item/*.Type*/} in container {container.Id}. Operation consumed {response.RequestCharge} RUs.");
+                ItemResponse<T> response = await container.CreateItemAsync<T>(item, partitionKey);
+                logger.LogDebug($"Saved item with id {item.Id} and type {item.Type} in container {container.Id}. Operation consumed {response.RequestCharge} RUs.");
             }
             catch (Exception ex)
             {
@@ -68,19 +39,11 @@ namespace EllAid.TestDataGenerator.Infrastructure.TestData
             }
         }
 
-        public Task SaveInstructorsAsync(List<InstructorDto> instructors)
+        async Task SavePeopleAsync<T>(List<T> people) where T : PersonDto
         {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveEllCoachesAsync(List<EllCoachDto> coaches)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveAssistantsAsync(List<AssistantDto> assistants)
-        {
-            throw new NotImplementedException();
+            List<Task> tasks = new List<Task>();
+            people.ForEach(person => tasks.Add(SaveItemAsync<T>(person, dbAccess.UsersContainer, person.Email)));
+            await Task.WhenAll(tasks);
         }
     }
 }
