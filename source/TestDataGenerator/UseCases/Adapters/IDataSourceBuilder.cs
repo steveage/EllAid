@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace EllAid.TestDataGenerator.UseCases.Creation.Datasource
+namespace EllAid.TestDataGenerator.UseCases.Adapters
 {
     public interface IDataSourceBuilder
     {

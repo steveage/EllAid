@@ -4,7 +4,6 @@ using EllAid.TestDataGenerator.UseCases.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using EllAid.TestDataGenerator.UseCases.Creation.Datasource;
 using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.UseCases;
 using EllAid.TestDataGenerator.UseCases.Creation.Courses;
@@ -12,6 +11,8 @@ using EllAid.TestDataGenerator.UseCases.Creation.People;
 using EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses;
 using EllAid.TestDataGenerator.UseCases.Creation.Tests;
 using EllAid.TestDataGenerator.Infrastructure.Mapper;
+using AutoMapper;
+using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
 
 namespace EllAid.TestDataGenerator.UI
 {
@@ -41,8 +42,9 @@ namespace EllAid.TestDataGenerator.UI
                 //EllAid.TestDataGenerator.Infrastructure
                 .AddTransient<IMappingProvider, MappingProvider>()
                 .AddTransient<IDataFabricator, BogusFabricator>()
-                .AddSingleton<IDataSourceBuilder, CosmosDbBuilder>()
-                .AddSingleton<IDatabaseAccess, CosmosDbBuilder>()
+                .AddSingleton<CosmosDbBuilder>()
+                .AddSingleton<IDataSourceBuilder>(x => x.GetRequiredService<CosmosDbBuilder>())
+                .AddSingleton<IDatabaseAccess>(x => x.GetRequiredService<CosmosDbBuilder>())
                 .AddTransient<IUserDataAccess, InMemoryUserDataProvider>()
                 .AddTransient<ITestDataRepository, TestDataRepository>()
                 //EllAid.TestDataGenerator.UseCases
@@ -56,6 +58,8 @@ namespace EllAid.TestDataGenerator.UI
                 .AddTransient<ISchoolClassBuilder, SchoolClassBuilder>()
                 .AddTransient<ITestAssigner, TestAssigner>()
                 .AddTransient<ITestBuilder, WidaTestBuilder>()
+                .AddTransient<IFacultyExtractor, FacultyExtractor>()
+                .AddAutoMapper(typeof(SchoolClassProfile))
                 .AddLogging(cfg => cfg.AddApplicationInsights(config["ApplicationInsightsKey"]))
                 .AddLogging(cfg => cfg.AddConsole().AddConfiguration(config.GetSection("Logging")))
                 .BuildServiceProvider();

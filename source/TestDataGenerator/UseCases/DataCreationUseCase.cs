@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.Entities.Data;
@@ -12,13 +11,15 @@ namespace EllAid.TestDataGenerator.UseCases
     // This use case is too big in scope and took too much time to implement. It should have been split during the first iteration planning meeting into research, create data source, create students, create teachers, create tests, etc. If split, velocity could have been measured and each use case could be implemented in each iteration.
     class DataCreationUseCase : IDataCreationInputBoundary
     {
+        private readonly IDataSourceBuilder dataSourceBuilder;
         readonly ISchoolClassBuilder builder;
         readonly IFacultyExtractor extractor;
         readonly IMappingProvider mapper;
         readonly ITestDataRepository repository;
 
-        public DataCreationUseCase(ISchoolClassBuilder builder, IFacultyExtractor extractor, IMappingProvider mapper, ITestDataRepository repository)
+        public DataCreationUseCase(IDataSourceBuilder dataSourceBuilder, ISchoolClassBuilder builder, IFacultyExtractor extractor, IMappingProvider mapper, ITestDataRepository repository)
         {
+            this.dataSourceBuilder = dataSourceBuilder;
             this.builder = builder;
             this.extractor = extractor;
             this.mapper = mapper;
@@ -27,10 +28,25 @@ namespace EllAid.TestDataGenerator.UseCases
 
         public async Task CreateClassesAsync()
         {
+            await CreateClassesIfDataSourceIsReady();
+        }
+
+        async Task CreateClassesIfDataSourceIsReady()
+        {
+            bool dataSourceIsReady = await dataSourceBuilder.BuildAsync();
+            if (dataSourceIsReady)
+            {
+                await CreatePreKClassesAsync();
+            }
+        }
+
+        async Task CreatePreKClassesAsync()
+        {
             List<SchoolClass> schoolClasses = builder.GetClasses(SchoolGrade.PreKindergarten, 2020);
             await SaveInstructors(schoolClasses);
             await SaveEllCoaches(schoolClasses);
             await SaveAssistantsAsync(schoolClasses);
+
         }
 
         async Task SaveInstructors(List<SchoolClass> schoolClasses)
@@ -55,11 +71,6 @@ namespace EllAid.TestDataGenerator.UseCases
             List<AssistantDto> assistantDtos = new List<AssistantDto>();
             assistants.ForEach(assistant => assistantDtos.Add(mapper.Map<AssistantDto, Assistant>(assistant, "assistant")));
             await repository.SaveAssistantsAsync(assistantDtos);
-        }
-
-        public List<SchoolClass> GetClasses()
-        {
-            return builder.GetClasses(SchoolGrade.PreKindergarten, 2020);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using EllAid.TestDataGenerator.UseCases.Creation.Datasource;
+using EllAid.TestDataGenerator.UseCases.Adapters;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.Configuration;

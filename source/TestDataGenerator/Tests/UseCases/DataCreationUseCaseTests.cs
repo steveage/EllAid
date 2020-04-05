@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.Tests.Infrastructure;
 using EllAid.TestDataGenerator.UseCases.Adapters;
@@ -9,6 +8,7 @@ using EllAid.TestDataGenerator.UseCases.Creation.Courses;
 using EllAid.TestDataGenerator.UseCases.Creation.People;
 using EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses;
 using EllAid.TestDataGenerator.UseCases.Creation.Tests;
+using Moq;
 using Xunit;
 
 namespace EllAid.TestDataGenerator.UseCases
@@ -26,8 +26,13 @@ namespace EllAid.TestDataGenerator.UseCases
             //Then
             Assert.Equal(4, repositoryStub.Instructors.Count);
         }
-        DataCreationUseCase GetUseCase(ITestDataRepository repository) => new DataCreationUseCase(
-        new SchoolClassBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()), new WidaTestBuilder(new TestAssigner(), new BogusFabricator()), new CourseManager(), new TestAssigner()), new FacultyExtractor(), MappingProviderTests.GetProvider(), repository);
+        DataCreationUseCase GetUseCase(ITestDataRepository repository)
+        {
+            Mock<IDataSourceBuilder> sourceBuilderMock = new Mock<IDataSourceBuilder>();
+            sourceBuilderMock.Setup(builder => builder.BuildAsync()).Returns(Task.FromResult(true));
+            return new DataCreationUseCase(sourceBuilderMock.Object,
+            new SchoolClassBuilder(new ClassAssigner(new InstructorManager(), new CourseManager()), new PersonCreator(new BogusFabricator(), new InMemoryUserDataProvider()), new WidaTestBuilder(new TestAssigner(), new BogusFabricator()), new CourseManager(), new TestAssigner()), new FacultyExtractor(), MappingProviderTests.GetProvider(), repository);
+        }
 
         private class RepositoryStub : ITestDataRepository
         {
