@@ -6,6 +6,8 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
 {
     public class InstructorShortProfile : Profile
     {
-        public InstructorShortProfile() => CreateMap<Instructor, InstructorShortDto>();
+        public InstructorShortProfile() => CreateMap<Instructor, InstructorShortDto>()
+        .ForMember(dto => dto.Type, u => u.MapFrom(src => Globals.noSqlInstructorShortType))
+        .ForMember(dto => dto.Version, u => u.MapFrom(src => Globals.noSqlInstructorShortVersion));
     }
 }

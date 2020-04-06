@@ -53,7 +53,7 @@ namespace EllAid.TestDataGenerator.UseCases
         {
             List<Instructor> instructors = extractor.ExtractInstructors(schoolClasses);
             List<InstructorDto> instructorDtos = new List<InstructorDto>();
-            instructors.ForEach(instructor => instructorDtos.Add(mapper.Map<InstructorDto, Instructor>(instructor, "instructor")));
+            instructors.ForEach(instructor => instructorDtos.Add(mapper.Map<InstructorDto, Instructor>(instructor)));
             await repository.SaveInstructorsAsync(instructorDtos);
         }
 
@@ -61,7 +61,7 @@ namespace EllAid.TestDataGenerator.UseCases
         {
             List<EllCoach> coaches = extractor.ExtractEllCoaches(schoolClasses);
             List<EllCoachDto> coachDtos = new List<EllCoachDto>();
-            coaches.ForEach(coach => coachDtos.Add(mapper.Map<EllCoachDto, EllCoach>(coach, "ellCoach")));
+            coaches.ForEach(coach => coachDtos.Add(mapper.Map<EllCoachDto, EllCoach>(coach)));
             await repository.SaveEllCoachesAsync(coachDtos);
         }
 
@@ -69,7 +69,7 @@ namespace EllAid.TestDataGenerator.UseCases
         {
             List<Assistant> assistants = extractor.ExtractAssistants(schoolClasses);
             List<AssistantDto> assistantDtos = new List<AssistantDto>();
-            assistants.ForEach(assistant => assistantDtos.Add(mapper.Map<AssistantDto, Assistant>(assistant, "assistant")));
+            assistants.ForEach(assistant => assistantDtos.Add(mapper.Map<AssistantDto, Assistant>(assistant)));
             await repository.SaveAssistantsAsync(assistantDtos);
         }
     }

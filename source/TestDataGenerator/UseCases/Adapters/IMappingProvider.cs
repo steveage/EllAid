@@ -5,6 +5,6 @@ namespace EllAid.TestDataGenerator.UseCases.Adapters
 {
     public interface IMappingProvider
     {
-        T Map<T, S>(S source, string type) where T: EntityDto where S: Entity;
+        T Map<T, S>(S source) where T: EntityDto where S: Entity;
     }
 }

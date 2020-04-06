@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EllAid.TestDataGenerator.Infrastructure;
 using EllAid.TestDataGenerator.Infrastructure.TestData;
 using EllAid.TestDataGenerator.Tests.Infrastructure;
 using EllAid.TestDataGenerator.UseCases.Adapters;
@@ -25,6 +26,7 @@ namespace EllAid.TestDataGenerator.UseCases
             await useCase.CreateClassesAsync();
             //Then
             Assert.Equal(4, repositoryStub.Instructors.Count);
+            Assert.All(repositoryStub.Instructors, instructor => Assert.Equal(Globals.noSqlPersonVersion, instructor.Version));
         }
         DataCreationUseCase GetUseCase(ITestDataRepository repository)
         {

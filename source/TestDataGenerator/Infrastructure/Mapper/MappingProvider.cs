@@ -11,13 +11,13 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper
 
         public MappingProvider(IMapper mapper) => this.mapper = mapper;
 
+        public T Map<T, S>(S source)
+            where T : EntityDto
+            where S : Entity => mapper.Map<T>(source);
+
         // public T Map<T, S>(S source)
         //     where T : EntityDto
-        //     where S : Entity => mapper.Map<T>(source);
-
-        public T Map<T, S>(S source, string type)
-            where T : EntityDto
-            where S : Entity => mapper.Map<S, T>(source,
-                opt => opt.AfterMap((src, dest) => dest.Type = type));
+        //     where S : Entity => mapper.Map<S, T>(source,
+        //         opt => opt.AfterMap((src, dest) => dest.Type = type));
     }
 }
