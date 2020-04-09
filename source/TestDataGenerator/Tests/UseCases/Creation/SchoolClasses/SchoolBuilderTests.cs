@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.Infrastructure.TestData;
+using EllAid.TestDataGenerator.Infrastructure;
 using EllAid.TestDataGenerator.UseCases.Creation.Courses;
 using EllAid.TestDataGenerator.UseCases.Creation.Tests;
 using EllAid.TestDataGenerator.UseCases.Creation.People;

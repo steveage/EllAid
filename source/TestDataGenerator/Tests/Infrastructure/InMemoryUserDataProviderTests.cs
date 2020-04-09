@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using EllAid.TestDataGenerator.Infrastructure.TestData;
+using EllAid.TestDataGenerator.Infrastructure;
 using Xunit;
 
 namespace EllAid.TestDataGenerator.Tests.Infrastructure

@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="*"/>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="*"/>
     <PackageReference Include="AutoMapper" Version="9.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="*"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>

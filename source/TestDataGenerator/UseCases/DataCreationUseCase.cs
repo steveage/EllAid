@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.UseCases.Adapters;
-using EllAid.TestDataGenerator.UseCases.Adapters.DataObjects;
 using EllAid.TestDataGenerator.UseCases.Creation.People;
 using EllAid.TestDataGenerator.UseCases.Creation.SchoolClasses;
 
@@ -14,16 +13,14 @@ namespace EllAid.TestDataGenerator.UseCases
         private readonly IDataSourceBuilder dataSourceBuilder;
         readonly ISchoolClassBuilder builder;
         readonly IFacultyExtractor extractor;
-        readonly IMappingProvider mapper;
-        readonly ITestDataRepository repository;
+        readonly IDataSaver saver;
 
-        public DataCreationUseCase(IDataSourceBuilder dataSourceBuilder, ISchoolClassBuilder builder, IFacultyExtractor extractor, IMappingProvider mapper, ITestDataRepository repository)
+        public DataCreationUseCase(IDataSourceBuilder dataSourceBuilder, ISchoolClassBuilder builder, IFacultyExtractor extractor, IDataSaver saver)
         {
             this.dataSourceBuilder = dataSourceBuilder;
             this.builder = builder;
             this.extractor = extractor;
-            this.mapper = mapper;
-            this.repository = repository;
+            this.saver = saver;
         }
 
         public async Task CreateClassesAsync()
@@ -43,34 +40,37 @@ namespace EllAid.TestDataGenerator.UseCases
         async Task CreatePreKClassesAsync()
         {
             List<SchoolClass> schoolClasses = builder.GetClasses(SchoolGrade.PreKindergarten, 2020);
-            await SaveInstructors(schoolClasses);
-            await SaveEllCoaches(schoolClasses);
+            //TODO: call datasource web service to persist domain objects.
+            await SaveInstructorsAsync(schoolClasses);
+            await SaveEllCoachesAsync(schoolClasses);
             await SaveAssistantsAsync(schoolClasses);
-
         }
 
-        async Task SaveInstructors(List<SchoolClass> schoolClasses)
+        async Task SaveInstructorsAsync(List<SchoolClass> schoolClasses)
         {
             List<Instructor> instructors = extractor.ExtractInstructors(schoolClasses);
-            List<InstructorDto> instructorDtos = new List<InstructorDto>();
-            instructors.ForEach(instructor => instructorDtos.Add(mapper.Map<InstructorDto, Instructor>(instructor)));
-            await repository.SaveInstructorsAsync(instructorDtos);
+            await saver.SaveInstructorsAsync(instructors);
+            // List<InstructorDto> instructorDtos = new List<InstructorDto>();
+            // instructors.ForEach(instructor => instructorDtos.Add(mapper.Map<InstructorDto, Instructor>(instructor)));
+            // await repository.SaveInstructorsAsync(instructorDtos);
         }
 
-        async Task SaveEllCoaches(List<SchoolClass> schoolClasses)
+        async Task SaveEllCoachesAsync(List<SchoolClass> schoolClasses)
         {
             List<EllCoach> coaches = extractor.ExtractEllCoaches(schoolClasses);
-            List<EllCoachDto> coachDtos = new List<EllCoachDto>();
-            coaches.ForEach(coach => coachDtos.Add(mapper.Map<EllCoachDto, EllCoach>(coach)));
-            await repository.SaveEllCoachesAsync(coachDtos);
+            await saver.SaveEllCoachesAsync(coaches);
+            // List<EllCoachDto> coachDtos = new List<EllCoachDto>();
+            // coaches.ForEach(coach => coachDtos.Add(mapper.Map<EllCoachDto, EllCoach>(coach)));
+            // await repository.SaveEllCoachesAsync(coachDtos);
         }
 
         async Task SaveAssistantsAsync(List<SchoolClass> schoolClasses)
         {
             List<Assistant> assistants = extractor.ExtractAssistants(schoolClasses);
-            List<AssistantDto> assistantDtos = new List<AssistantDto>();
-            assistants.ForEach(assistant => assistantDtos.Add(mapper.Map<AssistantDto, Assistant>(assistant)));
-            await repository.SaveAssistantsAsync(assistantDtos);
+            await saver.SaveAssistantsAsync(assistants);
+            // List<AssistantDto> assistantDtos = new List<AssistantDto>();
+            // assistants.ForEach(assistant => assistantDtos.Add(mapper.Map<AssistantDto, Assistant>(assistant)));
+            // await repository.SaveAssistantsAsync(assistantDtos);
         }
     }
 }

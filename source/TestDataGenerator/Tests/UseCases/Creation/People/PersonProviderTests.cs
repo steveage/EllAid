@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.Infrastructure.TestData;
+using EllAid.TestDataGenerator.Infrastructure;
 using EllAid.TestDataGenerator.UseCases.Creation.People;
 using Xunit;
 

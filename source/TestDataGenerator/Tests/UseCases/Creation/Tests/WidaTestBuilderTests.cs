@@ -1,6 +1,6 @@
 using System;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.Infrastructure.TestData;
+using EllAid.TestDataGenerator.Infrastructure;
 using EllAid.TestDataGenerator.UseCases.Creation.Tests;
 using Xunit;
 
