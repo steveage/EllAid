@@ -4,8 +4,8 @@ using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
 using EllAid.TestDataGenerator.Infrastructure.Mapper;
 using Xunit;
 using System;
-using EllAid.TestDataGenerator.Infrastructure;
 using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
 namespace EllAid.TestDataGenerator.Tests.Infrastructure
 {
@@ -18,7 +18,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             PersonDto dto = GetMapped<PersonDto, Person>(new Person());
 
             // Then
-            Assert.Equal(Globals.noSqlPersonVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlPersonVersion, dto.Version);
         }
 
         internal static MappingProvider GetProvider()
@@ -64,7 +64,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             PersonDto dto = GetMapped<PersonDto, Person>(new Person());
 
             //Then
-            Assert.Equal(Globals.noSqlPersonType, dto.Type);
+            Assert.Equal(DataAccessConstants.noSqlPersonType, dto.Type);
         }
         
         [Fact]
@@ -102,7 +102,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             SchoolClassDto dto = GetMapped<SchoolClassDto, SchoolClass>(schoolClass);
 
             //Then
-            Assert.Equal(Globals.noSqlSchoolClassVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlSchoolClassVersion, dto.Version);
         }
             
         [Fact]
@@ -135,7 +135,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             CourseDto dto = GetMapped<CourseDto, Course>(course);
             
             //Then
-            Assert.Equal(Globals.noSqlCourseVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlCourseVersion, dto.Version);
         }
 
         [Fact]
@@ -221,7 +221,7 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             TestSessionDto dto = GetMapped<TestSessionDto, TestSession>(new TestSession());
 
             //Then
-            Assert.Equal(Globals.noSqlTestSessionVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlTestSessionVersion, dto.Version);
         }
 
         [Fact]
@@ -284,16 +284,16 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(assistant.FirstName, dto.FirstName);
             Assert.Equal(assistant.LastName, dto.LastName);
             Assert.Equal(assistant.Gender, dto.Gender);
-            Assert.Equal(Globals.noSqlAssistantType, dto.Type);
-            Assert.Equal(Globals.noSqlAssistantVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlAssistantType, dto.Type);
+            Assert.Equal(DataAccessConstants.noSqlAssistantVersion, dto.Version);
             Assert.Equal(assistant.Instructor.Id.ToString(), dto.Instructor.Id);
             Assert.Equal(assistant.Instructor.FirstName, dto.Instructor.FirstName);
             Assert.Equal(assistant.Instructor.LastName, dto.Instructor.LastName);
             Assert.Equal(assistant.Instructor.Gender, dto.Instructor.Gender);
             Assert.Equal(assistant.Instructor.Email, dto.Instructor.Email);
             Assert.Equal(assistant.Instructor.Department, dto.Instructor.Department);
-            Assert.Equal(Globals.noSqlInstructorShortType, dto.Instructor.Type);
-            Assert.Equal(Globals.noSqlInstructorShortVersion, dto.Instructor.Version);
+            Assert.Equal(DataAccessConstants.noSqlInstructorShortType, dto.Instructor.Type);
+            Assert.Equal(DataAccessConstants.noSqlInstructorShortVersion, dto.Instructor.Version);
         }
 
         [Fact]
@@ -331,8 +331,8 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(coach.LastName, dto.LastName);
             Assert.Equal(coach.Email, dto.Email);
             Assert.Equal(coach.Gender, dto.Gender);
-            Assert.Equal(Globals.noSqlEllCoachType, dto.Type);
-            Assert.Equal(Globals.noSqlEllCoachVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlEllCoachType, dto.Type);
+            Assert.Equal(DataAccessConstants.noSqlEllCoachVersion, dto.Version);
             Assert.Equal(2, dto.Instructors.Count);
             Assert.Equal(instructor1.Id.ToString(), dto.Instructors[0].Id);
             Assert.Equal(instructor1.FirstName, dto.Instructors[0].FirstName);
@@ -346,8 +346,8 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(instructor2.Email, dto.Instructors[1].Email);
             Assert.Equal(instructor2.Gender, dto.Instructors[1].Gender);
             Assert.Equal(instructor2.Department, dto.Instructors[1].Department);
-            Assert.All(dto.Instructors, instructor => Assert.Equal(Globals.noSqlInstructorShortType, instructor.Type));
-            Assert.All(dto.Instructors, instructor => Assert.Equal(Globals.noSqlInstructorShortVersion, instructor.Version));
+            Assert.All(dto.Instructors, instructor => Assert.Equal(DataAccessConstants.noSqlInstructorShortType, instructor.Type));
+            Assert.All(dto.Instructors, instructor => Assert.Equal(DataAccessConstants.noSqlInstructorShortVersion, instructor.Version));
         }
 
         [Fact]
@@ -394,15 +394,15 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(instructor.Email, dto.Email);
             Assert.Equal(instructor.Gender, dto.Gender);
             Assert.Equal(instructor.Department, dto.Department);
-            Assert.Equal(Globals.noSqlInstructorVersion, dto.Version);
-            Assert.Equal(Globals.noSqlInstructorType, dto.Type);
+            Assert.Equal(DataAccessConstants.noSqlInstructorVersion, dto.Version);
+            Assert.Equal(DataAccessConstants.noSqlInstructorType, dto.Type);
             Assert.Equal(instructor.EllCoach.Id.ToString(), dto.EllCoach.Id);
             Assert.Equal(instructor.EllCoach.FirstName, dto.EllCoach.FirstName);
             Assert.Equal(instructor.EllCoach.LastName, dto.EllCoach.LastName);
             Assert.Equal(instructor.EllCoach.Email, dto.EllCoach.Email);
             Assert.Equal(instructor.EllCoach.Gender, dto.EllCoach.Gender);
-            Assert.Equal(Globals.noSqlPersonType, dto.EllCoach.Type);
-            Assert.Equal(Globals.noSqlPersonVersion, dto.EllCoach.Version);
+            Assert.Equal(DataAccessConstants.noSqlPersonType, dto.EllCoach.Type);
+            Assert.Equal(DataAccessConstants.noSqlPersonVersion, dto.EllCoach.Version);
             Assert.Equal(assistant1.Id.ToString(), dto.Assistants[0].Id);
             Assert.Equal(assistant1.FirstName, dto.Assistants[0].FirstName);
             Assert.Equal(assistant1.LastName, dto.Assistants[0].LastName);
@@ -413,8 +413,8 @@ namespace EllAid.TestDataGenerator.Tests.Infrastructure
             Assert.Equal(assistant2.LastName, dto.Assistants[1].LastName);
             Assert.Equal(assistant2.Email, dto.Assistants[1].Email);
             Assert.Equal(assistant2.Gender, dto.Assistants[1].Gender);
-            Assert.All(dto.Assistants, assistant => Assert.Equal(Globals.noSqlPersonVersion, assistant.Version));
-            Assert.All(dto.Assistants, assistant => Assert.Equal(Globals.noSqlPersonType, assistant.Type));
+            Assert.All(dto.Assistants, assistant => Assert.Equal(DataAccessConstants.noSqlPersonVersion, assistant.Version));
+            Assert.All(dto.Assistants, assistant => Assert.Equal(DataAccessConstants.noSqlPersonType, assistant.Type));
         }
 
         ///TODO: test if userId is set to id of entity.

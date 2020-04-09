@@ -1,6 +1,6 @@
-namespace EllAid.TestDataGenerator.Infrastructure
+namespace EllAid.TestDataGenerator.Infrastructure.DataAccess
 {
-    static class Globals
+    static class DataAccessConstants
     {
         internal const int noSqlPersonVersion = 1;
         internal const int noSqlInstructorVersion = 1;

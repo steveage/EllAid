@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace EllAid.DataSource.Context
+namespace EllAid.DataSource.DataAccess.Context
 {
     public class PeopleContext : DbContext
     {

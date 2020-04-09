@@ -1,6 +1,7 @@
 using AutoMapper;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.Entities.Data;
+using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
 namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
 {
@@ -8,7 +9,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
     {
         public SchoolClassProfile() => 
             CreateMap<SchoolClass, SchoolClassDto>()
-                .ForMember(dto => dto.Version, u => u.MapFrom(src => Globals.noSqlSchoolClassVersion))
-                .ForMember(dto => dto.Type, s => s.MapFrom(src=>Globals.noSqlSchoolClassType));
+                .ForMember(dto => dto.Version, u => u.MapFrom(src => DataAccessConstants.noSqlSchoolClassVersion))
+                .ForMember(dto => dto.Type, s => s.MapFrom(src=>DataAccessConstants.noSqlSchoolClassType));
     }
 }

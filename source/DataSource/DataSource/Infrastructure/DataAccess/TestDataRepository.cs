@@ -6,7 +6,7 @@ using EllAid.DataSource.Adapters.DataObjects;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 
-namespace EllAid.DataSource.Infrastructure
+namespace EllAid.DataSource.Infrastructure.DataAccess
 {
     class TestDataRepository : ITestDataRepository
     {

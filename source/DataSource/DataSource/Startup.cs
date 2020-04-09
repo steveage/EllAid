@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EllAid.DataSource.Context;
+using EllAid.DataSource.DataAccess.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +11,9 @@ namespace EllAid.DataSource
 {
     public class Startup
     {
+        internal const string dbUriConfigKey = "dbUri";
+        internal const string dbKeyConfigKey = "dbKey";
+        internal const string dbIdConfigKey = "dbId";
         readonly IConfiguration config;
 
         public Startup(IConfiguration config) => this.config = config;
@@ -28,9 +27,9 @@ namespace EllAid.DataSource
 
         void CreateCosmosDbOptions(DbContextOptionsBuilder builder)
         {
-            string dbEndpointName = config["dbEndpointName"];
-            string dbAccountKey = config["dbAccountKey"];
-            string dbName = config["dbName"];
+            string dbEndpointName = config[dbUriConfigKey];
+            string dbAccountKey = config[dbKeyConfigKey];
+            string dbName = config[dbIdConfigKey];
             
             builder.UseCosmos(dbEndpointName, dbAccountKey, dbName);
         }

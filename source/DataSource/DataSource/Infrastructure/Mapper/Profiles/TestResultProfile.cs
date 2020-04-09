@@ -1,6 +1,7 @@
 using AutoMapper;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.Entities.Data;
+using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
 namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
 {
@@ -9,8 +10,8 @@ namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles
         public TestResultProfile()
         {
             CreateMap(typeof(TestResult), typeof(TestResultDto<>))
-                .ForMember("Version", t=>t.MapFrom(src=>Globals.noSqlTestResultVersion))
-                .ForMember("Type", t=>t.MapFrom(src=>Globals.noSqlTestResultType));
+                .ForMember("Version", t=>t.MapFrom(src=>DataAccessConstants.noSqlTestResultVersion))
+                .ForMember("Type", t=>t.MapFrom(src=>DataAccessConstants.noSqlTestResultType));
         }
     }
 }
