@@ -1,7 +1,7 @@
 using AutoMapper;
+using EllAid.DataSource.Adapters;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.Entities.Data;
-using EllAid.TestDataGenerator.UseCases.Adapters;
 
 namespace EllAid.TestDataGenerator.Infrastructure.Mapper
 {

@@ -7,7 +7,7 @@ using System;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
-namespace EllAid.TestDataGenerator.Tests.Infrastructure
+namespace EllAid.DataSource.Tests.Infrastructure
 {
     public class MappingProviderTests
     {
