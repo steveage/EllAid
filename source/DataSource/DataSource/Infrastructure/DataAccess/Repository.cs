@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.DataSource.Adapters;
 using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.DataSource.DataAccess.Context;
 using Microsoft.Extensions.Logging;
 
 namespace EllAid.DataSource.Infrastructure.DataAccess
@@ -10,8 +10,13 @@ namespace EllAid.DataSource.Infrastructure.DataAccess
     class Repository<T> : IRepository<T> where T : PersonDto
     {
         readonly ILogger<Repository<T>> logger;
+        readonly PeopleContext peopleContext;
 
-        public Repository(ILogger<Repository<T>> logger) => this.logger = logger;
+        public Repository(ILogger<Repository<T>> logger, PeopleContext peopleContext)
+        {
+            this.logger = logger;
+            this.peopleContext = peopleContext;
+        }
 
         // public async Task SaveInstructorsAsync(List<InstructorDto> instructors) => await SavePeopleAsync<InstructorDto>(instructors);
         
@@ -42,7 +47,7 @@ namespace EllAid.DataSource.Infrastructure.DataAccess
 
         public async Task SaveFacultyAsync(List<T> faculty)
         {
-            throw new NotImplementedException();
+            await peopleContext.Set<T>().AddRangeAsync(faculty);
         }
     }
 }
