@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="*"/>
     <PackageReference Include="AutoMapper" Version="*"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="*"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Entities\Entities\EllAid.Entities.csproj"/>

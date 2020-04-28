@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EllAid.DataSource.Adapters;
 using EllAid.DataSource.Adapters.DataObjects;
-using EllAid.DataSource.Tests.Infrastructure;
+using EllAid.DataSource.Tests.Infrastructure.Map;
 using EllAid.DataSource.UseCases;
 using EllAid.Entities.Data;
 using Xunit;
 
-namespace EllAid.DataSource.Tests
+namespace EllAid.DataSource.Tests.UseCases
 {
     public class SaveFacultyUseCaseTests
     {
@@ -31,6 +31,17 @@ namespace EllAid.DataSource.Tests
         private class RepositoryStub<T> : IRepository<T> where T : PersonDto
         {
             public List<T> Faculty { get; private set; }
+
+            public async Task CreateDataStoreAsync()
+            {
+                await Task.CompletedTask;
+            }
+
+            public async Task DeleteDataStoreAsync()
+            {
+                await Task.CompletedTask;
+            }
+
             public async Task SaveFacultyAsync(List<T> faculty)
             {
                 Faculty = faculty;
@@ -52,7 +63,7 @@ namespace EllAid.DataSource.Tests
         }
 
         [Fact]
-        public async Task Save_SendsEllAidToRepository()
+        public async Task Save_SendsCoachesToRepository()
         {
             // Given
             RepositoryStub<EllCoachDto> repository = new RepositoryStub<EllCoachDto>();

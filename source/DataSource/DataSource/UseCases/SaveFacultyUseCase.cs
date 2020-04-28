@@ -17,6 +17,16 @@ namespace EllAid.DataSource.UseCases
             this.mapper = mapper;
         }
 
+        public async Task CreateDataStoreAsync()
+        {
+            await repository.CreateDataStoreAsync();
+        }
+
+        public async Task DeleteDataStoreAsync()
+        {
+            await repository.DeleteDataStoreAsync();
+        }
+
         public async Task SaveAsync(List<S> people)
         {
             List<T> dtos = new List<T>();

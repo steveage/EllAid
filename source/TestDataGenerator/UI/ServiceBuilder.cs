@@ -40,7 +40,6 @@ namespace EllAid.TestDataGenerator.UI
             services.AddSingleton<IConfiguration>(config);
             //EllAid.TestDataGenerator.Infrastructure
             services.AddTransient<IDataFabricator, BogusFabricator>();
-            services.AddTransient<IDataSourceBuilder, CosmosDbBuilder>();
             services.AddTransient<IUserDataAccess, InMemoryUserDataProvider>();
             services.AddHttpClient<IDataSaver, HttpDataSaver>();
             //EllAid.TestDataGenerator.UseCases

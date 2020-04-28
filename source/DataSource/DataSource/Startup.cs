@@ -1,11 +1,16 @@
+using EllAid.DataSource.Adapters;
+using EllAid.DataSource.UseCases;
 using EllAid.DataSource.DataAccess.Context;
+using EllAid.DataSource.Infrastructure.DataAccess;
+using EllAid.TestDataGenerator.Infrastructure.Map;
+using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 
 namespace EllAid.DataSource
 {
@@ -23,6 +28,12 @@ namespace EllAid.DataSource
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PeopleContext>(builder => CreateCosmosDbOptions(builder));
+            services.AddTransient<IMappingProvider, MappingProvider>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(ISaveFacultyUseCase<,>), typeof(SaveFacultyUseCase<,>));
+            services.AddAutoMapper(typeof(SchoolClassProfile));
+            services.AddControllers();
+            services.AddLogging();
         }
 
         void CreateCosmosDbOptions(DbContextOptionsBuilder builder)
@@ -32,6 +43,7 @@ namespace EllAid.DataSource
             string dbName = config[dbIdConfigKey];
             
             builder.UseCosmos(dbEndpointName, dbAccountKey, dbName);
+            builder.EnableSensitiveDataLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,10 +58,8 @@ namespace EllAid.DataSource
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                // endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

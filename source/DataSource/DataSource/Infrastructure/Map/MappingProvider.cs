@@ -3,7 +3,7 @@ using EllAid.DataSource.Adapters;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.Entities.Data;
 
-namespace EllAid.TestDataGenerator.Infrastructure.Mapper
+namespace EllAid.TestDataGenerator.Infrastructure.Map
 {
     class MappingProvider : IMappingProvider
     {

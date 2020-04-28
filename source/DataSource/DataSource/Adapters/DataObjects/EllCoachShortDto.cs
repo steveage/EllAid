@@ -1,6 +1,6 @@
 namespace EllAid.DataSource.Adapters.DataObjects
 {
-    public class InstructorShortDto : DigitalEntityDto
+    public class EllCoachShortDto : DigitalEntityDto
     {
     }
 }

@@ -1,13 +1,13 @@
 using AutoMapper;
 using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
-using EllAid.TestDataGenerator.Infrastructure.Mapper;
+using EllAid.TestDataGenerator.Infrastructure.Map;
 using Xunit;
 using System;
 using EllAid.DataSource.Adapters.DataObjects;
 using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
-namespace EllAid.DataSource.Tests.Infrastructure
+namespace EllAid.DataSource.Tests.Infrastructure.Map
 {
     public class MappingProviderTests
     {
@@ -287,11 +287,11 @@ namespace EllAid.DataSource.Tests.Infrastructure
             Assert.Equal(DataAccessConstants.noSqlAssistantType, dto.Type);
             Assert.Equal(DataAccessConstants.noSqlAssistantVersion, dto.Version);
             Assert.Equal(assistant.Instructor.Id.ToString(), dto.Instructor.Id);
-            Assert.Equal(assistant.Instructor.FirstName, dto.Instructor.FirstName);
-            Assert.Equal(assistant.Instructor.LastName, dto.Instructor.LastName);
-            Assert.Equal(assistant.Instructor.Gender, dto.Instructor.Gender);
+            // Assert.Equal(assistant.Instructor.FirstName, dto.Instructor.FirstName);
+            // Assert.Equal(assistant.Instructor.LastName, dto.Instructor.LastName);
+            // Assert.Equal(assistant.Instructor.Gender, dto.Instructor.Gender);
             Assert.Equal(assistant.Instructor.Email, dto.Instructor.Email);
-            Assert.Equal(assistant.Instructor.Department, dto.Instructor.Department);
+            // Assert.Equal(assistant.Instructor.Department, dto.Instructor.Department);
             Assert.Equal(DataAccessConstants.noSqlInstructorShortType, dto.Instructor.Type);
             Assert.Equal(DataAccessConstants.noSqlInstructorShortVersion, dto.Instructor.Version);
         }
@@ -335,17 +335,17 @@ namespace EllAid.DataSource.Tests.Infrastructure
             Assert.Equal(DataAccessConstants.noSqlEllCoachVersion, dto.Version);
             Assert.Equal(2, dto.Instructors.Count);
             Assert.Equal(instructor1.Id.ToString(), dto.Instructors[0].Id);
-            Assert.Equal(instructor1.FirstName, dto.Instructors[0].FirstName);
-            Assert.Equal(instructor1.LastName, dto.Instructors[0].LastName);
+            // Assert.Equal(instructor1.FirstName, dto.Instructors[0].FirstName);
+            // Assert.Equal(instructor1.LastName, dto.Instructors[0].LastName);
             Assert.Equal(instructor1.Email, dto.Instructors[0].Email);
-            Assert.Equal(instructor1.Gender, dto.Instructors[0].Gender);
-            Assert.Equal(instructor1.Department, dto.Instructors[0].Department);
+            // Assert.Equal(instructor1.Gender, dto.Instructors[0].Gender);
+            // Assert.Equal(instructor1.Department, dto.Instructors[0].Department);
             Assert.Equal(instructor2.Id.ToString(), dto.Instructors[1].Id);
-            Assert.Equal(instructor2.FirstName, dto.Instructors[1].FirstName);
-            Assert.Equal(instructor2.LastName, dto.Instructors[1].LastName);
+            // Assert.Equal(instructor2.FirstName, dto.Instructors[1].FirstName);
+            // Assert.Equal(instructor2.LastName, dto.Instructors[1].LastName);
             Assert.Equal(instructor2.Email, dto.Instructors[1].Email);
-            Assert.Equal(instructor2.Gender, dto.Instructors[1].Gender);
-            Assert.Equal(instructor2.Department, dto.Instructors[1].Department);
+            // Assert.Equal(instructor2.Gender, dto.Instructors[1].Gender);
+            // Assert.Equal(instructor2.Department, dto.Instructors[1].Department);
             Assert.All(dto.Instructors, instructor => Assert.Equal(DataAccessConstants.noSqlInstructorShortType, instructor.Type));
             Assert.All(dto.Instructors, instructor => Assert.Equal(DataAccessConstants.noSqlInstructorShortVersion, instructor.Version));
         }
@@ -397,24 +397,24 @@ namespace EllAid.DataSource.Tests.Infrastructure
             Assert.Equal(DataAccessConstants.noSqlInstructorVersion, dto.Version);
             Assert.Equal(DataAccessConstants.noSqlInstructorType, dto.Type);
             Assert.Equal(instructor.EllCoach.Id.ToString(), dto.EllCoach.Id);
-            Assert.Equal(instructor.EllCoach.FirstName, dto.EllCoach.FirstName);
-            Assert.Equal(instructor.EllCoach.LastName, dto.EllCoach.LastName);
+            // Assert.Equal(instructor.EllCoach.FirstName, dto.EllCoach.FirstName);
+            // Assert.Equal(instructor.EllCoach.LastName, dto.EllCoach.LastName);
             Assert.Equal(instructor.EllCoach.Email, dto.EllCoach.Email);
-            Assert.Equal(instructor.EllCoach.Gender, dto.EllCoach.Gender);
-            Assert.Equal(DataAccessConstants.noSqlPersonType, dto.EllCoach.Type);
+            // Assert.Equal(instructor.EllCoach.Gender, dto.EllCoach.Gender);
+            Assert.Equal(DataAccessConstants.noSqlEllCoachShortType, dto.EllCoach.Type);
             Assert.Equal(DataAccessConstants.noSqlPersonVersion, dto.EllCoach.Version);
             Assert.Equal(assistant1.Id.ToString(), dto.Assistants[0].Id);
-            Assert.Equal(assistant1.FirstName, dto.Assistants[0].FirstName);
-            Assert.Equal(assistant1.LastName, dto.Assistants[0].LastName);
+            // Assert.Equal(assistant1.FirstName, dto.Assistants[0].FirstName);
+            // Assert.Equal(assistant1.LastName, dto.Assistants[0].LastName);
             Assert.Equal(assistant1.Email, dto.Assistants[0].Email);
-            Assert.Equal(assistant1.Gender, dto.Assistants[0].Gender);
+            // Assert.Equal(assistant1.Gender, dto.Assistants[0].Gender);
             Assert.Equal(assistant2.Id.ToString(), dto.Assistants[1].Id);
-            Assert.Equal(assistant2.FirstName, dto.Assistants[1].FirstName);
-            Assert.Equal(assistant2.LastName, dto.Assistants[1].LastName);
+            // Assert.Equal(assistant2.FirstName, dto.Assistants[1].FirstName);
+            // Assert.Equal(assistant2.LastName, dto.Assistants[1].LastName);
             Assert.Equal(assistant2.Email, dto.Assistants[1].Email);
-            Assert.Equal(assistant2.Gender, dto.Assistants[1].Gender);
+            // Assert.Equal(assistant2.Gender, dto.Assistants[1].Gender);
             Assert.All(dto.Assistants, assistant => Assert.Equal(DataAccessConstants.noSqlPersonVersion, assistant.Version));
-            Assert.All(dto.Assistants, assistant => Assert.Equal(DataAccessConstants.noSqlPersonType, assistant.Type));
+            Assert.All(dto.Assistants, assistant => Assert.Equal(DataAccessConstants.noSqlAssistantShortType, assistant.Type));
         }
 
         ///TODO: test if userId is set to id of entity.
