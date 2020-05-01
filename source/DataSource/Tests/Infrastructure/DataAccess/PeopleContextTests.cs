@@ -47,6 +47,7 @@ namespace EllAid.DataSource.Tests.Infrastructure.DataSource
             Assert.Equal(instructorId, assistant.Instructor.Id);
             Assert.Equal(instructorEmail, assistant.Instructor.Email);
         }
+        
         [Fact]
         public async Task Save_WhenInstructorDto_AddsInstructorToDb()
         {

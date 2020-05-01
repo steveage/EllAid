@@ -57,7 +57,7 @@ namespace EllAid.DataSource.Infrastructure.Web.Controllers
         public async Task<IActionResult> CreateDataStore()
         {
             await instructorUseCase.CreateDataStoreAsync();
-            return Ok();
+            return Created($"Faculty/{nameof(CreateDataStore)}", null);
         }
     }
 }
