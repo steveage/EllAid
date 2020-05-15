@@ -4,7 +4,7 @@ using EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles;
 using EllAid.TestDataGenerator.Infrastructure.Map;
 using Xunit;
 using System;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 
 namespace EllAid.DataSource.Tests.Infrastructure.Map
@@ -34,7 +34,7 @@ namespace EllAid.DataSource.Tests.Infrastructure.Map
             return new MappingProvider(mapper);
         }
 
-        T GetMapped<T, S>(S source) where T : EntityDto where S : Entity => GetProvider().Map<T, S>(source);
+        T GetMapped<T, S>(S source) where T : class where S : Entity => GetProvider().Map<T, S>(source);
 
         [Fact]
         public void Map_WhenMappingUser_SetsSameValues()
@@ -55,6 +55,21 @@ namespace EllAid.DataSource.Tests.Infrastructure.Map
             Assert.Equal(user.FirstName, dto.FirstName);
             Assert.Equal(user.LastName, dto.LastName);
             Assert.Equal(user.Gender, dto.Gender);
+        }
+        
+        [Fact]
+        public void Map_WhenMappingUser_SetsUsername()
+        {
+            //Given
+            Assistant person = new Assistant
+            {
+                FirstName = "FirstName",
+                LastName = "LastName"
+            };
+            //When
+            PersonDto dto = GetMapped<AssistantDto, Assistant>(person);
+            //Then
+            Assert.Equal($"{person.FirstName.Substring(0,1)}{person.LastName}", dto.UserName);
         }
 
         [Fact]

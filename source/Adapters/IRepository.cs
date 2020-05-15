@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Services;
 
-namespace EllAid.DataSource.Adapters
+namespace EllAid.Adapters
 {
     public interface IRepository<T> : IDataStoreManager where T : PersonDto
     {

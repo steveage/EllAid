@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters;
+using EllAid.Adapters.DataObjects;
 using EllAid.DataSource.DataAccess.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace EllAid.DataSource.Infrastructure.DataAccess
@@ -11,11 +13,13 @@ namespace EllAid.DataSource.Infrastructure.DataAccess
     {
         readonly ILogger<Repository<T>> logger;
         readonly PeopleContext peopleContext;
+        readonly UserManager<PersonDto> userManager;
 
-        public Repository(ILogger<Repository<T>> logger, PeopleContext peopleContext)
+        public Repository(ILogger<Repository<T>> logger, PeopleContext peopleContext, UserManager<PersonDto> userManager)
         {
             this.logger = logger;
             this.peopleContext = peopleContext;
+            this.userManager = userManager;
         }
 
         public async Task CreateDataStoreAsync()
@@ -40,7 +44,13 @@ namespace EllAid.DataSource.Infrastructure.DataAccess
 
         async Task SaveFacultyAsync(T member)
         {
-            await peopleContext.Set<T>().AddAsync(member);
+            string password = $"{member.FirstName}{member.LastName}!1";
+            IdentityResult result = await userManager.CreateAsync(member, password);
+            if (result != IdentityResult.Success)
+            {
+                throw new InvalidOperationException("Unable to create faculty member.");
+            }
+            // await peopleContext.Set<T>().AddAsync(member);
         }
     }
 }

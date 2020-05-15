@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using EllAid.Entities.Data;
 
-namespace EllAid.DataSource.Adapters.DataObjects
+namespace EllAid.Adapters.DataObjects
 {
     public class InstructorDto : PersonDto
     {

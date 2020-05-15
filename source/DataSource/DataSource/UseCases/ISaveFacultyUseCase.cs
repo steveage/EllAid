@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Data;
 using EllAid.Entities.Services;
 

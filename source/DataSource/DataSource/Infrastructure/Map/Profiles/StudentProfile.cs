@@ -1,5 +1,5 @@
 using AutoMapper;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.Infrastructure.Mapper.Profiles

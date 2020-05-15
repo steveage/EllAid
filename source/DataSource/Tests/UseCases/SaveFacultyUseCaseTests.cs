@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters;
+using EllAid.Adapters.DataObjects;
 using EllAid.DataSource.Tests.Infrastructure.Map;
 using EllAid.DataSource.UseCases;
 using EllAid.Entities.Data;

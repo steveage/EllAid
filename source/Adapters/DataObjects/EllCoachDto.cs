@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace EllAid.DataSource.Adapters.DataObjects
+namespace EllAid.Adapters.DataObjects
 {
     public class EllCoachDto : PersonDto
     {

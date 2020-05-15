@@ -10,6 +10,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="*"/>
     <PackageReference Include="coverlet.collector" Version="1.0.1"/>
     <PackageReference Include="EfCore.TestSupport" Version="*"/>
+    <PackageReference Include="Mobsites.AspNetCore.Identity.Cosmos" Version="*"/>
+    <PackageReference Include="Moq" Version="*"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataSource\EllAid.DataSource.csproj"/>

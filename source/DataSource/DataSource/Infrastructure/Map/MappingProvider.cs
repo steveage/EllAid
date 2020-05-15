@@ -1,6 +1,6 @@
 using AutoMapper;
-using EllAid.DataSource.Adapters;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters;
+using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Data;
 
 namespace EllAid.TestDataGenerator.Infrastructure.Map
@@ -12,7 +12,7 @@ namespace EllAid.TestDataGenerator.Infrastructure.Map
         public MappingProvider(IMapper mapper) => this.mapper = mapper;
 
         public T Map<T, S>(S source)
-            where T : EntityDto
+            where T : class
             where S : Entity => mapper.Map<T>(source);
 
         // public T Map<T, S>(S source)

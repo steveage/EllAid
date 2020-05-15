@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.DataSource.UseCases;
 using EllAid.Entities.Data;
 using Microsoft.AspNetCore.Mvc;

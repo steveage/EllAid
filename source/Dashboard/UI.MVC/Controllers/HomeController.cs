@@ -1,4 +1,5 @@
 using EllAid.Dashboard.UI.MVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EllAid.Dashboard.UI.MVC.Controllers
@@ -38,6 +39,13 @@ namespace EllAid.Dashboard.UI.MVC.Controllers
         public IActionResult About()
         {
             ViewBag.Title = "About Us";
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Faculty()
+        {
+            ViewBag.Title = "Faculty Result";
             return View();
         }
     }

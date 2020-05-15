@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.DataSource.Adapters.DataObjects;
+using EllAid.Adapters.DataObjects;
 using EllAid.DataSource.DataAccess.Context;
 using EllAid.Entities.Data;
 using EllAid.TestDataGenerator.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Moq;
 using TestSupport.EfHelpers;
 using Xunit;
 
@@ -18,7 +20,7 @@ namespace EllAid.DataSource.Tests.Infrastructure.DataSource
         {
         //Given
             DbContextOptions<PeopleContext> options = this.GetCosmosDbToEmulatorOptions<PeopleContext>();
-            using PeopleContext context = new PeopleContext(options);
+            using PeopleContext context = new PeopleContext(options, GetConfig());
             string assistantId = GetId();
             string assistantEmail = "assistant@shool.com";
             string instructorId = GetId();
@@ -53,11 +55,12 @@ namespace EllAid.DataSource.Tests.Infrastructure.DataSource
         {
         //Given
             DbContextOptions<PeopleContext> options = this.GetCosmosDbToEmulatorOptions<PeopleContext>();
-            using PeopleContext context = new PeopleContext(options);
+
+            using PeopleContext context = new PeopleContext(options, GetConfig());
             string instructorId = GetId();
             string instructorEmail = "email@school.com";
-            string assistant1Id = GetId(); 
-            string assistant2Id = GetId(); 
+            string assistant1Id = GetId();
+            string assistant2Id = GetId();
             AssistantShortDto assistant1 = new AssistantShortDto()
             {
                 Id = assistant1Id,
@@ -92,6 +95,13 @@ namespace EllAid.DataSource.Tests.Infrastructure.DataSource
             Assert.Equal(assistant2.Id, instructor.Assistants[1].Id);
         }
 
+        IConfiguration GetConfig()
+        {
+            Mock<IConfiguration> configMock = new Mock<IConfiguration>();
+            configMock.SetupGet((x => x[It.Is<string>(s => s == "DataStore:Containers:People:Id")]));
+            configMock.SetupGet((x => x[It.Is<string>(s => s == "DataStore:Containers:People:PartitionKey")]));
+            return configMock.Object;
+        }
         string GetId() => Guid.NewGuid().ToString();
 
         [Fact]
@@ -99,7 +109,7 @@ namespace EllAid.DataSource.Tests.Infrastructure.DataSource
         {
         //Given
             DbContextOptions<PeopleContext> options = this.GetCosmosDbToEmulatorOptions<PeopleContext>();
-            using PeopleContext context = new PeopleContext(options);
+            using PeopleContext context = new PeopleContext(options, GetConfig());
             string coachId = GetId();
             string coachEmail = "coach@shool.com";
             string instructor1Id = GetId();

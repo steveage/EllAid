@@ -1,6 +1,6 @@
 using System;
 
-namespace EllAid.DataSource.Adapters.DataObjects
+namespace EllAid.Adapters.DataObjects
 {
     public class TestSessionDto : EntityDto
     {
