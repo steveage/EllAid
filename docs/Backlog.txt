@@ -42,8 +42,8 @@ C   Hide members that should be internal. Make them visible to tests and composi
 C   Add user data dependency to ItemProvider.
 C   Replace EllCoachProvider with UserProvider.
 W   Write acceptance tests.
-W   Move framework specific classes in Infrastructure to dedicated folders.
-S   Redesign entity model to better represent real life objects and remove resemblance to no sql db objects.
+C   Move framework specific classes in Infrastructure to dedicated folders.
+C   Redesign entity model to better represent real life objects and remove resemblance to no sql db objects.
 -C  Change UserCreatorTests to return modified Students, Instructors, EllCoaches and Assistants.
     -   Remove User.Classes - school classes will be queried separately to simplify the model.
     -   Remove User.Type - user type such as teacher, ell coach, etc. will be only used in the dtos. The value of Type for the dto will set manually in the adapter layer.
@@ -60,8 +60,15 @@ S   Redesign entity model to better represent real life objects and remove resem
 -C  Add new classes to the model: Enrollment, SupportAssignment, CourseAssignment, Grade, CourseGrade, Term.
 -C  Decide what to do with SchoolClass. Changed SchoolClass to represent real world object and added StudentClass that was needed for many to many relation between Student and SchoolClass.
 
-W  Create dtos for the corresponding new classes.
-S  Fix item creation and assignment once model changes are finished.
+C  Create dtos for the corresponding new classes.
+C  Fix item creation and assignment once model changes are finished.
 -C  PersonCreator
 -C  PersonProvider
--W  Convert PersonProvider into a generic class.
+-C  Convert PersonProvider into a generic class.
+W   Replace DataAnnotations with FluentValidation in UI.MVC and DataSource as explained in https://wildermuth.com/2019/11/18/Using-FluentValidation-in-ASP-NET-Core
+W   Make post requests return created entities instead of models.
+W   Set up CI as explained in https://www.youtube.com/watch?v=nNw5H31nuU0.
+W   Add ReverseMap() to each profile.
+W   Add InstructorAssistants, EllCoachInstructors and AssistantInstructor controllers with routes /Faculty/Instructor/{id}/Assistants, ...
+W   For read only dtos consider using flattening, f.e. add Instructor.AssistantEmail instead of using short dtos. Automapper should handle that automatically.
+W   Add query strings such as GetInstructors(bool includeAssistants = true)
