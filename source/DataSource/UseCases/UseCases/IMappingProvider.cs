@@ -1,7 +1,6 @@
-using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Data;
 
-namespace EllAid.Adapters
+namespace EllAid.DataSource.UseCases
 {
     public interface IMappingProvider
     {

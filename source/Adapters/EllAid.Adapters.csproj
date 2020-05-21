@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities\EllAid.Entities.csproj"/>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Mobsites.AspNetCore.Identity.Cosmos" Version="*"/>
+    <ProjectReference Include="..\Entities\Entities\EllAid.Entities.csproj" />
+    <ProjectReference Include="..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>

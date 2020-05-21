@@ -6,6 +6,7 @@ using Xunit;
 using System;
 using EllAid.Adapters.DataObjects;
 using EllAid.TestDataGenerator.Infrastructure.DataAccess;
+using AspNetCore.Identity.DocumentDb;
 
 namespace EllAid.DataSource.Tests.Infrastructure.Map
 {
@@ -34,42 +35,45 @@ namespace EllAid.DataSource.Tests.Infrastructure.Map
             return new MappingProvider(mapper);
         }
 
+        [Fact]
+        public void Map_WhenMappingIdentity_SetsSaveValues()
+        {
+            //Given
+            Person person = new Person()
+            {
+                FirstName = "First",
+                LastName = "Last",
+                Email = "first.last@school.com"
+            };
+            //When
+            DocumentDbIdentityUser identityUser = GetMapped<DocumentDbIdentityUser, Person>(person);
+
+            //Then
+            Assert.Equal(person.Id.ToString(), identityUser.Id);
+            Assert.Equal(person.Email, identityUser.Email);
+            Assert.Equal($"{person.FirstName.Substring(0,1)}{person.LastName}", identityUser.UserName);
+        }
+
         T GetMapped<T, S>(S source) where T : class where S : Entity => GetProvider().Map<T, S>(source);
 
         [Fact]
-        public void Map_WhenMappingUser_SetsSameValues()
+        public void Map_WhenMappingPerson_SetsSameValues()
         {
             //Given
-            Person user = new Person(){
-                Id = Guid.NewGuid(),
+            Person person = new Person(){
                 FirstName = "firstName",
                 LastName = "lastName",
                 Gender = Gender.Female
             };
 
             //When
-            PersonDto dto = GetMapped<PersonDto, Person>(user);
+            PersonDto dto = GetMapped<PersonDto, Person>(person);
 
             //Then
-            Assert.Equal(user.Id.ToString(), dto.Id);
-            Assert.Equal(user.FirstName, dto.FirstName);
-            Assert.Equal(user.LastName, dto.LastName);
-            Assert.Equal(user.Gender, dto.Gender);
-        }
-        
-        [Fact]
-        public void Map_WhenMappingUser_SetsUsername()
-        {
-            //Given
-            Assistant person = new Assistant
-            {
-                FirstName = "FirstName",
-                LastName = "LastName"
-            };
-            //When
-            PersonDto dto = GetMapped<AssistantDto, Assistant>(person);
-            //Then
-            Assert.Equal($"{person.FirstName.Substring(0,1)}{person.LastName}", dto.UserName);
+            Assert.Equal(person.Id.ToString(), dto.Id);
+            Assert.Equal(person.FirstName, dto.FirstName);
+            Assert.Equal(person.LastName, dto.LastName);
+            Assert.Equal(person.Gender, dto.Gender);
         }
 
         [Fact]

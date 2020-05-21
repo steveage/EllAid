@@ -45,7 +45,7 @@ namespace EllAid.Dashboard.UI.MVC.Controllers
         [Authorize]
         public IActionResult Faculty()
         {
-            ViewBag.Title = "Faculty Result";
+            ViewBag.Title = "Faculty Details";
             return View();
         }
     }

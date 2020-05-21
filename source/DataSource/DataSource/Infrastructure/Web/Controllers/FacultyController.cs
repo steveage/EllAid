@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Identity.DocumentDb;
 using EllAid.Adapters.DataObjects;
 using EllAid.DataSource.UseCases;
 using EllAid.Entities.Data;
@@ -10,11 +11,11 @@ namespace EllAid.DataSource.Infrastructure.Web.Controllers
 {
     public class FacultyController : ControllerBase
     {
-        readonly ISaveFacultyUseCase<Instructor, InstructorDto> instructorUseCase;
-        readonly ISaveFacultyUseCase<EllCoach, EllCoachDto> ellCoachUseCase;
-        readonly ISaveFacultyUseCase<Assistant, AssistantDto> assistantUseCase;
+        readonly ISaveFacultyUseCase<Instructor, InstructorDto, DocumentDbIdentityUser> instructorUseCase;
+        readonly ISaveFacultyUseCase<EllCoach, EllCoachDto, DocumentDbIdentityUser> ellCoachUseCase;
+        readonly ISaveFacultyUseCase<Assistant, AssistantDto, DocumentDbIdentityUser> assistantUseCase;
 
-        public FacultyController(ISaveFacultyUseCase<Instructor, InstructorDto> instructorUseCase, ISaveFacultyUseCase<EllCoach, EllCoachDto> ellCoachUseCase, ISaveFacultyUseCase<Assistant, AssistantDto> assistantUseCase)
+        public FacultyController(ISaveFacultyUseCase<Instructor, InstructorDto, DocumentDbIdentityUser> instructorUseCase, ISaveFacultyUseCase<EllCoach, EllCoachDto, DocumentDbIdentityUser> ellCoachUseCase, ISaveFacultyUseCase<Assistant, AssistantDto, DocumentDbIdentityUser> assistantUseCase)
         {
             this.instructorUseCase = instructorUseCase;
             this.ellCoachUseCase = ellCoachUseCase;

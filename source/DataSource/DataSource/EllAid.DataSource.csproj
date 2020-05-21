@@ -3,12 +3,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="*"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="*"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="*"/>
+    <PackageReference Include="AutoMapper" Version="*" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Entities\Entities\EllAid.Entities.csproj"/>
-    <ProjectReference Include="..\..\Adapters\EllAid.Adapters.csproj"/>
+    <ProjectReference Include="..\..\Entities\Entities\EllAid.Entities.csproj" />
+    <ProjectReference Include="..\..\Adapters\EllAid.Adapters.csproj" />
+    <ProjectReference Include="..\..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
+    <ProjectReference Include="..\UseCases\UseCases\EllAid.DataSource.UseCases.csproj" />
   </ItemGroup>
 </Project>

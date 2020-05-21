@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Services;
 
-namespace EllAid.Adapters
+namespace EllAid.DataSource.UseCases
 {
-    public interface IRepository<T> : IDataStoreManager where T : PersonDto
+    public interface IFacultyRepository<T> : IDataStoreManager where T : class
     {
         Task SaveFacultyAsync(List<T> faculty);
     }

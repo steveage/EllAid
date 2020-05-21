@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EllAid.Adapters.DataObjects;
 using EllAid.Entities.Data;
 using EllAid.Entities.Services;
 
 namespace EllAid.DataSource.UseCases
 {
-    public interface ISaveFacultyUseCase<S, T> : IDataStoreManager where S : Person where T : PersonDto
+    public interface ISaveFacultyUseCase<S, T, U> : IDataStoreManager where S : Person where T : class where U : class
     {
         Task SaveAsync(List<S> people);
     }
