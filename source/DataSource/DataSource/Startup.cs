@@ -13,6 +13,7 @@ using AutoMapper;
 using System;
 using Microsoft.AspNetCore.Identity;
 using AspNetCore.Identity.DocumentDb;
+using EllAid.DataSource.Infrastructure.Web;
 
 namespace EllAid.DataSource
 {
@@ -34,6 +35,8 @@ namespace EllAid.DataSource
             services.AddTransient(typeof(IFacultyRepository<>), typeof(FacultyRepository<>));
             services.AddTransient<IIdentityRepository<DocumentDbIdentityUser>, IdentityRepository<DocumentDbIdentityUser>>();
             services.AddTransient(typeof(ISaveFacultyUseCase<,,>), typeof(SaveFacultyUseCase<,,>));
+            services.AddTransient<IUserSignInManager, UserSignInManager>();
+            services.AddTransient<SignInResultConverter>();
             services.AddAutoMapper(typeof(SchoolClassProfile));
             services.AddControllers();
             services.AddLogging();
