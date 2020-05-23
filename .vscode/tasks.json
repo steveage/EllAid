@@ -1,0 +1,72 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build generator",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/source/Details/UI/Generator/EllAid.Details.UI.Generator.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build dashboard",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/source/Details/UI/Dashboard/EllAid.Details.UI.Dashboard.csproj",
+            ],
+            "problemMatcher":"$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build data source",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/source/Details/Web/DataSource/EllAid.Details.Web.DataSource.csproj",
+            ],
+            "problemMatcher":"$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/source/Details/UI/Generator/EllAid.Details.UI.Generator.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/source/Details/UI/Generator/EllAid.Details.UI.Generator.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

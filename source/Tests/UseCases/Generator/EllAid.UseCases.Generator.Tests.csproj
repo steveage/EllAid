@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" />
+    <PackageReference Include="xunit" Version="*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="*" />
+    <PackageReference Include="coverlet.collector" Version="*" />
+    <PackageReference Include="Moq" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Details\UI\Generator\EllAid.Details.UI.Generator.csproj" />
+    <ProjectReference Include="..\..\..\UseCases\Generator\EllAid.UseCases.Generator.csproj" />
+    <ProjectReference Include="..\..\..\Entities\EllAid.Entities.csproj" />
+    <ProjectReference Include="..\..\..\Details\Main\EllAid.Details.Main.csproj" />
+  </ItemGroup>
+</Project>

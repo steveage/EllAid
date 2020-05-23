@@ -48,23 +48,23 @@ Building sample data with Bogus.
 191203
 Building sample data.
 Created EllAid.Tests.TestData unit test project.
-Adding unit tests for EllAid.TestDataGenerator.UI project.
+Adding unit tests for EllAid.Details.UI.Generator project.
 
 191204
 Building sample data.
 
 191205
-Adding unit tests for EllAid.TestDataGenerator.UI.
+Adding unit tests for EllAid.Details.UI.Generator.
 
 191206
-Adding unit tests for EllAid.TestDataGenerator.UI.
+Adding unit tests for EllAid.Details.UI.Generator.
 Adding test results.
 
 191209
 Adding test results.
 
 191210
-Finished unit tests for EllAid.TestDataGenerator.UI.
+Finished unit tests for EllAid.Details.UI.Generator.
 Finished test data building logic.
 Started working on test data persistence into CosmosDb.
 

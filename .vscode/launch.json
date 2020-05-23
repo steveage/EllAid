@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.3.0",
+    "configurations": [
+        {
+            "name": "TestDataGenerator.UI",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build generator",
+            "program": "${workspaceFolder}/source/Details/UI/Generator/bin/Debug/netcoreapp3.1/EllAid.Details.UI.Generator.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/source/Details/UI/Generator",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "UI.MVC",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build dashboard",
+            "program": "${workspaceFolder}/source/Details/UI/Dashboard/bin/Debug/netcoreapp3.1/EllAid.Details.UI.Dashboard.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/source/Details/UI/Dashboard",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS":"http://localhost:5100"
+            }
+        },
+        {
+            "name": "DataSource",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build data source",
+            "program": "${workspaceFolder}/source/Details/Web/DataSource/bin/Debug/netcoreapp3.1/EllAid.Details.Web.DataSource.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/source/Details/Web/DataSource",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "DataSource-Generator",
+            "configurations": ["DataSource", "TestDataGenerator.UI"]
+        }
+    ]
+}

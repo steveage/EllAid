@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Adapters\EllAid.Adapters.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="*" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+</Project>

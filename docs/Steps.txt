@@ -27,13 +27,13 @@ Create empty project
 		dotnet new xunit -n EllAid.Tests.Web
 		dotnet new xunit -n EllAid.Tests.TestData
 	8.	Create web project in \source\Dashboard
-		dotnet new web -o UI.MVC -n EllAid.Dashboard.UI.MVC
+		dotnet new web -o UI.MVC -n EllAid.Details.UI.Dashboard
 	9.	Create web infrastructure project in \source\Dashboard				dotnet new web -o Infrastructure -n EllAid.Dashboard.Infrastructure
 	10.	Add project references to the test projects from the test project folders
 		dotnet add reference ..\..\EllAid.Core
 		dotnet add reference ..\..\EllAid.Infrastructure
 		dotnet add reference ..\..\EllAid.Web
-		dotnet add reference ..\..\EllAid.TestDataGenerator.UI
+		dotnet add reference ..\..\EllAid.Details.UI.Generator
 
 Set up database
 	1.	Install Azure Cosmos DB extension in VS Code
@@ -49,7 +49,7 @@ Set up database
 
 Build sample data
 	1.	Create empty console app project from the source folder
-		dotnet new console -n EllAid.TestDataGenerator.UI
+		dotnet new console -n EllAid.Details.UI.Generator
 	2.	Add reference to the core library from the new project folder
 		dotnet add reference ..\EllAid.Core
 	3.	Add Microsoft.Azure.Cosmos nuget package to the new project.

@@ -206,10 +206,7 @@ project.lock.json
 *.vc.db
 
 # Rider
-.idea/
-
-# Visual Studio Code
-.vscode/
+.idea/s
 
 # Output folder used by Webpack or other FE stuff
 **/node_modules/*
