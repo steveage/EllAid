@@ -9,13 +9,10 @@
     <PackageReference Include="xunit" Version="*"/>
     <PackageReference Include="xunit.runner.visualstudio" Version="*"/>
     <PackageReference Include="coverlet.collector" Version="*"/>
-    <PackageReference Include="EfCore.TestSupport" Version="*"/>
     <PackageReference Include="Moq" Version="*"/>
-    <PackageReference Include="FluentValidator" Version="*"/>
-    <PackageReference Include="FluentValidator.Core" Version="*"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Details\Main\EllAid.Details.Main.csproj"/>
     <ProjectReference Include="..\..\..\UseCases\Dashboard\EllAid.UseCases.Dashboard.csproj"/>
+    <ProjectReference Include="..\..\..\Entities\EllAid.Entities.csproj"/>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using EllAid.Entities.Data;
+using EllAid.Entities.Services;
 using EllAid.UseCases.Generator;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace EllAid.Details.Main.DataSaver
 {
     public class HttpDataSaver : IDataSaver
     {
-        readonly HttpClient client;
+        readonly IHttpClientProvider provider;
         readonly string dataStoreUri;
         readonly string createInstructorsUri;
         readonly string createEllCoachesUri;
@@ -26,9 +27,9 @@ namespace EllAid.Details.Main.DataSaver
         internal const string deleteDataStoreApiPathKey = "deleteDataStoreApiPath";
         internal const string createDataStoreApiPathKey = "createDataStoreApiPath";
 
-        public HttpDataSaver(HttpClient client, IConfiguration config)
+        public HttpDataSaver(IHttpClientProvider provider, HttpClient client, IConfiguration config)
         {
-            this.client = client;
+            this.provider = provider;
             dataStoreUri = config[serviceUriConfigKey];
             createInstructorsUri = $"{dataStoreUri}{config[instructorsApiPathKey]}";
             createEllCoachesUri = $"{dataStoreUri}{config[ellCoachesApiPathKey]}";
@@ -52,7 +53,7 @@ namespace EllAid.Details.Main.DataSaver
             HttpResponseMessage response = await SendRequest(request);
         }
 
-        async Task<HttpResponseMessage> SendRequest(HttpRequestMessage request) => await client.SendAsync(request);
+        async Task<HttpResponseMessage> SendRequest(HttpRequestMessage request) => await provider.SendAsync(request);
 
         public async Task DeleteDataStoreAsync()
         {

@@ -1,4 +1,5 @@
 using EllAid.Details.Main.Identity;
+using EllAid.Entities;
 using Microsoft.AspNetCore.Identity;
 using Xunit;
 

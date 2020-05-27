@@ -46,6 +46,10 @@
         {
             "name": "DataSource-Generator",
             "configurations": ["DataSource", "TestDataGenerator.UI"]
+        },
+        {
+            "name": "Datasource-Dashboard",
+            "configurations": ["DataSource", "UI.MVC"]
         }
     ]
 }

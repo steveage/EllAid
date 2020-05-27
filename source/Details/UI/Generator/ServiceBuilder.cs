@@ -11,6 +11,7 @@ using EllAid.UseCases.Generator.Creation.SchoolClasses;
 using EllAid.UseCases.Generator.Creation.Tests;
 using EllAid.Details.Main.DataFabricator;
 using EllAid.Details.Main.DataSaver;
+using EllAid.Entities.Services;
 
 namespace EllAid.Details.UI.Generator
 {
@@ -39,10 +40,12 @@ namespace EllAid.Details.UI.Generator
         {
             ServiceCollection services = new ServiceCollection();
             services.AddSingleton<IConfiguration>(config);
+            //EllAid.Entities.Services
+            services.AddHttpClient<IHttpClientProvider, HttpClientProvider>();
             //EllAid.Details.Main.DataAccess
             services.AddTransient<IDataFabricator, BogusFabricator>();
             services.AddTransient<IUserDataAccess, InMemoryUserDataProvider>();
-            services.AddHttpClient<IDataSaver, HttpDataSaver>();
+            services.AddTransient<IDataSaver, HttpDataSaver>();
             //EllAid.UseCases.Generator
             services.AddTransient<IDataCreationInputBoundary, DataCreationUseCase>();
             services.AddTransient<ICourseManager, CourseManager>();

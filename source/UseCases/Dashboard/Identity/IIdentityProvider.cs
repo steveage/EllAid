@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using EllAid.Entities;
 
-namespace EllAid.Details.Main.Identity
+namespace EllAid.UseCases.Dashboard.Identity
 {
-    public interface IUserSignInManager
+    public interface IIdentityProvider
     {
         Task<UserSignInResult> CheckSignInAsync(string userName, string password);
     }

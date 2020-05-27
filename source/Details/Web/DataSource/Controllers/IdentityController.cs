@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using EllAid.Details.Main.Identity;
+using EllAid.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,16 +18,16 @@ namespace EllAid.Details.Web.DataSource.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SignIn(string userName, string password, bool rememberMe = false)
+        public async Task<IActionResult> CheckSignIn(string userName, string password)
         {
-            UserSignInResult result = await signInManager.SignInAsync(userName, password, rememberMe);
+            UserSignInResult result = await signInManager.CheckSignInAsync(userName, password);
             if (result==UserSignInResult.Success)
             {
-                return Ok();
+                return Ok(result);
             }
             else
             {
-                return BadRequest();
+                return BadRequest(result);
             }
         }
     }

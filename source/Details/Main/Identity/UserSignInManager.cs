@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using AspNetCore.Identity.DocumentDb;
+using EllAid.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace EllAid.Details.Main.Identity
@@ -15,9 +16,10 @@ namespace EllAid.Details.Main.Identity
             this.converter = converter;
         }
 
-        public async Task<UserSignInResult> SignInAsync(string userName, string password, bool rememberMe = false)
+        public async Task<UserSignInResult> CheckSignInAsync(string userName, string password)
         {
-            SignInResult result = await manager.PasswordSignInAsync(userName, password, rememberMe, false);
+            DocumentDbIdentityUser user = await manager.UserManager.FindByNameAsync(userName);
+            SignInResult result = await manager.CheckPasswordSignInAsync(user, password, false);
             return converter.Convert(result);
         }
     }

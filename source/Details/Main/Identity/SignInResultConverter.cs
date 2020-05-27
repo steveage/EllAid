@@ -1,3 +1,4 @@
+using EllAid.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace EllAid.Details.Main.Identity
@@ -6,7 +7,7 @@ namespace EllAid.Details.Main.Identity
     {
         public UserSignInResult Convert(SignInResult result)
         {
-            UserSignInResult userResult = UserSignInResult.Invalid;
+            UserSignInResult userResult;
             if (result.Succeeded)
             {
                 userResult = UserSignInResult.Success;

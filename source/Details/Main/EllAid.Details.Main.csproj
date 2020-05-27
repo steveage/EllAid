@@ -7,6 +7,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Cosmos" Version="*" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="*" />
     <PackageReference Include="Bogus" Version="*" />
+    <PackageReference Include="FluentValidation" Version="*" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\UseCases\DataSource\EllAid.UseCases.DataSource.csproj" />
@@ -14,5 +16,6 @@
     <ProjectReference Include="..\..\Entities\EllAid.Entities.csproj" />
     <ProjectReference Include="..\..\Adapters\EllAid.Adapters.csproj" />
     <ProjectReference Include="..\..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
+    <ProjectReference Include="..\..\UseCases\Dashboard\EllAid.UseCases.Dashboard.csproj" />
   </ItemGroup>
 </Project>

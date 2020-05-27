@@ -1,10 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Adapters\EllAid.Adapters.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
+    <ProjectReference Include="..\..\..\Adapters\EllAid.Adapters.csproj"/>
+    <ProjectReference Include="..\..\..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj"/>
+    <ProjectReference Include="..\..\..\UseCases\Dashboard\EllAid.UseCases.Dashboard.csproj"/>
+    <ProjectReference Include="..\..\Main\EllAid.Details.Main.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="*" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="*"/>
+    <PackageReference Include="FluentValidation" Version="*"/>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="*"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>

@@ -2,8 +2,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Entities\EllAid.Entities.csproj" />
     <ProjectReference Include="..\..\..\Identity\AspNetCore.Identity.DocumentDb\src\AspNetCore.Identity.DocumentDb\AspNetCore.Identity.DocumentDb.csproj" />
+    <ProjectReference Include="..\UseCases\Dashboard\EllAid.UseCases.Dashboard.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 </Project>
