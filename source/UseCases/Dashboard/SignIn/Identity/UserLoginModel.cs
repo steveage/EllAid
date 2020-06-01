@@ -1,4 +1,4 @@
-namespace EllAid.UseCases.Dashboard.Identity
+namespace EllAid.UseCases.Dashboard.SignIn.Identity
 {
     public class UserLoginModel
     {

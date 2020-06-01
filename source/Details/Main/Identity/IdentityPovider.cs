@@ -3,12 +3,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using EllAid.Entities;
 using EllAid.Entities.Services;
+using EllAid.UseCases.Dashboard.SignIn.Identity;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace EllAid.UseCases.Dashboard.Identity
+namespace EllAid.Details.Main.Identity
 {
-    class IdentityProvider : IIdentityProvider
+    public class IdentityProvider : IIdentityProvider
     {
         readonly IHttpClientProvider provider;
         readonly IConfiguration config;

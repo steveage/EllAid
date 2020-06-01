@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using EllAid.Entities;
 
-namespace EllAid.UseCases.Dashboard.Identity
+namespace EllAid.UseCases.Dashboard.SignIn.Identity
 {
     public interface IIdentityProvider
     {

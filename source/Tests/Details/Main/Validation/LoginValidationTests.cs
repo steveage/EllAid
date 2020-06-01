@@ -1,8 +1,8 @@
 using EllAid.Details.Main.Validation;
-using EllAid.UseCases.Dashboard.Identity;
+using EllAid.UseCases.Dashboard.SignIn.Identity;
 using FluentValidation.Results;
 using Xunit;
-
+using ValidationResult = EllAid.Entities.Services.Validation.ValidationResult;
 namespace EllAid.Tests.Details.Main.Validation
 {
     public class LoginValidationTests

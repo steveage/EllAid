@@ -1,4 +1,4 @@
-namespace EllAid.UseCases.Dashboard
+namespace EllAid.UseCases.Dashboard.SignIn
 {
     public enum NavigationLocation
     {

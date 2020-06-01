@@ -1,6 +1,6 @@
 using System;
 
-namespace EllAid.UseCases.Dashboard
+namespace EllAid.UseCases.Dashboard.SignIn
 {
     public class SignInNavigator : INavigator
     {

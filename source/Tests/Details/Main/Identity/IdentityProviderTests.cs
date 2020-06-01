@@ -1,8 +1,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
+using EllAid.Details.Main.Identity;
 using EllAid.Entities;
 using EllAid.Entities.Services;
-using EllAid.UseCases.Dashboard.Identity;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using Xunit;

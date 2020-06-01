@@ -1,5 +1,6 @@
 using System;
 using EllAid.UseCases.Dashboard;
+using EllAid.UseCases.Dashboard.SignIn;
 using Moq;
 using Xunit;
 

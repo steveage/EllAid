@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using EllAid.Entities;
-using EllAid.Entities.Services;
-using EllAid.UseCases.Dashboard.Identity;
+using EllAid.Entities.Services.Validation;
+using EllAid.UseCases.Dashboard.SignIn.Identity;
 
-namespace EllAid.UseCases.Dashboard
+namespace EllAid.UseCases.Dashboard.SignIn
 {
     public class SignInUseCase
     {
@@ -12,13 +12,17 @@ namespace EllAid.UseCases.Dashboard
         readonly IIdentityProvider identityProvider;
         readonly ISignInExecutor signInExecutor;
         readonly INavigator navigator;
+        readonly IErrorCollector errorCollector;
+        readonly SignInErrorCreator errorCreator;
 
-        public SignInUseCase(IValidator<UserLoginModel> validator, IIdentityProvider identityProvider, ISignInExecutor signInExecutor, INavigator navigator)
+        public SignInUseCase(IValidator<UserLoginModel> validator, IIdentityProvider identityProvider, ISignInExecutor signInExecutor, INavigator navigator, IErrorCollector errorCollector, SignInErrorCreator errorCreator)
         {
             this.validator = validator;
             this.identityProvider = identityProvider;
             this.signInExecutor = signInExecutor;
             this.navigator = navigator;
+            this.errorCollector = errorCollector;
+            this.errorCreator = errorCreator;
         }
 
         public async Task SignInAsync(UserLoginModel model)
@@ -28,20 +32,20 @@ namespace EllAid.UseCases.Dashboard
 
         async Task CheckSignInIfValidAsync(UserLoginModel model)
         {
-            if (validator.IsValid(model))
+            ValidationResult result = validator.Validate(model);
+            if (result.IsValid)
             {
                 await SignInIfCredentialsOK(model);
             }
             else
             {
+                errorCollector.AddErrors(result.Errors);
+                errorCollector.Save();
                 NavigateTo(NavigationLocation.Current);
             }
         }
 
-        void NavigateTo(NavigationLocation location)
-        {
-            navigator.NavigateTo(location);
-        }
+        void NavigateTo(NavigationLocation location) => navigator.NavigateTo(location);
 
         async Task SignInIfCredentialsOK(UserLoginModel model)
         {
@@ -56,12 +60,14 @@ namespace EllAid.UseCases.Dashboard
             }
             else
             {
+                errorCollector.AddError(errorCreator.Create(result));
+                errorCollector.Save();
                 NavigateTo(NavigationLocation.Current);
             }
         }
 
         async Task SignInUserAsync(UserLoginModel model)
-        {   
+        {
             await signInExecutor.SignInAsync(model.Username);
             NavigateTo(NavigationLocation.Target);
         }

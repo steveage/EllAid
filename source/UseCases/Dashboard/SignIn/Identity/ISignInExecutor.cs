@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace EllAid.UseCases.Dashboard.Identity
+namespace EllAid.UseCases.Dashboard.SignIn.Identity
 {
     public interface ISignInExecutor
     {
